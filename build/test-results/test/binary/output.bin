@@ -1,0 +1,14 @@
+<Identifier,var>
+
+<Space, >
+<Identifier,x>
+
+<Space, >
+<Identifier,int>
+
+<Space, >
+<SpecialSymbols,=>
+
+<Space, >
+	<Type,2>
+<SpecialSymbols,;>
