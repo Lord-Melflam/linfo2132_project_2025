@@ -6,7 +6,6 @@ public class Symbol {
   public Symbol(String symbol,String value) {
     this.token =symbol;
     this.attribute =value;
-    System.out.println(toString());
   }
   public String toString() {
     if(token.equals("NewLine")){
@@ -14,4 +13,6 @@ public class Symbol {
     }
     return "<" + token + "," + attribute + ">";
   }
+
+
 }

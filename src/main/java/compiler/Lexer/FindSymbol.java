@@ -22,6 +22,11 @@ public class FindSymbol {
 
     if (Keywords.contains(word)) {
       longestCategory = "Keyword";
+      return longestCategory;
+    }
+    if (isSpecialSymbols(word)) {
+      longestCategory = "SpecialSymbols";
+      return longestCategory;
     }
     if (isComment(word)) {
       longestCategory = "Comment";
@@ -29,9 +34,7 @@ public class FindSymbol {
     if (isType(word)) {
       longestCategory = "Type";
     }
-    if (isSpecialSymbols(word)) {
-      longestCategory = "SpecialSymbols";
-    }
+
     if (isNewLine(word)) {
       longestCategory = "NewLine";
     }
@@ -52,6 +55,7 @@ public class FindSymbol {
   }
 
   public boolean isType(String ch) {
+    if (ch.equals("-")) return false;
     return isInt(ch) || isFloat(ch) || isString(ch) || bool.contains(ch);
   }
 
@@ -135,7 +139,7 @@ public class FindSymbol {
         return false;
       }
     }
-    return hasDot && hasDigit && Float.parseFloat(ch)<Float.MAX_VALUE && Integer.parseInt(ch)>Float.MIN_VALUE;
+    return hasDot && hasDigit && Float.parseFloat(ch)<Float.MAX_VALUE && Float.parseFloat(ch)>Float.MIN_VALUE;
   }
 
   public ArrayList<String> symbols(String word) {

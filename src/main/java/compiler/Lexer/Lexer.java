@@ -1,13 +1,12 @@
 package compiler.Lexer;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Lexer {
+public class Lexer implements Iterator {
     private final FindSymbol findSymbol;
     private final List<Symbol> symbols;
     private int index;
@@ -24,8 +23,8 @@ public class Lexer {
     }
 
     public Symbol getNextSymbol() {
-        if (index >= symbols.size()) return null;
-        return symbols.get(index++);
+        if(!hasNext()) return null;
+        return next();
     }
 
     private void parseSymbols(Reader reader) throws IOException {
@@ -62,5 +61,15 @@ public class Lexer {
                 symbols.add(new Symbol(longestMatch, word.toString()));
             }
         }
+    }
+
+    @Override
+    public boolean hasNext() {
+        return index < symbols.size();
+    }
+
+    @Override
+    public Symbol next() {
+        return symbols.get(index++);
     }
 }
