@@ -4,22 +4,22 @@
 package compiler;
 
 import compiler.Lexer.Lexer;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
-import java.util.Arrays;
 
 public class Compiler {
-    public static void main(String[] args) {
-        try {
-            Reader reader = new FileReader(args[1]);
-            Lexer lexer = new Lexer(reader);
-            while (lexer.hasNext()){
-                System.out.println(lexer.getNextSymbol());
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
+  public static void main(String[] args) {
+    try {
+      Reader reader = new FileReader(args[1]);
+      Lexer lexer = new Lexer(reader);
+      while (lexer.hasNext()) {
+        System.out.println(lexer.getNextSymbol());
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
+
+  }
 }

@@ -2,74 +2,88 @@ package compiler.Lexer;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Lexer implements Iterator {
-    private final FindSymbol findSymbol;
-    private final List<Symbol> symbols;
-    private int index;
 
-    public Lexer(Reader input) {
-        this.findSymbol = new FindSymbol();
-        this.symbols = new ArrayList<>();
-        this.index = 0;
-        try {
-            parseSymbols(input);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+  private final List<Symbol> symbols;
+  private int index;
+  private final SymbolRegistry symbolRegistry;
 
-    public Symbol getNextSymbol() {
-        if(!hasNext()) return null;
-        return next();
-    }
+  public Lexer(Reader input) throws IOException {
+    this.symbols = new ArrayList<>();
+    this.index = 0;
+    symbolRegistry = new SymbolRegistry();
+    symbolRegistry.loadSymbols();
+    parseSymbols(input);
+  }
 
-    private void parseSymbols(Reader reader) throws IOException {
-        StringBuilder word = new StringBuilder();
-        int nextChar;
+  public Symbol getNextSymbol() {
+      if (!hasNext()) {
+          return null;
+      }
+    return next();
+  }
 
-        while ((nextChar = reader.read()) != -1) {
-            char ch = (char) nextChar;
 
-            if (!findSymbol.isAscii(ch)) {
-                System.err.println("Not ASCII: " + ch);
-                continue;
-            }
+  @Override
+  public boolean hasNext() {
+    return index < symbols.size();
+  }
 
-            word.append(ch);
-            List<String> symbolSet = findSymbol.symbols(word.toString());
+  @Override
+  public Symbol next() {
+    return symbols.get(index++);
+  }
 
-            if (symbolSet.isEmpty()) {
-                if (!word.isEmpty()) {
-                    String longestMatch = findSymbol.longestMatchSymbols(word.substring(0, word.length() - 1));
-                    if (longestMatch != null) {
-                        symbols.add(new Symbol(longestMatch, word.substring(0, word.length() - 1)));
-                    }
-                    word = new StringBuilder().append(word.charAt(word.length() - 1));
-                } else {
-                    word.setLength(0);
-                }
-            }
-        }
+  private void parseSymbols(Reader reader) throws IOException {
+    StringBuilder word = new StringBuilder();
+    int nextChar;
 
+    while ((nextChar = reader.read()) != -1) {
+      char ch = (char) nextChar;
+
+      if (!Symbol.isAscii(ch)) {
+        System.err.println("Not ASCII: " + ch);
+        continue;
+      }
+      word.append(ch);
+      List<String> symbolSet = symbolRegistry.getSymbolTypeList(word.toString());
+
+      if (symbolSet.isEmpty()) {
         if (!word.isEmpty()) {
-            String longestMatch = findSymbol.longestMatchSymbols(word.toString());
-            if (longestMatch != null) {
-                symbols.add(new Symbol(longestMatch, word.toString()));
-            }
+          String longestMatch = symbolRegistry.getSymbolType(word.substring(0, word.length() - 1));
+          if (longestMatch != null) {
+            symbols.add(createSymbols(longestMatch, word.substring(0, word.length() - 1)));
+            word = new StringBuilder().append(word.charAt(word.length() - 1));
+
+          }
+        } else {
+          word.setLength(0);
         }
+      }
     }
 
-    @Override
-    public boolean hasNext() {
-        return index < symbols.size();
+    if (!word.isEmpty()) {
+      String longestMatch = symbolRegistry.getSymbolType(word.toString());
+      if (longestMatch != null) {
+        symbols.add(createSymbols(longestMatch, word.toString()));
+      }
     }
+  }
 
-    @Override
-    public Symbol next() {
-        return symbols.get(index++);
+  public Symbol createSymbols(String symbolName, String value) {
+    try {
+      Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + symbolName);
+      java.lang.reflect.Constructor<?> constructor = clazz.getDeclaredConstructor(String.class);
+      return (Symbol) constructor.newInstance(value);
+
+    } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
+             NoSuchMethodException | ClassNotFoundException e) {
+      throw new RuntimeException(e);
     }
+  }
 }
