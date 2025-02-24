@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Lexer implements Iterator {
+public class Lexer implements Iterator<Symbol> {
 
   private final List<Symbol> symbols;
   private int index;
@@ -39,6 +39,11 @@ public class Lexer implements Iterator {
     return symbols.get(index++);
   }
 
+  /**
+   * parseSymbols
+   * Description - Reads the input file and associates each word with symbols and adds them to a list.
+   * @param reader - File to read
+   */
   private void parseSymbols(Reader reader) throws IOException {
     StringBuilder word = new StringBuilder();
     int nextChar;
@@ -75,6 +80,13 @@ public class Lexer implements Iterator {
     }
   }
 
+  /**
+   * createSymbols
+   * Description - Creates new symbol object
+   * @param symbolName class name
+   * @param value word associated to the symbol
+   * @return the new symbol object
+   */
   public Symbol createSymbols(String symbolName, String value) {
     try {
       Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + symbolName);
