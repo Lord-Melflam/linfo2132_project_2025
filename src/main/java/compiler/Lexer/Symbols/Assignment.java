@@ -6,7 +6,6 @@ public class Assignment extends Symbol {
 
   private int line_number;
   private String attribute;
-  private final String symbolName = "Assignment";
 
   public Assignment(String value, int line) {
     attribute = value;

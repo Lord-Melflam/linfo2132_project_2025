@@ -5,7 +5,6 @@ import compiler.Lexer.Symbol;
 public class Record extends Symbol {
 
   private String attribute;
-  private final String symbolName = "Record";
   private int line_number;
 
 

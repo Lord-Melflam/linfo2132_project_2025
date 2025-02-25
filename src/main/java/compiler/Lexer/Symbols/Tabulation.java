@@ -4,7 +4,6 @@ import compiler.Lexer.Symbol;
 
 public class Tabulation extends Symbol {
 
-  private final String symbolName = "Tabulation";
   private int line_number;
 
   public Tabulation(String value, int line) {

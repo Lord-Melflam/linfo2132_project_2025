@@ -4,7 +4,6 @@ import compiler.Lexer.Symbol;
 
 public class NewLine extends Symbol {
 
-  private final String symbolName = "NewLine";
   private int line_number;
 
 

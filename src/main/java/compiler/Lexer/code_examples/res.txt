@@ -1,118 +1,17 @@
-Starting a Gradle Daemon, 3 incompatible Daemons could not be reused, use --status for details
 > Task :compileJava
 > Task :processResources NO-SOURCE
 > Task :classes
 
 > Task :run
-<Identifier,p>/1
+<Identifier,a>/1
 <Space>/1
-<TypeSpecifier,_Person[]>/1
 <Space>/1
 <Assignment,=>/1
 <Space>/1
-<Identifier,array>/1
+<Identifier,f>/1
+<Literal,"hjfjfjh\">/1
 <Space>/1
-<SpecialSymbol,[>/1
-<Literal,5>/1
-<SpecialSymbol,]>/1
-<Space>/1
-<Identifier,of>/1
-<Space>/1
-<Record,Person>/1
-<SpecialSymbol,;>/1
-<NewLine>/2
-<Identifier,c>/2
-<Space>/2
-<TypeSpecifier,int[]>/2
-<Space>/2
-<Assignment,=>/2
-<Space>/2
-<Identifier,array>/2
-<Space>/2
-<SpecialSymbol,[>/2
-<Literal,5>/2
-<SpecialSymbol,]>/2
-<Space>/2
-<Identifier,of>/2
-<Space>/2
-<Identifier,int>/2
-<SpecialSymbol,;>/2
-<Space>/2
-<Space>/2
-<Comment,$ new array of length 5>/2
-<NewLine>/3
-<Identifier,d>/3
-<Space>/3
-<Record,Person>/3
-<Assignment,=>/3
-<Space>/3
-<Record,Person>/3
-<SpecialSymbol,(>/3
-<Literal,"me">/3
-<SpecialSymbol,,>/3
-<Space>/3
-<Record,Point>/3
-<SpecialSymbol,(>/3
-<Literal,3>/3
-<SpecialSymbol,,>/3
-<Literal,7>/3
-<SpecialSymbol,)>/3
-<SpecialSymbol,,>/3
-<Space>/3
-<Identifier,array>/3
-<Space>/3
-<SpecialSymbol,[>/3
-<Identifier,i>/3
-<Operator,*>/3
-<Literal,2>/3
-<SpecialSymbol,]>/3
-<Space>/3
-<Identifier,of>/3
-<Space>/3
-<Identifier,int>/3
-<SpecialSymbol,)>/3
-<SpecialSymbol,;>/3
-<Space>/3
-<Space>/3
-<Comment,$ new record>/3
-<NewLine>/4
-<NewLine>/5
-<Record,Person>/5
-<Space>/5
-<Identifier,rec>/5
-<SpecialSymbol,{>/5
-<NewLine>/6
-<NewLine>/7
-<Space>/7
-<Space>/7
-<Space>/7
-<Space>/7
-<Identifier,name>/7
-<Space>/7
-<Identifier,string>/7
-<SpecialSymbol,;>/7
-<NewLine>/8
-<NewLine>/9
-<Space>/9
-<Space>/9
-<Space>/9
-<Space>/9
-<Identifier,location>/9
-<Space>/9
-<Record,Point>/9
-<SpecialSymbol,;>/9
-<NewLine>/10
-<NewLine>/11
-<Space>/11
-<Space>/11
-<Space>/11
-<Space>/11
-<Identifier,history>/11
-<Space>/11
-<SpecialSymbol,;>/11
-<NewLine>/12
-<NewLine>/13
-<SpecialSymbol,}>/13
+<Identifier,hjyhy>/1
 
-BUILD SUCCESSFUL in 12s
+BUILD SUCCESSFUL in 1s
 2 actionable tasks: 2 executed

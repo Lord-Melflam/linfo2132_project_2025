@@ -11,7 +11,6 @@ public class Keyword extends Symbol {
       List.of("free", "final", "rec", "fun", "for", "while", "if", "else", "return", "of",
           "array"));
   private String attribute;
-  private final String symbolName = "Keyword";
 
   public Keyword(String value, int line) {
     attribute = value;

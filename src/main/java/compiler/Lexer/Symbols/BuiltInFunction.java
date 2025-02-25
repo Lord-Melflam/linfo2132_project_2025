@@ -7,7 +7,6 @@ import java.util.List;
 public class BuiltInFunction extends Symbol {
 
   private String attribute;
-  private final String symbolName = "BuiltInFunction";
   private int line_number;
   private static final ArrayList<String> BUILTIN = new ArrayList<>(
       List.of("readInt", "readFloat", "readString", "writeInt", "writeFloat", "write", "writeln"

@@ -9,7 +9,6 @@ public class Literal extends Symbol {
   private static final ArrayList<String> BOOL = new ArrayList<>(
       List.of("true", "false"));
   private String attribute;
-  private final String symbolName = "Literal";
   private int line_number;
 
   public Literal(String value, int line) {
