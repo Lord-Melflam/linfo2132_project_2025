@@ -1,4 +1,4 @@
-//Good luck
+$Good luck
 
 final message string = "Hello";
 final run bool = true;
