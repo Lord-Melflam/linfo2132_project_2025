@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TypeSpecifier extends Symbol {
 
-  public static final ArrayList<String> TYPE_SPECIFIERS = new ArrayList<>(
+  private static final ArrayList<String> TYPE_SPECIFIERS = new ArrayList<>(
       List.of("int", "float", "bool", "string"));
   private String attribute;
   private final String symbolName = "TypeSpecifier";
@@ -23,21 +23,30 @@ public class TypeSpecifier extends Symbol {
   }
 
   public boolean matches(String word) {
-    for (String type : TYPE_SPECIFIERS) {
-      String array = type + "[]";
-      if (type.equals(word) || array.equals(word)) {
-        return true;
-      }
+    return TYPE_SPECIFIERS.contains(word) || isArrayTypeSpecifier(word) || isArrayRecord(word);
+  }
+
+  public boolean endWithBracket(String word) {
+    return (word.endsWith("[") || word.endsWith("]") || word.endsWith("[]"));
+  }
+
+  public boolean isArrayTypeSpecifier(String word) {
+    for (String s : TypeSpecifier.TYPE_SPECIFIERS) {
+      return word.startsWith(s) && endWithBracket(word);
+    }
+    return false;
+  }
+
+  public boolean isArrayRecord(String word) {
+    if (endWithBracket(word)) {
+      String PotentialRecord = word.substring(0, word.length() - 2);
+      return new Record().matches(PotentialRecord);
     }
     return false;
   }
 
   public int getLine_number() {
     return line_number;
-  }
-
-  public ArrayList<String> getTypeSpecifier() {
-    return TYPE_SPECIFIERS;
   }
 
   @Override

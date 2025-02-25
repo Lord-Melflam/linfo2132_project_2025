@@ -1,12 +1,11 @@
-> Task :compileJava UP-TO-DATE
+> Task :compileJava
 > Task :processResources NO-SOURCE
-> Task :classes UP-TO-DATE
+> Task :classes
 
 > Task :run
 <Identifier,p>/1
 <Space>/1
-<Record,Person>/1
-<Type,[]>/1
+<TypeSpecifier,Person[]>/1
 <Space>/1
 <Assignment,=>/1
 <Space>/1
@@ -23,7 +22,7 @@
 <NewLine>/2
 <Identifier,c>/2
 <Space>/2
-<Type,int[]>/2
+<TypeSpecifier,int[]>/2
 <Space>/2
 <Assignment,=>/2
 <Space>/2
@@ -114,5 +113,5 @@
 <NewLine>/13
 <SpecialSymbol,}>/13
 
-BUILD SUCCESSFUL in 1s
-2 actionable tasks: 1 executed, 1 up-to-date
+BUILD SUCCESSFUL in 2s
+2 actionable tasks: 2 executed
