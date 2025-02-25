@@ -8,7 +8,7 @@ class SymbolRegistry {
 
   private final ArrayList<Symbol> symbols;
   private final List<String> SYMBOLS_NAME = new ArrayList<>(List.of(
-      "Keyword", "Type", "SpecialSymbol", "TypeSpecifier", "NewLine", "Tabulation", "Space",
+      "Keyword", "Literal", "SpecialSymbol", "TypeSpecifier", "NewLine", "Tabulation", "Space",
       "Operator", "Assignment", "Comment", "BuiltInFunction", "Record", "Identifier"
   ));
 

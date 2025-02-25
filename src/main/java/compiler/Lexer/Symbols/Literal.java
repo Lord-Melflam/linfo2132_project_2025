@@ -4,20 +4,20 @@ import compiler.Lexer.Symbol;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Type extends Symbol {
+public class Literal extends Symbol {
 
   private static final ArrayList<String> BOOL = new ArrayList<>(
       List.of("true", "false"));
   private String attribute;
-  private final String symbolName = "Type";
+  private final String symbolName = "Literal";
   private int line_number;
 
-  public Type(String value, int line) {
+  public Literal(String value, int line) {
     attribute = value;
     line_number = line;
   }
 
-  public Type() {
+  public Literal() {
 
   }
 
