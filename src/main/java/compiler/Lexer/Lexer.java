@@ -12,19 +12,21 @@ public class Lexer implements Iterator<Symbol> {
   private final List<Symbol> symbols;
   private int index;
   private final SymbolRegistry symbolRegistry;
+  private int line;
 
   public Lexer(Reader input) throws IOException {
     this.symbols = new ArrayList<>();
     this.index = 0;
+    this.line = 1;
     symbolRegistry = new SymbolRegistry();
     symbolRegistry.loadSymbols();
     parseSymbols(input);
   }
 
   public Symbol getNextSymbol() {
-      if (!hasNext()) {
-          return null;
-      }
+    if (!hasNext()) {
+      return null;
+    }
     return next();
   }
 
@@ -40,8 +42,9 @@ public class Lexer implements Iterator<Symbol> {
   }
 
   /**
-   * parseSymbols
-   * Description - Reads the input file and associates each word with symbols and adds them to a list.
+   * parseSymbols Description - Reads the input file and associates each word with symbols and adds
+   * them to a list.
+   *
    * @param reader - File to read
    */
   private void parseSymbols(Reader reader) throws IOException {
@@ -50,7 +53,6 @@ public class Lexer implements Iterator<Symbol> {
 
     while ((nextChar = reader.read()) != -1) {
       char ch = (char) nextChar;
-
       if (!Symbol.isAscii(ch)) {
         System.err.println("Not ASCII: " + ch);
         continue;
@@ -81,21 +83,28 @@ public class Lexer implements Iterator<Symbol> {
   }
 
   /**
-   * createSymbols
-   * Description - Creates new symbol object
+   * createSymbols Description - Creates new symbol object
+   *
    * @param symbolName class name
-   * @param value word associated to the symbol
+   * @param value      word associated to the symbol
    * @return the new symbol object
    */
   public Symbol createSymbols(String symbolName, String value) {
     try {
       Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + symbolName);
-      java.lang.reflect.Constructor<?> constructor = clazz.getDeclaredConstructor(String.class);
-      return (Symbol) constructor.newInstance(value);
-
+      java.lang.reflect.Constructor<?> constructor = clazz.getDeclaredConstructor(String.class,
+          int.class);
+      return (Symbol) constructor.newInstance(value, count_line(symbolName));
     } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
              NoSuchMethodException | ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public int count_line(String symbolName) {
+    if (symbolName.equals("NewLine")) {
+      line++;
+    }
+    return line;
   }
 }

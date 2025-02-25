@@ -6,10 +6,12 @@ public class Record extends Symbol {
 
   private String attribute;
   private final String symbolName = "Record";
+  private int line_number;
 
 
-  public Record(String value) {
+  public Record(String value, int line) {
     attribute = value;
+    line_number = line;
   }
 
   public Record() {
@@ -28,6 +30,10 @@ public class Record extends Symbol {
   @Override
   public boolean matches(String word) {
     return word.length() >= 1 && (word.charAt(0) == '_' || isSTartLetter(word)) && isLetter(word);
+  }
+
+  public int getLine_number() {
+    return line_number;
   }
 
   @Override

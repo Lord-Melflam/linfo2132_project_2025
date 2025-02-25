@@ -5,8 +5,10 @@ import compiler.Lexer.Symbol;
 public class Tabulation extends Symbol {
 
   private final String symbolName = "Tabulation";
+  private int line_number;
 
-  public Tabulation(String value) {
+  public Tabulation(String value, int line) {
+    line_number = line;
   }
 
   public Tabulation() {
@@ -19,7 +21,11 @@ public class Tabulation extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return getClass().getName();
+  }
+
+  public int getLine_number() {
+    return line_number;
   }
 
   public String toString() {

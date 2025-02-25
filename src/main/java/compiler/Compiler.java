@@ -4,6 +4,7 @@
 package compiler;
 
 import compiler.Lexer.Lexer;
+import compiler.Lexer.Symbol;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -15,7 +16,8 @@ public class Compiler {
       Reader reader = new FileReader(args[1]);
       Lexer lexer = new Lexer(reader);
       while (lexer.hasNext()) {
-        System.out.println(lexer.getNextSymbol());
+        Symbol s = lexer.getNextSymbol();
+        System.out.println(s + "/" + s.getLine_number());
       }
     } catch (IOException e) {
       throw new RuntimeException(e);

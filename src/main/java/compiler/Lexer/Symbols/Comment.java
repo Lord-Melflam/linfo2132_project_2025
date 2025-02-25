@@ -6,9 +6,11 @@ public class Comment extends Symbol {
 
   private String attribute;
   private final String symbolName = "Comment";
+  private int line_number;
 
-  public Comment(String value) {
+  public Comment(String value, int line) {
     attribute = value;
+    line_number = line;
   }
 
   public Comment() {
@@ -23,6 +25,10 @@ public class Comment extends Symbol {
   @Override
   public String getName() {
     return symbolName;
+  }
+
+  public int getLine_number() {
+    return line_number;
   }
 
   @Override

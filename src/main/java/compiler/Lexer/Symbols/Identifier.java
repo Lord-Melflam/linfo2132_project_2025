@@ -6,10 +6,12 @@ public class Identifier extends Symbol {
 
   private String attribute;
   private final String symbolName = "Identifier";
+  private int line_number;
 
 
-  public Identifier(String value) {
+  public Identifier(String value, int line) {
     attribute = value;
+    line_number = line;
   }
 
   public Identifier() {
@@ -33,6 +35,10 @@ public class Identifier extends Symbol {
   @Override
   public String getName() {
     return symbolName;
+  }
+
+  public int getLine_number() {
+    return line_number;
   }
 
   @Override

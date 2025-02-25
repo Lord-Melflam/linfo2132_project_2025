@@ -8,15 +8,21 @@ public class BuiltInFunction extends Symbol {
 
   private String attribute;
   private final String symbolName = "BuiltInFunction";
+  private int line_number;
   private static final ArrayList<String> BUILTIN = new ArrayList<>(
       List.of("readInt", "readFloat", "readString", "writeInt", "writeFloat", "write", "writeln"
       ));
 
-  public BuiltInFunction(String value) {
+  public BuiltInFunction(String value, int line) {
     attribute = value;
+    line_number = line;
   }
 
   public BuiltInFunction() {
+  }
+
+  public int getLine_number() {
+    return line_number;
   }
 
   public boolean matches(String word) {
@@ -44,6 +50,7 @@ public class BuiltInFunction extends Symbol {
   public String getName() {
     return symbolName;
   }
+
 
   @Override
   public String toString() {

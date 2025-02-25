@@ -6,13 +6,15 @@ import java.util.List;
 
 public class Operator extends Symbol {
 
+  private int line_number;
   private static final ArrayList<String> OPERATORS = new ArrayList<>(
       List.of("+", "-", "*", "/", "%", "==", "!=", "<", ">", "<=", ">=", "&&", "||"));
   private String attribute;
   private final String symbolName = "Operator";
 
-  public Operator(String value) {
+  public Operator(String value, int line) {
     attribute = value;
+    line_number = line;
   }
 
   public Operator() {
@@ -25,6 +27,10 @@ public class Operator extends Symbol {
   @Override
   public String getName() {
     return symbolName;
+  }
+
+  public int getLine_number() {
+    return line_number;
   }
 
   @Override

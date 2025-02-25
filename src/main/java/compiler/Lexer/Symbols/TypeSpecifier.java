@@ -6,14 +6,16 @@ import java.util.List;
 
 public class TypeSpecifier extends Symbol {
 
-  private static final ArrayList<String> TYPE_SPECIFIERS = new ArrayList<>(
+  public static final ArrayList<String> TYPE_SPECIFIERS = new ArrayList<>(
       List.of("int", "float", "bool", "string"));
   private String attribute;
   private final String symbolName = "TypeSpecifier";
+  private int line_number;
 
 
-  public TypeSpecifier(String value) {
+  public TypeSpecifier(String value, int line) {
     attribute = value;
+    line_number = line;
   }
 
   public TypeSpecifier() {
@@ -28,6 +30,14 @@ public class TypeSpecifier extends Symbol {
       }
     }
     return false;
+  }
+
+  public int getLine_number() {
+    return line_number;
+  }
+
+  public ArrayList<String> getTypeSpecifier() {
+    return TYPE_SPECIFIERS;
   }
 
   @Override
