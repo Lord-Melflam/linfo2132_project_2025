@@ -15,7 +15,6 @@ public class SpecialSymbol extends Symbol {
   private int line_number;
 
   private String attribute;
-  private final String symbolName = "SpecialSymbol";
 
   public SpecialSymbol(String value, int line) {
     attribute = value;
@@ -50,7 +49,7 @@ public class SpecialSymbol extends Symbol {
     if (isClose()) {
       return "Close";
     }
-    return isOpen() ? "Open" : "Not open and close Special Symbol";
+    return isOpen() ? "Open" : null;
   }
 
   @Override

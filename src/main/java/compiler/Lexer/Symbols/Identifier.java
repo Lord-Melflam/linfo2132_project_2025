@@ -5,7 +5,6 @@ import compiler.Lexer.Symbol;
 public class Identifier extends Symbol {
 
   private String attribute;
-  private final String symbolName = "Identifier";
   private int line_number;
 
 

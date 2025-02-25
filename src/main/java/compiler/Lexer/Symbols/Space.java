@@ -4,7 +4,6 @@ import compiler.Lexer.Symbol;
 
 public class Space extends Symbol {
 
-  private final String symbolName = "Space";
   private int line_number;
 
   public Space(String value, int line) {

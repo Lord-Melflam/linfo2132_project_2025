@@ -1,20 +1,24 @@
-Starting a Gradle Daemon, 3 incompatible Daemons could not be reused, use --status for details
 > Task :compileJava
 > Task :processResources NO-SOURCE
 > Task :classes
 
 > Task :run
 <<<<<<< HEAD
+<<<<<<< HEAD
 <Comment,$ Constants declaration>/1
 =======
 <Identifier,p>/1
+=======
+<Identifier,a>/1
+>>>>>>> 48c2f3801a53298591f647487389c4820e71d428
 <Space>/1
-<TypeSpecifier,_Person[]>/1
 <Space>/1
 <Assignment,=>/1
 <Space>/1
-<Identifier,array>/1
+<Identifier,f>/1
+<Literal,"hjfjfjh\">/1
 <Space>/1
+<<<<<<< HEAD
 <SpecialSymbol,[>/1
 <Literal,5>/1
 <SpecialSymbol,]>/1
@@ -884,4 +888,9 @@ BUILD SUCCESSFUL in 722ms
 =======
 BUILD SUCCESSFUL in 12s
 >>>>>>> 153ae954f02fa18a1b375479568f2ba61ad9c4a7
+=======
+<Identifier,hjyhy>/1
+
+BUILD SUCCESSFUL in 1s
+>>>>>>> 48c2f3801a53298591f647487389c4820e71d428
 2 actionable tasks: 2 executed

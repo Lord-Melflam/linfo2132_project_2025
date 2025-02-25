@@ -5,7 +5,6 @@ import compiler.Lexer.Symbol;
 public class Comment extends Symbol {
 
   private String attribute;
-  private final String symbolName = "Comment";
   private int line_number;
 
   public Comment(String value, int line) {

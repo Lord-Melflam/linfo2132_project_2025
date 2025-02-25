@@ -9,7 +9,6 @@ public class TypeSpecifier extends Symbol {
   private static final ArrayList<String> TYPE_SPECIFIERS = new ArrayList<>(
       List.of("int", "float", "bool", "string"));
   private String attribute;
-  private final String symbolName = "TypeSpecifier";
   private int line_number;
 
 
@@ -35,6 +34,13 @@ public class TypeSpecifier extends Symbol {
       return word.startsWith(s) && endWithBracket(word);
     }
     return false;
+  }
+
+  public String typeOfTypeSpecifier() {
+    for (String s : TypeSpecifier.TYPE_SPECIFIERS) {
+      return s.equals(attribute) ? s : null;
+    }
+    return null;
   }
 
   public boolean isArrayRecord(String word) {
