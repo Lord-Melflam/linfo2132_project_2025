@@ -39,8 +39,13 @@ public class TypeSpecifier extends Symbol {
 
   public boolean isArrayRecord(String word) {
     if (endWithBracket(word)) {
-      String PotentialRecord = word.substring(0, word.length() - 2);
-      return new Record().matches(PotentialRecord);
+      String potentialRecord = "";
+      if (word.length() >= 2) {
+        potentialRecord = word.substring(0, word.length() - 2);
+      } else {
+        return false;
+      }
+      return new Record().matches(potentialRecord);
     }
     return false;
   }
@@ -51,11 +56,11 @@ public class TypeSpecifier extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return TypeSpecifier.class.getSimpleName();
   }
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

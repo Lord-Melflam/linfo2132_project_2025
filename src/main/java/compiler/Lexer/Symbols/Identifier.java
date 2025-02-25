@@ -34,7 +34,7 @@ public class Identifier extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Identifier.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -43,6 +43,6 @@ public class Identifier extends Symbol {
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

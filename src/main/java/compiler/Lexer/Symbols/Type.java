@@ -30,7 +30,7 @@ public class Type extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Type.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -94,6 +94,6 @@ public class Type extends Symbol {
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

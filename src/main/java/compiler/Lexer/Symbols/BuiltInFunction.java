@@ -48,12 +48,12 @@ public class BuiltInFunction extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return BuiltInFunction.class.getSimpleName();
   }
 
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

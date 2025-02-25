@@ -21,7 +21,7 @@ public class Space extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Space.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -29,6 +29,6 @@ public class Space extends Symbol {
   }
 
   public String toString() {
-    return "<" + symbolName + ">";
+    return "<" + getName() + ">";
   }
 }

@@ -1,4 +1,4 @@
-p Person[] = array [5] of Person;
+p _Person[] = array [5] of Person;
 c int[] = array [5] of int;  $ new array of length 5
 d Person= Person("me", Point(3,7), array [i*2] of int);  $ new record
 

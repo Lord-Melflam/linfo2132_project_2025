@@ -1,16 +1,12 @@
 package compiler.Lexer;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.List;
 
 class SymbolRegistry {
 
   private final ArrayList<Symbol> symbols;
-  private final List<String> SYMBOLS_NAME = new ArrayList<>(List.of(
-      "Keyword", "Type", "SpecialSymbol", "TypeSpecifier", "NewLine", "Tabulation", "Space",
-      "Operator", "Assignment", "Comment", "BuiltInFunction", "Record", "Identifier"
-  ));
 
   public SymbolRegistry() {
     this.symbols = new ArrayList<>();
@@ -38,11 +34,18 @@ class SymbolRegistry {
   }
 
   public void loadSymbols() {
+    final String filename = "src/main/java/compiler/Lexer/Symbols";
     try {
-      for (String className : SYMBOLS_NAME) {
-        Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + className);
-        Symbol symbol = (Symbol) clazz.getDeclaredConstructor().newInstance();
-        symbols.add(symbol);
+      File directory = new File(filename);
+      if (directory.isDirectory()) {
+        String[] files = directory.list();
+
+        assert files != null;
+        for (String className : files) {
+          Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + className.split("\\.")[0]);
+          Symbol symbol = (Symbol) clazz.getDeclaredConstructor().newInstance();
+          symbols.add(symbol);
+        }
       }
     } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
              NoSuchMethodException | ClassNotFoundException e) {

@@ -27,7 +27,7 @@ public class Keyword extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Keyword.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -36,6 +36,6 @@ public class Keyword extends Symbol {
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

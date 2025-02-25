@@ -24,7 +24,7 @@ public class Comment extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Comment.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -33,7 +33,7 @@ public class Comment extends Symbol {
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 
 }

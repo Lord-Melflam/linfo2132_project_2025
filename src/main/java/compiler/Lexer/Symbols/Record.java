@@ -38,11 +38,11 @@ public class Record extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Record.class.getSimpleName();
   }
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

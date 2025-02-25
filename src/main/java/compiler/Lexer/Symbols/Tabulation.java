@@ -21,7 +21,7 @@ public class Tabulation extends Symbol {
 
   @Override
   public String getName() {
-    return getClass().getName();
+    return Tabulation.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -29,6 +29,6 @@ public class Tabulation extends Symbol {
   }
 
   public String toString() {
-    return "<" + symbolName + ">";
+    return "<" + getName() + ">";
   }
 }
