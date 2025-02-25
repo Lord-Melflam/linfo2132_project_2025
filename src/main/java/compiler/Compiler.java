@@ -16,8 +16,11 @@ public class Compiler {
       Reader reader = new FileReader(args[1]);
       Lexer lexer = new Lexer(reader);
       while (lexer.hasNext()) {
-        Symbol s = lexer.getNextSymbol();
-        System.out.println(s + "/" + s.getLine_number());
+        Symbol nextSymbol = lexer.getNextSymbol();
+        System.out.println(nextSymbol);
+/*
+        System.out.println(nextSymbol + "/" + s.getLine_number());
+*/
       }
     } catch (IOException e) {
       throw new RuntimeException(e);

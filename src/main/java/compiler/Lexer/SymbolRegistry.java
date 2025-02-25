@@ -3,6 +3,9 @@ package compiler.Lexer;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 class SymbolRegistry {
 
@@ -39,9 +42,10 @@ class SymbolRegistry {
       File directory = new File(filename);
       if (directory.isDirectory()) {
         String[] files = directory.list();
-
         assert files != null;
-        for (String className : files) {
+        List<String> test = Arrays.asList(files);
+        Collections.reverse(test);
+        for (String className : test) {
           Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + className.split("\\.")[0]);
           Symbol symbol = (Symbol) clazz.getDeclaredConstructor().newInstance();
           symbols.add(symbol);
