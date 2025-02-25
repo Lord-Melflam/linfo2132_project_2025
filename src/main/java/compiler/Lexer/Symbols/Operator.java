@@ -26,7 +26,7 @@ public class Operator extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Operator.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -35,6 +35,6 @@ public class Operator extends Symbol {
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

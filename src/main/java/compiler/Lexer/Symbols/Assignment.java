@@ -26,11 +26,11 @@ public class Assignment extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Assignment.class.getSimpleName();
   }
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

@@ -30,7 +30,7 @@ public class Literal extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return Literal.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -113,6 +113,6 @@ public class Literal extends Symbol {
 
   @Override
   public String toString() {
-    return "<" + symbolName + "," + attribute + ">";
+    return "<" + getName() + "," + attribute + ">";
   }
 }

@@ -21,7 +21,7 @@ public class NewLine extends Symbol {
 
   @Override
   public String getName() {
-    return symbolName;
+    return NewLine.class.getSimpleName();
   }
 
   public int getLine_number() {
@@ -30,6 +30,6 @@ public class NewLine extends Symbol {
 
   @Override
   public String toString() {
-    return "<" + symbolName + ">";
+    return "<" + getName() + ">";
   }
 }
