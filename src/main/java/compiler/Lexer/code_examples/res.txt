@@ -1,6 +1,7 @@
-> Task :compileJava UP-TO-DATE
+Starting a Gradle Daemon, 3 incompatible Daemons could not be reused, use --status for details
+> Task :compileJava
 > Task :processResources NO-SOURCE
-> Task :classes UP-TO-DATE
+> Task :classes
 
 > Task :run
 <Identifier,p>/1
@@ -12,7 +13,7 @@
 <Identifier,array>/1
 <Space>/1
 <SpecialSymbol,[>/1
-<Type,5>/1
+<Literal,5>/1
 <SpecialSymbol,]>/1
 <Space>/1
 <Identifier,of>/1
@@ -29,7 +30,7 @@
 <Identifier,array>/2
 <Space>/2
 <SpecialSymbol,[>/2
-<Type,5>/2
+<Literal,5>/2
 <SpecialSymbol,]>/2
 <Space>/2
 <Identifier,of>/2
@@ -47,14 +48,14 @@
 <Space>/3
 <Record,Person>/3
 <SpecialSymbol,(>/3
-<Type,"me">/3
+<Literal,"me">/3
 <SpecialSymbol,,>/3
 <Space>/3
 <Record,Point>/3
 <SpecialSymbol,(>/3
-<Type,3>/3
+<Literal,3>/3
 <SpecialSymbol,,>/3
-<Type,7>/3
+<Literal,7>/3
 <SpecialSymbol,)>/3
 <SpecialSymbol,,>/3
 <Space>/3
@@ -63,7 +64,7 @@
 <SpecialSymbol,[>/3
 <Identifier,i>/3
 <Operator,*>/3
-<Type,2>/3
+<Literal,2>/3
 <SpecialSymbol,]>/3
 <Space>/3
 <Identifier,of>/3
@@ -113,5 +114,5 @@
 <NewLine>/13
 <SpecialSymbol,}>/13
 
-BUILD SUCCESSFUL in 1s
-2 actionable tasks: 1 executed, 1 up-to-date
+BUILD SUCCESSFUL in 12s
+2 actionable tasks: 2 executed

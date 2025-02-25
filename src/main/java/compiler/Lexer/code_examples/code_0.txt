@@ -1,0 +1,68 @@
+$ Using a function call:
+result int = square(input);
+writeln("Square of input is:");
+writeln(result);
+
+$ Mixed operations with int and float (promoting int to float):
+product float = addFloats(b, input);
+writeln("Product of b and input (promoted to float):");
+writeln(product);
+
+$ Create and use a Point record:
+p1 Point = createPoint(10, 20);
+p2 Point = createPoint(30, 40);
+sumP Point = sumPoints(p1, p2);
+writeln("Sum of points is: (");
+writeInt(sumP.x);
+write(", ");
+writeInt(sumP.y);
+writeln(")");
+
+$ Using a for-loop:
+i int;
+for (i, 0, 5, 1) {
+    writeln("i equals:");
+    writeln(i);
+}
+
+$ While-loop example:
+j int = 0;
+while (j < 3) {
+    writeln("While loop iteration, j:");
+    writeln(j);
+    j = j + 1;
+}
+
+$ If / else:
+if (flag == true) {
+    writeln("Flag is true");
+} else {
+    writeln("Flag is false");
+}
+
+$ Array operations (using global "numbers")
+demoArrayOps(numbers);
+
+$ Demonstrate string operations and index access:
+$ Concatenate constants and function results:
+combined string = greeting + " " + chr(65);  $ 'A' is character 65
+writeln("Combined string:");
+writeln(combined);
+
+$ Demonstrate reading a float and using floor:
+write("Enter a float: ");
+inputFloat float = readFloat();
+floored int = floor(inputFloat);
+writeln("Floored value:");
+writeln(floored);
+
+$ Demonstrate accessing an array element and record field:
+if (len(bob.history) > 0) {
+    writeln("First history element of bob:");
+    writeln(bob.history[0]);
+}
+
+$ Simulate deallocation (manual memory management)
+free bob;
+free numbers;
+
