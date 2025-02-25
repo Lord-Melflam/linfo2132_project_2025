@@ -3,7 +3,7 @@ $Good luck
 final message string = "Hello";
 final run bool = true;
 
-Point rec {
+_Point rec {
     int x;
     int y;
 }

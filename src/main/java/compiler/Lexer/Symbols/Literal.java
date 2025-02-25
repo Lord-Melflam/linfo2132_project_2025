@@ -79,18 +79,37 @@ public class Literal extends Symbol {
 
   private boolean isString(String word) {
     if (word == null || word.length() < 2) {
-      return false;
+        return false;
     }
     if (word.charAt(0) != '"' || word.charAt(word.length() - 1) != '"') {
-      return false;
-    }
-    for (int i = 1; i < word.length() - 1; i++) {
-      if (word.charAt(i) == '"' && word.charAt(i - 1) != '\\') {
         return false;
-      }
     }
-    return true;
-  }
+
+    boolean escaped = false;
+    for (int i = 1; i < word.length() - 1; i++) {
+        char c = word.charAt(i);
+
+        if (escaped) {
+            // Only allow valid escape sequences
+            if (c != '"' && c != '\\' && c != 'n') {
+                return false;
+            }
+            escaped = false; // Reset escape state
+        } else {
+            if (c == '\\') {
+                escaped = true; // Start escape sequence
+            } else if (c == '"') {
+                return false; // Found an unescaped quote before the final one
+            }
+        }
+    }
+
+    // The final quote is always valid
+    return !escaped;
+}
+
+
+
 
   @Override
   public String toString() {
