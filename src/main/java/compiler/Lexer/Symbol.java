@@ -9,6 +9,8 @@ public abstract class Symbol {
 
   protected abstract String getName();
 
+  public abstract int getLine_number();
+
   public static boolean isAscii(char ch) {
     return ch <= 127;
   }

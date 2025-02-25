@@ -5,8 +5,11 @@ import compiler.Lexer.Symbol;
 public class NewLine extends Symbol {
 
   private final String symbolName = "NewLine";
+  private int line_number;
 
-  public NewLine(String value) {
+
+  public NewLine(String value, int line) {
+    line_number = line;
   }
 
   public NewLine() {
@@ -19,6 +22,10 @@ public class NewLine extends Symbol {
   @Override
   public String getName() {
     return symbolName;
+  }
+
+  public int getLine_number() {
+    return line_number;
   }
 
   @Override
