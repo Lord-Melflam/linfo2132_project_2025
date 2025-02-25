@@ -25,8 +25,7 @@ public class Type extends Symbol {
     if (word.equals("-")) {
       return false;
     }
-    return isInt(word) || isFloat(word) || isString(word) || BOOL.contains(word) || isArray(word)
-        || isArray2(word);
+    return isInt(word) || isFloat(word) || isString(word) || BOOL.contains(word) || isArray(word);
   }
 
   @Override
@@ -40,14 +39,6 @@ public class Type extends Symbol {
 
   public boolean isArray(String word) {
     return word.startsWith("[") && word.endsWith("]");
-  }
-
-  public boolean isArray2(String word) {
-    for (String s : TypeSpecifier.TYPE_SPECIFIERS) {
-      return word.startsWith(s) && (word.endsWith("[") || word.endsWith("]") || word.endsWith(
-          "[]"));
-    }
-    return false;
   }
 
   public boolean isInt(String word) {
