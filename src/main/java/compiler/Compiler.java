@@ -3,8 +3,9 @@
  */
 package compiler;
 
+import compiler.Exceptions.NotASCIIException;
+import compiler.Exceptions.UnrecognisedTokenException;
 import compiler.Lexer.Lexer;
-import compiler.Lexer.Symbol;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -12,19 +13,13 @@ import java.io.Reader;
 public class Compiler {
 
   public static void main(String[] args) {
-    try {
-      Reader reader = new FileReader(args[1]);
+    try (Reader reader = new FileReader(args[1])) {
       Lexer lexer = new Lexer(reader);
       while (lexer.hasNext()) {
-        Symbol nextSymbol = lexer.getNextSymbol();
-        System.out.println(nextSymbol);
-/*
-        System.out.println(nextSymbol + "/" + s.getLine_number());
-*/
+        lexer.getNextSymbol();
       }
-    } catch (IOException e) {
+    } catch (IOException | NotASCIIException | UnrecognisedTokenException e) {
       throw new RuntimeException(e);
     }
-
   }
 }

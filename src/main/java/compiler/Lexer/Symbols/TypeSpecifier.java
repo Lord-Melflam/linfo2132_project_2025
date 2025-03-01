@@ -37,8 +37,14 @@ public class TypeSpecifier extends Symbol {
   }
 
   public String typeOfTypeSpecifier() {
-    for (String s : TypeSpecifier.TYPE_SPECIFIERS) {
-      return s.equals(attribute) ? s : null;
+    if (TYPE_SPECIFIERS.contains(attribute)) {
+      return attribute;
+    }
+    if (isArrayRecord(attribute)) {
+      return "Record" + "_" + attribute.substring(0, attribute.length() - 2);
+    }
+    if (isArrayTypeSpecifier(attribute)) {
+      return attribute.substring(0, attribute.length() - 2);
     }
     return null;
   }

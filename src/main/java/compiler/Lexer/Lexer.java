@@ -1,22 +1,27 @@
 package compiler.Lexer;
 
+import compiler.Exceptions.NotASCIIException;
+import compiler.Exceptions.UnrecognisedTokenException;
+import compiler.Lexer.Symbols.EndFile;
+import compiler.Lexer.Symbols.StartFile;
+import compiler.Lexer.Symbols.UnrecognisedToken;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Lexer implements Iterator<Symbol> {
 
-  private final List<Symbol> symbols;
-  private int index;
+  private final ArrayDeque<Symbol> symbols;
   private final SymbolRegistry symbolRegistry;
   private int line;
 
-  public Lexer(Reader input) throws IOException {
-    this.symbols = new ArrayList<>();
-    this.index = 0;
+  public Lexer(Reader input) throws IOException, NotASCIIException, UnrecognisedTokenException {
+    this.symbols = new ArrayDeque<Symbol>();
+    this.symbols.add(new StartFile());
     this.line = 1;
     symbolRegistry = new SymbolRegistry();
     symbolRegistry.loadSymbols();
@@ -27,18 +32,23 @@ public class Lexer implements Iterator<Symbol> {
     if (!hasNext()) {
       return null;
     }
-    return next();
+    Symbol next = next();
+    System.out.println(next);
+/*
+        System.out.println(nextSymbol + "/" + s.getLine_number());
+*/
+    return next;
   }
 
 
   @Override
   public boolean hasNext() {
-    return index < symbols.size();
+    return !symbols.isEmpty();
   }
 
   @Override
   public Symbol next() {
-    return symbols.get(index++);
+    return symbols.pollFirst();
   }
 
   /**
@@ -47,15 +57,16 @@ public class Lexer implements Iterator<Symbol> {
    *
    * @param reader - File to read
    */
-  private void parseSymbols(Reader reader) throws IOException {
+  private void parseSymbols(Reader reader)
+      throws IOException, NotASCIIException, UnrecognisedTokenException {
     StringBuilder word = new StringBuilder();
     int nextChar;
 
     while ((nextChar = reader.read()) != -1) {
       char ch = (char) nextChar;
       if (!Symbol.isAscii(ch)) {
-        System.err.println("Not ASCII: " + ch);
-        continue;
+        symbols.add(new UnrecognisedToken(line, Character.toString(ch)));
+        throw new NotASCIIException(Character.toString(ch), Integer.toString(line));
       }
       word.append(ch);
       List<String> symbolSet = symbolRegistry.getSymbolTypeList(word.toString());
@@ -64,9 +75,10 @@ public class Lexer implements Iterator<Symbol> {
         if (!word.isEmpty()) {
           String longestMatch = symbolRegistry.getSymbolType(word.substring(0, word.length() - 1));
           if (longestMatch != null) {
-            symbols.add(createSymbols(longestMatch, word.substring(0, word.length() - 1)));
+            if (notAdd(longestMatch)) {
+              symbols.add(createSymbols(longestMatch, word.substring(0, word.length() - 1)));
+            }
             word = new StringBuilder().append(word.charAt(word.length() - 1));
-
           }
         } else {
           word.setLength(0);
@@ -77,9 +89,15 @@ public class Lexer implements Iterator<Symbol> {
     if (!word.isEmpty()) {
       String longestMatch = symbolRegistry.getSymbolType(word.toString());
       if (longestMatch != null) {
-        symbols.add(createSymbols(longestMatch, word.toString()));
+        if (notAdd(longestMatch)) {
+          symbols.add(createSymbols(longestMatch, word.toString()));
+          symbols.add(new EndFile(line));
+          return;
+        }
       }
     }
+    symbols.add(new UnrecognisedToken(line, word.substring(0, 1)));
+    throw new UnrecognisedTokenException(word.substring(0, 1), Integer.toString(line));
   }
 
   /**
@@ -94,17 +112,23 @@ public class Lexer implements Iterator<Symbol> {
       Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + symbolName);
       java.lang.reflect.Constructor<?> constructor = clazz.getDeclaredConstructor(String.class,
           int.class);
-      return (Symbol) constructor.newInstance(value, count_line(symbolName));
+      return (Symbol) constructor.newInstance(value, line);
     } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
              NoSuchMethodException | ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
   }
 
-  public int count_line(String symbolName) {
+  public boolean notAdd(String longestMatch) {
+    ArrayList<String> Symbols = new ArrayList<>(
+        List.of("Comment", "NewLine", "Tabulation", "Space"));
+    countLine(longestMatch);
+    return !Symbols.contains(longestMatch);
+  }
+
+  public void countLine(String symbolName) {
     if (symbolName.equals("NewLine")) {
       line++;
     }
-    return line;
   }
 }

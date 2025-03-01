@@ -1,0 +1,27 @@
+package compiler.Lexer.Symbols;
+
+import compiler.Lexer.Symbol;
+
+public class StartFile extends Symbol {
+
+  public StartFile() {
+  }
+
+  @Override
+  protected boolean matches(String input) {
+    return false;
+  }
+
+  public String getName() {
+    return StartFile.class.getSimpleName();
+  }
+
+  @Override
+  public int getLine_number() {
+    return 1;
+  }
+
+  public String toString() {
+    return "<" + getName() + ">";
+  }
+}

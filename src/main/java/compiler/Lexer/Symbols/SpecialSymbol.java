@@ -37,11 +37,11 @@ public class SpecialSymbol extends Symbol {
     return line_number;
   }
 
-  public boolean isOpen() {
+  private boolean isOpen() {
     return OPEN_SPECIAL_SYMBOLS.contains(attribute);
   }
 
-  public boolean isClose() {
+  private boolean isClose() {
     return CLOSE_SPECIAL_SYMBOLS.contains(attribute);
   }
 

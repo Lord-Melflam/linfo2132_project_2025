@@ -10,6 +10,7 @@ public class Literal extends Symbol {
       List.of("true", "false"));
   private String attribute;
   private int line_number;
+  private String typeOfLiteral;
 
   public Literal(String value, int line) {
     attribute = value;
@@ -18,6 +19,10 @@ public class Literal extends Symbol {
 
   public Literal() {
 
+  }
+
+  public void setTypeOfLiteral(String typeOfLiteral) {
+    this.typeOfLiteral = typeOfLiteral;
   }
 
   public boolean matches(String word) {
@@ -37,7 +42,12 @@ public class Literal extends Symbol {
   }
 
   public boolean isArray(String word) {
-    return word.startsWith("[") && word.endsWith("]");
+    if (word.startsWith("[") && word.endsWith("]")) {
+      setTypeOfLiteral("array");
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public boolean isInt(String word) {
@@ -50,7 +60,12 @@ public class Literal extends Symbol {
         return false;
       }
     }
-    return Integer.parseInt(word) < Integer.MAX_VALUE && Integer.parseInt(word) > Integer.MIN_VALUE;
+    if (Integer.parseInt(word) < Integer.MAX_VALUE && Integer.parseInt(word) > Integer.MIN_VALUE) {
+      setTypeOfLiteral("int");
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public boolean isFloat(String word) {
@@ -72,42 +87,54 @@ public class Literal extends Symbol {
         return false;
       }
     }
-    return hasDot && hasDigit && Float.parseFloat(word) < Float.MAX_VALUE
-        && Float.parseFloat(word) > Float.MIN_VALUE;
+    if (hasDot && hasDigit && Float.parseFloat(word) < Float.MAX_VALUE
+        && Float.parseFloat(word) > Float.MIN_VALUE) {
+      setTypeOfLiteral("float");
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private boolean isString(String word) {
     if (word == null || word.length() < 2) {
-        return false;
+      return false;
     }
     if (word.charAt(0) != '"' || word.charAt(word.length() - 1) != '"') {
-        return false;
+      return false;
     }
 
     boolean escaped = false;
     for (int i = 1; i < word.length() - 1; i++) {
-        char c = word.charAt(i);
+      char c = word.charAt(i);
 
-        if (escaped) {
-            // Only allow valid escape sequences
-            if (c != '"' && c != '\\' && c != 'n') {
-                return false;
-            }
-            escaped = false; // Reset escape state
-        } else {
-            if (c == '\\') {
-                escaped = true; // Start escape sequence
-            } else if (c == '"') {
-                return false; // Found an unescaped quote before the final one
-            }
+      if (escaped) {
+        // Only allow valid escape sequences
+        if (c != '"' && c != '\\' && c != 'n') {
+          return false;
         }
+        escaped = false; // Reset escape state
+      } else {
+        if (c == '\\') {
+          escaped = true; // Start escape sequence
+        } else if (c == '"') {
+          return false; // Found an unescaped quote before the final one
+        }
+      }
     }
 
     // The final quote is always valid
-    return !escaped;
-}
+    if (!escaped) {
+      setTypeOfLiteral("string");
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-
+  public String typeOfLiteral() {
+    return typeOfLiteral;
+  }
 
 
   @Override
