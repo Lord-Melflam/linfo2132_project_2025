@@ -15,6 +15,10 @@ public class Comment extends Symbol {
   public Comment() {
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   @Override
   public boolean matches(String word) {
     return word.startsWith("$") && word.length() > 1 && isAscii(word.charAt(word.length() - 1))

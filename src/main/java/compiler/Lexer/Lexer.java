@@ -18,6 +18,7 @@ public class Lexer implements Iterator<Symbol> {
   private final ArrayDeque<Symbol> symbols;
   private final SymbolRegistry symbolRegistry;
   private int line;
+  private final List<UnrecognisedToken> unrecognisedTokens = new ArrayList<>();
 
   public Lexer(Reader input) throws IOException, NotASCIIException, UnrecognisedTokenException {
     this.symbols = new ArrayDeque<Symbol>();
@@ -28,21 +29,18 @@ public class Lexer implements Iterator<Symbol> {
     parseSymbols(input);
   }
 
-  public Symbol getNextSymbol() {
+  public Symbol getNextSymbol() throws UnrecognisedTokenException {
+    checkForErrors();
     if (!hasNext()) {
       return null;
     }
-    Symbol next = next();
-    System.out.println(next);
-/*
-        System.out.println(nextSymbol + "/" + s.getLine_number());
-*/
-    return next;
+    return next();
   }
 
 
   @Override
   public boolean hasNext() {
+
     return !symbols.isEmpty();
   }
 
@@ -58,14 +56,13 @@ public class Lexer implements Iterator<Symbol> {
    * @param reader - File to read
    */
   private void parseSymbols(Reader reader)
-      throws IOException, NotASCIIException, UnrecognisedTokenException {
+      throws IOException, NotASCIIException {
     StringBuilder word = new StringBuilder();
     int nextChar;
 
     while ((nextChar = reader.read()) != -1) {
       char ch = (char) nextChar;
       if (!Symbol.isAscii(ch)) {
-        symbols.add(new UnrecognisedToken(line, Character.toString(ch)));
         throw new NotASCIIException(Character.toString(ch), Integer.toString(line));
       }
       word.append(ch);
@@ -92,12 +89,25 @@ public class Lexer implements Iterator<Symbol> {
         if (notAdd(longestMatch)) {
           symbols.add(createSymbols(longestMatch, word.toString()));
           symbols.add(new EndFile(line));
-          return;
         }
+        return;
+      }
+      UnrecognisedToken unrecognised = new UnrecognisedToken(line, word.substring(0, 1));
+      unrecognisedTokens.add(unrecognised);
+      symbols.add(unrecognised);
+      return;
+    }
+
+
+  }
+
+  public void checkForErrors() throws UnrecognisedTokenException {
+    if (!unrecognisedTokens.isEmpty()) {
+      for (UnrecognisedToken token : unrecognisedTokens) {
+        throw new UnrecognisedTokenException(token.getToken(),
+            Integer.toString(token.getLine_number()));
       }
     }
-    symbols.add(new UnrecognisedToken(line, word.substring(0, 1)));
-    throw new UnrecognisedTokenException(word.substring(0, 1), Integer.toString(line));
   }
 
   /**

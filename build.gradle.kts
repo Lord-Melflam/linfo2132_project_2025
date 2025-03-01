@@ -33,3 +33,14 @@ application {
     // Define the main class for the application.
     mainClass.set("compiler.Compiler")
 }
+
+tasks.register<Zip>("packageSource") {
+    dependsOn("test")
+    archiveBaseName.set("${project.name}-source")
+    destinationDirectory.set(file("${layout.buildDirectory.get()}/distributions"))
+    from(projectDir) {
+        into(projectDir.name)
+
+        include("src/**", "test/**", "build.gradle.kts")
+    }
+}

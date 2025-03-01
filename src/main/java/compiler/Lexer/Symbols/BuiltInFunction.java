@@ -21,6 +21,10 @@ public class BuiltInFunction extends Symbol {
   public BuiltInFunction() {
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public int getLine_number() {
     return line_number;
   }

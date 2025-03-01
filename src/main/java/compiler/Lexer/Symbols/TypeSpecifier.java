@@ -49,6 +49,10 @@ public class TypeSpecifier extends Symbol {
     return null;
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public boolean isArrayRecord(String word) {
     if (endWithBracket(word)) {
       String potentialRecord = "";

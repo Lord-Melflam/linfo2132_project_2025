@@ -18,6 +18,10 @@ public class Space extends Symbol {
     return !word.isEmpty() && word.charAt(0) == ' ';
   }
 
+  public String getToken() {
+    return " ";
+  }
+
   @Override
   public String getName() {
     return Space.class.getSimpleName();

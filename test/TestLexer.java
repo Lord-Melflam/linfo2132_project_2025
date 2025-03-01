@@ -1,19 +1,20 @@
 import static org.junit.Assert.assertNotNull;
 
+import compiler.Exceptions.NotASCIIException;
+import compiler.Exceptions.UnrecognisedTokenException;
+import compiler.Lexer.Lexer;
 import java.io.IOException;
+import java.io.StringReader;
 import org.junit.Test;
 
-import java.io.StringReader;
-import compiler.Lexer.Lexer;
-
 public class TestLexer {
-    
-    @Test
-    public void test() throws IOException {
-        String input = "var x int = 2;";
-        StringReader reader = new StringReader(input);
-        Lexer lexer = new Lexer(reader);
-        assertNotNull(lexer.getNextSymbol());
-    }
+
+  @Test
+  public void test() throws IOException, NotASCIIException, UnrecognisedTokenException {
+    String input = "var x int = 2;";
+    StringReader reader = new StringReader(input);
+    Lexer lexer = new Lexer(reader);
+    assertNotNull(lexer.getNextSymbol());
+  }
 
 }

@@ -18,6 +18,10 @@ public class NewLine extends Symbol {
     return word.equals("\n");
   }
 
+  public String getToken() {
+    return "\\n";
+  }
+
   @Override
   public String getName() {
     return NewLine.class.getSimpleName();

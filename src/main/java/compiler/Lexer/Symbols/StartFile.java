@@ -21,6 +21,10 @@ public class StartFile extends Symbol {
     return 1;
   }
 
+  public String getToken() {
+    return null;
+  }
+
   public String toString() {
     return "<" + getName() + ">";
   }

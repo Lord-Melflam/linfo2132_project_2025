@@ -45,6 +45,10 @@ public class SpecialSymbol extends Symbol {
     return CLOSE_SPECIAL_SYMBOLS.contains(attribute);
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public String IsOpenOrClose() {
     if (isClose()) {
       return "Close";

@@ -23,6 +23,10 @@ public class Tabulation extends Symbol {
     return Tabulation.class.getSimpleName();
   }
 
+  public String getToken() {
+    return "  ";
+  }
+
   public int getLine_number() {
     return line_number;
   }

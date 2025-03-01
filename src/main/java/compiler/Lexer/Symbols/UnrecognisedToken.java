@@ -29,6 +29,10 @@ public class UnrecognisedToken extends Symbol {
     return line_number;
   }
 
+  public String getToken() {
+    return token;
+  }
+
   public String toString() {
     return "<" + getName() + ',' + token + ">";
   }

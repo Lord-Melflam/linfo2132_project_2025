@@ -19,6 +19,10 @@ public class Operator extends Symbol {
   public Operator() {
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public boolean matches(String word) {
     return OPERATORS.contains(word);
   }

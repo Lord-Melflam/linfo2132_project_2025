@@ -18,6 +18,10 @@ public class EndFile extends Symbol {
     return false;
   }
 
+  public String getToken() {
+    return null;
+  }
+
   @Override
   public String getName() {
     return EndFile.class.getSimpleName();

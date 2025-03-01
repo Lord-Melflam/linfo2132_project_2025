@@ -16,7 +16,7 @@ public class Compiler {
     try (Reader reader = new FileReader(args[1])) {
       Lexer lexer = new Lexer(reader);
       while (lexer.hasNext()) {
-        lexer.getNextSymbol();
+        System.out.println(lexer.getNextSymbol());
       }
     } catch (IOException | NotASCIIException | UnrecognisedTokenException e) {
       throw new RuntimeException(e);

@@ -19,6 +19,10 @@ public class Assignment extends Symbol {
     return line_number;
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public boolean matches(String word) {
     return word.equals("=");
   }

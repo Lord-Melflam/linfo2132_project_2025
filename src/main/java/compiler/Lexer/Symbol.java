@@ -11,6 +11,8 @@ public abstract class Symbol {
 
   public abstract int getLine_number();
 
+  public abstract String getToken();
+
   public static boolean isAscii(char ch) {
     return ch <= 127;
   }

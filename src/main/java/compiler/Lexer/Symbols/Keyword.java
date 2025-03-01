@@ -20,6 +20,10 @@ public class Keyword extends Symbol {
   public Keyword() {
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public boolean matches(String word) {
     return KEYWORDS.contains(word);
   }

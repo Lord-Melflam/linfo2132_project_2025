@@ -16,6 +16,10 @@ public class Identifier extends Symbol {
   public Identifier() {
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public boolean isLetter(String word) {
     char lastChar = word.charAt(word.length() - 1);
     return (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z');

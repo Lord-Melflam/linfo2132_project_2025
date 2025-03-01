@@ -21,6 +21,10 @@ public class Literal extends Symbol {
 
   }
 
+  public String getToken() {
+    return attribute;
+  }
+
   public void setTypeOfLiteral(String typeOfLiteral) {
     this.typeOfLiteral = typeOfLiteral;
   }
