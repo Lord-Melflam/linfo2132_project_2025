@@ -1,4 +1,4 @@
-package compiler.Exceptions;
+package compiler.Exceptions.Lexer;
 
 public class UnrecognisedTokenException extends Exception {
 

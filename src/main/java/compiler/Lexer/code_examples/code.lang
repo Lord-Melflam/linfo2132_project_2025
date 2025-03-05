@@ -1,7 +1,9 @@
 $ hello @
 
-final message string = "Hello";
 final run bool = true;
+final message string = "Hello"+"bjr";
+final message int = 2/3+1*1-1;
+
 
 Point rec {
     int x;

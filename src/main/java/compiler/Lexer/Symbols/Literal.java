@@ -58,8 +58,10 @@ public class Literal extends Symbol {
     if (word == null || word.isEmpty()) {
       return false;
     }
-    int i = (word.charAt(0) == '-') ? 1 : 0;
-    for (; i < word.length(); i++) {
+/*
+   int i = (word.charAt(0) == '-') ? 1 : 0;
+*/
+    for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) < '0' || word.charAt(i) > '9') {
         return false;
       }

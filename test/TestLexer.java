@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertNotNull;
 
-import compiler.Exceptions.NotASCIIException;
-import compiler.Exceptions.UnrecognisedTokenException;
+import compiler.Exceptions.Lexer.NotASCIIException;
+import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Lexer.Lexer;
 import java.io.IOException;
 import java.io.StringReader;

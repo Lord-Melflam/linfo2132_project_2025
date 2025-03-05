@@ -1,33 +1,173 @@
-$Good luck
+class Parser:
+    def __init__(self, tokens):
+        self.tokens = tokens  # Liste des tokens en entrée
+        self.current_token = 0
 
-final message string = "Hello";
-final run bool = true;
+    def match(self, expected_type):
+        """Vérifie si le token courant est du type attendu et avance."""
+        if self.tokens[self.current_token].type == expected_type:
+            self.current_token += 1
+        else:
+            raise SyntaxError(f"Erreur: attendu {expected_type}, trouvé {self.tokens[self.current_token].type}")
 
-_Point rec {
-    int x;
-    int y;
-}
+    def program(self):
+        """program -> constantDeclaration recordDeclaration globalVarDeclaration functionDeclaration"""
+        self.constantDeclaration()
+        self.recordDeclaration()
+        self.globalVarDeclaration()
+        self.functionDeclaration()
 
-a int = 3;
+    def constantDeclaration(self):
+        """constantDeclaration -> KEYWORDS IDENTIFIER type ASSIGNMENT expression SPECIAL_SYMBOL | epsilon"""
+        if self.lookahead_is("KEYWORDS"):
+            self.match("KEYWORDS")
+            self.match("IDENTIFIER")
+            self.type()
+            self.match("ASSIGNMENT")
+            self.expression()
+            self.match("SPECIAL_SYMBOL")
 
-fun square(int v) int {
-    return v*v;
-}
+    def recordDeclaration(self):
+        """recordDeclaration -> IDENTIFIER KEYWORDS SPECIAL_SYMBOL recordField SPECIAL_SYMBOL | epsilon"""
+        if self.lookahead_is("IDENTIFIER"):
+            self.match("IDENTIFIER")
+            self.match("KEYWORDS")
+            self.match("SPECIAL_SYMBOL")
+            self.recordField()
+            self.match("SPECIAL_SYMBOL")
 
-fun main() {
-    value int = readInt();
-    Point p = Point(a, a+value);
-    writeInt(square(value));
-    writeln();
-    i int;
-    for (i, 1, a, 1) {
-        while (value!=0) {
-            if (run){
-                value = value - 1;
-            } else {
-                write(message);
-            }
-        }
-    }
-    i = (i+2)*2;
-}
+    def recordField(self):
+        """recordField -> IDENTIFIER type SPECIAL_SYMBOL | epsilon"""
+        if self.lookahead_is("IDENTIFIER"):
+            self.match("IDENTIFIER")
+            self.type()
+            self.match("SPECIAL_SYMBOL")
+
+    def globalVarDeclaration(self):
+        """globalVarDeclaration -> IDENTIFIER type ASSIGNMENT expression SPECIAL_SYMBOL | epsilon"""
+        if self.lookahead_is("IDENTIFIER"):
+            self.match("IDENTIFIER")
+            self.type()
+            self.match("ASSIGNMENT")
+            self.expression()
+            self.match("SPECIAL_SYMBOL")
+
+    def functionDeclaration(self):
+        """functionDeclaration -> KEYWORDS IDENTIFIER SPECIAL_SYMBOL parameterList SPECIAL_SYMBOL type SPECIAL_SYMBOL statementList SPECIAL_SYMBOL"""
+        if self.lookahead_is("KEYWORDS"):
+            self.match("KEYWORDS")
+            self.match("IDENTIFIER")
+            self.match("SPECIAL_SYMBOL")
+            self.parameterList()
+            self.match("SPECIAL_SYMBOL")
+            self.type()
+            self.match("SPECIAL_SYMBOL")
+            self.statementList()
+            self.match("SPECIAL_SYMBOL")
+
+    def parameterList(self):
+        """parameterList -> epsilon | parameter parameterListTail"""
+        if self.lookahead_is("IDENTIFIER"):
+            self.parameter()
+            self.parameterListTail()
+
+    def parameter(self):
+        """parameter -> IDENTIFIER type"""
+        self.match("IDENTIFIER")
+        self.type()
+
+    def parameterListTail(self):
+        """parameterListTail -> epsilon | SPECIAL_SYMBOL parameter parameterListTail"""
+        if self.lookahead_is("SPECIAL_SYMBOL"):
+            self.match("SPECIAL_SYMBOL")
+            self.parameter()
+            self.parameterListTail()
+
+    def statementList(self):
+        """statementList -> epsilon | statement statementList"""
+        if self.lookahead_is_statement():
+            self.statement()
+            self.statementList()
+
+    def statement(self):
+        """statement -> variableDeclaration | assignment | controlStructure | functionCall SPECIAL_SYMBOL | returnStatement"""
+        if self.lookahead_is("IDENTIFIER"):
+            self.variableDeclaration()
+        elif self.lookahead_is("ASSIGNMENT"):
+            self.assignment()
+        elif self.lookahead_is_control_structure():
+            self.controlStructure()
+        elif self.lookahead_is("KEYWORDS"):
+            self.returnStatement()
+
+    def assignment(self):
+        """assignment -> (IDENTIFIER | arrayAccess | recordAccess) ASSIGNMENT expression SPECIAL_SYMBOL"""
+        if self.lookahead_is("IDENTIFIER"):
+            self.match("IDENTIFIER")
+        self.match("ASSIGNMENT")
+        self.expression()
+        self.match("SPECIAL_SYMBOL")
+
+    def returnStatement(self):
+        """returnStatement -> KEYWORDS optionalExpression SPECIAL_SYMBOL"""
+        self.match("KEYWORDS")
+        self.optionalExpression()
+        self.match("SPECIAL_SYMBOL")
+
+    def optionalExpression(self):
+        """optionalExpression -> epsilon | expression"""
+        if self.lookahead_is_expression():
+            self.expression()
+
+    def expression(self):
+        """expression -> primary expressionTail"""
+        self.primary()
+        self.expressionTail()
+
+    def expressionTail(self):
+        """expressionTail -> epsilon | binaryOp primary expressionTail"""
+        if self.lookahead_is("OPERATOR"):
+            self.binaryOp()
+            self.primary()
+            self.expressionTail()
+
+    def primary(self):
+        """primary -> LITERAL | IDENTIFIER | SPECIAL_SYMBOL expression SPECIAL_SYMBOL | functionCall | arrayAccess | recordAccess"""
+        if self.lookahead_is("LITERAL"):
+            self.match("LITERAL")
+        elif self.lookahead_is("IDENTIFIER"):
+            self.match("IDENTIFIER")
+        elif self.lookahead_is("SPECIAL_SYMBOL"):
+            self.match("SPECIAL_SYMBOL")
+            self.expression()
+            self.match("SPECIAL_SYMBOL")
+
+    def binaryOp(self):
+        """binaryOp -> OPERATOR"""
+        self.match("OPERATOR")
+
+    def type(self):
+        """type -> VOID | INT | FLOAT | BOOL | STRING | IDENTIFIER | IDENTIFIER SPECIAL_SYMBOL SPECIAL_SYMBOL"""
+        if self.lookahead_is_type():
+            self.match(self.tokens[self.current_token].type)
+
+    def lookahead_is(self, token_type):
+        """Vérifie si le prochain token est du type attendu."""
+        return self.current_token < len(self.tokens) and self.tokens[self.current_token].type == token_type
+
+    def lookahead_is_statement(self):
+        """Vérifie si le token courant correspond à un début de statement."""
+        return self.lookahead_is("IDENTIFIER") or self.lookahead_is("KEYWORDS")
+
+    def lookahead_is_control_structure(self):
+        """Vérifie si le token courant correspond à une structure de contrôle."""
+        return self.lookahead_is("IF") or self.lookahead_is("WHILE") or self.lookahead_is("FOR")
+
+    def lookahead_is_expression(self):
+        """Vérifie si le token courant correspond à une expression."""
+        return self.lookahead_is("LITERAL") or self.lookahead_is("IDENTIFIER")
+
+    def lookahead_is_type(self):
+        """Vérifie si le token courant est un type valide."""
+        return self.lookahead_is("VOID") or self.lookahead_is("INT") or self.lookahead_is("FLOAT") or \
+               self.lookahead_is("BOOL") or self.lookahead_is("STRING") or self.lookahead_is("IDENTIFIER")

@@ -7,7 +7,7 @@ public abstract class Symbol {
 
   protected abstract boolean matches(String input);
 
-  protected abstract String getName();
+  public abstract String getName();
 
   public abstract int getLine_number();
 

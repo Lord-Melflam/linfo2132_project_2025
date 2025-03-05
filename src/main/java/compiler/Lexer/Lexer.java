@@ -1,7 +1,7 @@
 package compiler.Lexer;
 
-import compiler.Exceptions.NotASCIIException;
-import compiler.Exceptions.UnrecognisedTokenException;
+import compiler.Exceptions.Lexer.NotASCIIException;
+import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Lexer.Symbols.EndFile;
 import compiler.Lexer.Symbols.StartFile;
 import compiler.Lexer.Symbols.UnrecognisedToken;
@@ -18,12 +18,17 @@ public class Lexer implements Iterator<Symbol> {
   private final ArrayDeque<Symbol> symbols;
   private final SymbolRegistry symbolRegistry;
   private int line;
+  private int index;
+  private int size;
   private final List<UnrecognisedToken> unrecognisedTokens = new ArrayList<>();
+  private ArrayList<String> FILESYMBOLS = new ArrayList<>(List.of("EndFile", "StartFile"));
 
   public Lexer(Reader input) throws IOException, NotASCIIException, UnrecognisedTokenException {
     this.symbols = new ArrayDeque<Symbol>();
     this.symbols.add(new StartFile());
     this.line = 1;
+    this.index = 0;
+    this.size = 0;
     symbolRegistry = new SymbolRegistry();
     symbolRegistry.loadSymbols();
     parseSymbols(input);
@@ -34,18 +39,22 @@ public class Lexer implements Iterator<Symbol> {
     if (!hasNext()) {
       return null;
     }
-    return next();
+    Symbol next = next();
+    if (FILESYMBOLS.contains(next.getName())) {
+      return getNextSymbol();
+    }
+    return next;
   }
 
 
   @Override
   public boolean hasNext() {
-
-    return !symbols.isEmpty();
+    return !symbols.isEmpty() && index < size;
   }
 
   @Override
   public Symbol next() {
+    index++;
     return symbols.pollFirst();
   }
 
@@ -90,6 +99,7 @@ public class Lexer implements Iterator<Symbol> {
           symbols.add(createSymbols(longestMatch, word.toString()));
           symbols.add(new EndFile(line));
         }
+        size = symbols.size() - 1;
         return;
       }
       UnrecognisedToken unrecognised = new UnrecognisedToken(line, word.substring(0, 1));
@@ -117,12 +127,13 @@ public class Lexer implements Iterator<Symbol> {
    * @param value      word associated to the symbol
    * @return the new symbol object
    */
-  public Symbol createSymbols(String symbolName, String value) {
+  @SuppressWarnings("unchecked")
+  public <T> T createSymbols(String symbolName, String value) {
     try {
       Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + symbolName);
       java.lang.reflect.Constructor<?> constructor = clazz.getDeclaredConstructor(String.class,
           int.class);
-      return (Symbol) constructor.newInstance(value, line);
+      return (T) constructor.newInstance(value, line);
     } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
              NoSuchMethodException | ClassNotFoundException e) {
       throw new RuntimeException(e);
