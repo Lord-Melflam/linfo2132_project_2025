@@ -22,12 +22,14 @@ public class Identifier extends Symbol {
 
   public boolean isLetter(String word) {
     char lastChar = word.charAt(word.length() - 1);
-    return (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z');
+    return (lastChar >= 'A' && lastChar <= 'Z') || (lastChar >= 'a' && lastChar <= 'z') || (
+        lastChar >= '0' && lastChar <= '9');
+
   }
 
   public boolean isSTartLetter(String word) {
     char firstChar = word.charAt(0);
-    return (firstChar >= 'a' && firstChar <= 'z');
+    return (firstChar >= 'a' && firstChar <= 'z') || (firstChar >= '0' && firstChar <= '9');
   }
 
   @Override

@@ -7,7 +7,7 @@ import java.util.List;
 public class SpecialSymbol extends Symbol {
 
   private static final ArrayList<String> SPECIAL_SYMBOLS = new ArrayList<>(
-      List.of("(", ")", "{", "}", "[", "]", ".", ";", ","));
+      List.of("(", ")", "{", "}", "[", "]"));
   private static final ArrayList<String> OPEN_SPECIAL_SYMBOLS = new ArrayList<>(
       List.of("(", "{", "["));
   private static final ArrayList<String> CLOSE_SPECIAL_SYMBOLS = new ArrayList<>(

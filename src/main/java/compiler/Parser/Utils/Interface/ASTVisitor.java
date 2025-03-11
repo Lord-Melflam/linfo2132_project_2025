@@ -1,6 +1,7 @@
 package compiler.Parser.Utils.Interface;
 
 import compiler.Parser.Grammar.Declaration.Constant.Node.ConstantNode;
+import compiler.Parser.Grammar.Declaration.Function.Node.FunctionNode;
 import compiler.Parser.Grammar.Declaration.Global.Node.GlobalNode;
 import compiler.Parser.Grammar.Declaration.Record.Node.RecordNode;
 
@@ -11,4 +12,7 @@ public interface ASTVisitor {
   void visit(RecordNode recordNode);
 
   void visit(GlobalNode globalNode);
+
+  void visit(FunctionNode functionNode);
+
 }

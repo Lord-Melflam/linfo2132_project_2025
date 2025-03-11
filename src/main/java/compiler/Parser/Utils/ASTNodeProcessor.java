@@ -2,6 +2,7 @@ package compiler.Parser.Utils;
 
 import compiler.Parser.AST.RootNode;
 import compiler.Parser.Grammar.Declaration.Constant.Node.ConstantNode;
+import compiler.Parser.Grammar.Declaration.Function.Node.FunctionNode;
 import compiler.Parser.Grammar.Declaration.Global.Node.GlobalNode;
 import compiler.Parser.Grammar.Declaration.Record.Node.RecordNode;
 import compiler.Parser.Utils.Interface.ASTVisitor;
@@ -31,6 +32,11 @@ public class ASTNodeProcessor implements ASTVisitor {
   @Override
   public void visit(GlobalNode globalNode) {
     root.addNode(globalNode);
+  }
+
+  @Override
+  public void visit(FunctionNode functionNode) {
+    root.addNode(functionNode);
   }
 }
 

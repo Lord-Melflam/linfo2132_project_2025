@@ -5,103 +5,98 @@ import compiler.Exceptions.Parser.ParserException;
 import compiler.Lexer.Lexer;
 import compiler.Lexer.Symbol;
 import compiler.Parser.AST.RootNode;
-import compiler.Parser.Grammar.Declaration.Constant.Node.ConstantNode;
-import compiler.Parser.Grammar.Declaration.Global.Node.GlobalNode;
-import compiler.Parser.Grammar.Declaration.Record.Node.RecordNode;
 import compiler.Parser.Grammar.Program.Program;
 import compiler.Parser.Utils.ASTNodeProcessor;
+import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Interface.Observer;
 import compiler.Parser.Utils.Interface.Subject;
+import compiler.Parser.Utils.Position;
 import compiler.Parser.Utils.Utils;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Parser implements Subject {
 
-  private List<Observer> observers = new ArrayList<>();
-  private Lexer lexer;
+  private final List<Observer> observers = new ArrayList<>();
+  private final Lexer lexer;
   private Symbol lookahead;
-  private Utils utils;
-  private Program program;
-  private ASTNodeProcessor nodeProcessor;
+  private final Program program;
+  private final ASTNodeProcessor nodeProcessor;
+  private final LinkedList<Symbol> allSymbols;
+  private int currentPosition;
+  Position savedPosition;
 
   public Parser(Lexer lexer) throws UnrecognisedTokenException, ParserException {
-    utils = new Utils(this);
+    currentPosition = 0;
+    savedPosition = new Position();
     this.lexer = lexer;
+    allSymbols = lexer.getSymbols();
+    Utils utils = new Utils(this, allSymbols);
     this.addObserver(utils);
-    this.lookahead = nextSymbol();
+    savedPosition.addObserver(utils);
+    this.lookahead = lexer.getNextSymbol();
     program = new Program(utils);
     nodeProcessor = new ASTNodeProcessor();
     getAST();
   }
 
   public void getAST() throws UnrecognisedTokenException, ParserException {
-    if (lexer.hasNext()) {
-      getASTImpl();
+    while (!allSymbols.get(savedPosition.getSavedPosition()).getName().equals("EndFile")) {
+      for (int i = 0; i < 1; i++) {
+        if (checkNode(program.isProgram(savedPosition))) {
+          currentPosition = savedPosition.getSavedPosition();
+          break;
+        }
+        savedPosition.setSavedPosition(currentPosition);
+        if (checkNode(program.isRecord(savedPosition))) {
+          currentPosition = savedPosition.getSavedPosition();
+          break;
+        }
+        savedPosition.setSavedPosition(currentPosition);
+
+        if (checkNode(program.isFunction(savedPosition))) {
+          currentPosition = savedPosition.getSavedPosition();
+          break;
+        }
+        savedPosition.setSavedPosition(currentPosition);
+
+        if (checkNode(program.isStatement(savedPosition))) {
+          currentPosition = savedPosition.getSavedPosition();
+          break;
+        }
+
+
+
+       /* Symbol incorrectSymbol = getLookahead();
+        throw new ParserException(incorrectSymbol.getToken(),
+            Integer.toString(incorrectSymbol.getLine_number()));*/
+      }
+
     }
   }
 
-  private void getASTImpl() throws ParserException, UnrecognisedTokenException {
-
-    ConstantNode constantNode = program.isProgram();
-    if (constantNode != null) {
-      constantNode.toString();
-      constantNode.accept(nodeProcessor);
-      getAST();
-      return;
+  public boolean checkNode(ASTNode astNode)
+      throws ParserException, UnrecognisedTokenException {
+    if (astNode != null) {
+      astNode.accept(nodeProcessor);
+      return true;
     }
-    getRootNode().printNodes();
-
-    RecordNode recordNode = program.isRecord();
-    if (recordNode != null) {
-      recordNode.toString();
-      recordNode.accept(nodeProcessor);
-      getAST();
-      return;
-    }
-    getRootNode().printNodes();
-
-    GlobalNode globalNode = program.isGlobal();
-    if (globalNode != null) {
-      globalNode.toString();
-      globalNode.accept(nodeProcessor);
-      getRootNode().printNodes();
-      getAST();
-      return;
-    }
-    getRootNode().printNodes();
-    return;
-  /*  Symbol incorrectSymbol = getLookahead();
-    throw new ParserException(incorrectSymbol.getToken(),
-        Integer.toString(incorrectSymbol.getLine_number()));*/
+    return false;
   }
 
   public RootNode getRootNode() {
     return nodeProcessor.getRoot();
   }
- /* private void getASTImpl() throws ParserException, UnrecognisedTokenException {
-    ConstantNode constantNode = program.isProgram();
 
-    RecordNode recordNode = program.isRecord();
-
-    if (constantNode != null) {
-      System.out.println(constantNode.toString());
-      getAST();
-    } else {
-      Symbol incorrectSymbol = getLookahead();
-      return;
-      throw new ParserException(incorrectSymbol.getToken(),
-          Integer.toString(incorrectSymbol.getLine_number()));
-    }
-  }*/
-
-  public Symbol getLookahead() {
-    return lookahead;
-  }
 
   public Symbol nextSymbol() throws UnrecognisedTokenException {
     this.lookahead = lexer.getNextSymbol();
     notifyObservers();
+    return lookahead;
+  }
+
+  public Symbol getLookahead() {
     return lookahead;
   }
 
@@ -113,14 +108,12 @@ public class Parser implements Subject {
   @Override
   public void removeObserver(Observer observer) {
     observers.remove(observer);
-
   }
 
   @Override
   public void notifyObservers() {
     for (Observer observer : observers) {
-      observer.update(lookahead);
+      observer.update(savedPosition);
     }
   }
-
 }

@@ -8,27 +8,23 @@ import compiler.Lexer.Symbols.UnrecognisedToken;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import lombok.Getter;
 
 public class Lexer implements Iterator<Symbol> {
 
-  private final ArrayDeque<Symbol> symbols;
+  @Getter
+  private final LinkedList<Symbol> symbols = new LinkedList<Symbol>();
   private final SymbolRegistry symbolRegistry;
-  private int line;
-  private int index;
-  private int size;
+  private int line = 1;
+  private int column = 0;
   private final List<UnrecognisedToken> unrecognisedTokens = new ArrayList<>();
-  private ArrayList<String> FILESYMBOLS = new ArrayList<>(List.of("EndFile", "StartFile"));
 
   public Lexer(Reader input) throws IOException, NotASCIIException, UnrecognisedTokenException {
-    this.symbols = new ArrayDeque<Symbol>();
     this.symbols.add(new StartFile());
-    this.line = 1;
-    this.index = 0;
-    this.size = 0;
     symbolRegistry = new SymbolRegistry();
     symbolRegistry.loadSymbols();
     parseSymbols(input);
@@ -39,24 +35,20 @@ public class Lexer implements Iterator<Symbol> {
     if (!hasNext()) {
       return null;
     }
-    Symbol next = next();
-    if (FILESYMBOLS.contains(next.getName())) {
-      return getNextSymbol();
-    }
-    return next;
+    return next();
   }
 
 
   @Override
   public boolean hasNext() {
-    return !symbols.isEmpty() && index < size;
+    return !symbols.isEmpty();
   }
 
   @Override
   public Symbol next() {
-    index++;
     return symbols.pollFirst();
   }
+
 
   /**
    * parseSymbols Description - Reads the input file and associates each word with symbols and adds
@@ -90,25 +82,23 @@ public class Lexer implements Iterator<Symbol> {
           word.setLength(0);
         }
       }
+      column++;
     }
 
     if (!word.isEmpty()) {
+      column++;
       String longestMatch = symbolRegistry.getSymbolType(word.toString());
       if (longestMatch != null) {
         if (notAdd(longestMatch)) {
           symbols.add(createSymbols(longestMatch, word.toString()));
-          symbols.add(new EndFile(line));
         }
-        size = symbols.size() - 1;
+        symbols.add(new EndFile(line));
         return;
       }
       UnrecognisedToken unrecognised = new UnrecognisedToken(line, word.substring(0, 1));
       unrecognisedTokens.add(unrecognised);
       symbols.add(unrecognised);
-      return;
     }
-
-
   }
 
   public void checkForErrors() throws UnrecognisedTokenException {
@@ -150,6 +140,7 @@ public class Lexer implements Iterator<Symbol> {
   public void countLine(String symbolName) {
     if (symbolName.equals("NewLine")) {
       line++;
+      column = 0;
     }
   }
 }

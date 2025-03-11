@@ -10,16 +10,19 @@ import compiler.Parser.Utils.Interface.ASTVisitor;
 
 public class GlobalNode extends ASTNode {
 
+  /* TODO */
   private IdentifierNode identifierNode;
   private TypeSpecifierNode typeSpecifierNode;
   private ExpressionNode expressionNode;
   private SpecialSymbolNode specialSymbolNode;
   private AssignmentNode assignmentNode = new AssignmentNode();
 
-  public GlobalNode(IdentifierNode identifierNode, TypeSpecifierNode typeSpecifierNode,
+  public GlobalNode(IdentifierNode identifierNode,/* TypeSpecifierNode typeSpecifierNode,*/
       ExpressionNode expressionNode, SpecialSymbolNode specialSymbolNode) {
     this.identifierNode = identifierNode;
+/*
     this.typeSpecifierNode = typeSpecifierNode;
+*/
     this.assignmentNode = new AssignmentNode();
     this.expressionNode = expressionNode;
     this.specialSymbolNode = specialSymbolNode;

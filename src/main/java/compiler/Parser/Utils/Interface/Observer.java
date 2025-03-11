@@ -1,8 +1,8 @@
 package compiler.Parser.Utils.Interface;
 
-import compiler.Lexer.Symbol;
+import compiler.Parser.Utils.Position;
 
 public interface Observer {
 
-  void update(Symbol CurrentSymbol);
+  void update(Position CurrentPosition);
 }

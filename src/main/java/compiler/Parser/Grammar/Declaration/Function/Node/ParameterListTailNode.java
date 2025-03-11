@@ -1,25 +1,19 @@
-package compiler.Parser.Grammar.Expression;
+package compiler.Parser.Grammar.Declaration.Function.Node;
 
 import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Interface.ASTVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrimaryOperator extends ASTNode {
+public class ParameterListTailNode extends ASTNode {
 
   private List<ASTNode> children;
 
-/*
-  public PrimaryOperator(ASTNode node) {
-    this.node = node;
-  }
-*/
-
-  public PrimaryOperator(ASTNode... nodes) {
-    this.children = new ArrayList<>();
+  public ParameterListTailNode(ASTNode... nodes) {
+    children = new ArrayList<>();
     for (ASTNode node : nodes) {
       if (node != null) {
-        this.children.add(node);
+        children.add(node);
       }
     }
   }
@@ -30,10 +24,13 @@ public class PrimaryOperator extends ASTNode {
 
   @Override
   public String toString() {
-    StringBuilder results = new StringBuilder();
+    StringBuilder results = new StringBuilder("[");
     for (ASTNode node : children) {
-      results.append(node.toString());
+      if (node != null) {
+        results.append(node);
+      }
     }
+    results.append("]");
     return results.toString();
   }
 
@@ -41,4 +38,5 @@ public class PrimaryOperator extends ASTNode {
   public void accept(ASTVisitor visitor) {
 
   }
+
 }
