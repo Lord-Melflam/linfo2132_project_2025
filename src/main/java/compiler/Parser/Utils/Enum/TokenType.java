@@ -2,7 +2,8 @@ package compiler.Parser.Utils.Enum;
 
 public enum TokenType {
   FINAL("Keyword", "final"), REC("Keyword", "rec"), FUN("Keyword", "fun"), IF("Keyword",
-      "if"), ELSE("Keyword", "else"), WHILE("Keyword", "while"),
+      "if"), ELSE("Keyword", "else"), WHILE("Keyword", "while"), ARRAY("Keyword", "array"), OF(
+      "Keyword", "of"),
   FOR("Keyword", "for"), RETURN("Keyword", "return"), FREE("Keyword", "free"),
 
   ASSIGNMENT("Assignment", "="),

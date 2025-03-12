@@ -3,17 +3,17 @@ package compiler.Parser.AST;
 import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Interface.ASTVisitor;
 
-public class TypeSpecifierNode extends ASTNode {
+public class Punctuation extends ASTNode {
 
-  private String type;
+  String name;
 
-  public TypeSpecifierNode(String type) {
-    this.type = type;
+  public Punctuation(String h) {
+    this.name = "=";
   }
 
   @Override
   public String toString() {
-    return "TypeSpecifier (" + type + ')';
+    return "Punctuation";
   }
 
   @Override

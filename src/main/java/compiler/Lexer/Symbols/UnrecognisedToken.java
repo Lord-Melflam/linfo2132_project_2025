@@ -33,6 +33,11 @@ public class UnrecognisedToken extends Symbol {
     return token;
   }
 
+  @Override
+  public Symbol clone() {
+    return new UnrecognisedToken();
+  }
+
   public String toString() {
     return "<" + getName() + ',' + token + ">";
   }

@@ -39,4 +39,8 @@ public class Comment extends Symbol {
     return "<" + getName() + "," + attribute + ">";
   }
 
+  @Override
+  public Symbol clone() {
+    return new Comment(this.attribute, this.line_number);
+  }
 }

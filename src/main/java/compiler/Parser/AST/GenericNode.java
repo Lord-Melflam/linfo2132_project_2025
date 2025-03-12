@@ -5,15 +5,17 @@ import compiler.Parser.Utils.Interface.ASTVisitor;
 
 public class GenericNode<T> extends ASTNode {
 
-  String nodeName;
+  private String name;
+  private String value;
 
-  public GenericNode(String name, ASTNode... nodes) {
-    this.nodeName = name;
+  public GenericNode(String name, String value) {
+    this.name = name;
+    this.value = value;
   }
 
   @Override
   public String toString() {
-    return nodeName + (" + name + ");
+    return name + " (" + value + ")";
   }
 
   @Override

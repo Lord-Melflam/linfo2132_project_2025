@@ -3,88 +3,98 @@ package compiler.Parser.Grammar.Statement.Impl;
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
 import compiler.Parser.Grammar.Assignment.Impl.Assignment;
-import compiler.Parser.Grammar.Assignment.Node.AssignmentExpressionNode;
 import compiler.Parser.Grammar.ControlStructure.Impl.ControlStructure;
 import compiler.Parser.Grammar.Deallocation.Impl.Free;
-import compiler.Parser.Grammar.Deallocation.Node.FreeNode;
 import compiler.Parser.Grammar.Declaration.Constant.Impl.Constant;
-import compiler.Parser.Grammar.Declaration.Constant.Node.ConstantNode;
+import compiler.Parser.Grammar.Declaration.Constant.Node.MainNode;
 import compiler.Parser.Grammar.Declaration.Function.Impl.FunctionCall;
-import compiler.Parser.Grammar.Declaration.Function.Node.CallFunctionNode;
-import compiler.Parser.Grammar.Statement.Node.ReturnNode;
-import compiler.Parser.Grammar.Statement.Node.StatementListNode;
+import compiler.Parser.Grammar.Declaration.Function.Impl.Return;
 import compiler.Parser.Utils.Enum.TokenType;
 import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Position;
 import compiler.Parser.Utils.Utils;
+import java.util.LinkedList;
 
 public class StatementList {
 
   private final Utils utils;
   private final Position savedPosition;
   private int currentPosition;
+  LinkedList<ASTNode> statementListNode;
+  private final String nodeName = "StatementList";
 
   public StatementList(Utils utils, Position savedPosition)
       throws UnrecognisedTokenException, ParserException {
     this.utils = utils;
     this.savedPosition = savedPosition;
     currentPosition = savedPosition.getSavedPosition();
+    statementListNode = new LinkedList<>();
   }
 
-  public ASTNode statementList() throws ParserException, UnrecognisedTokenException {
+  public MainNode statementList() throws ParserException, UnrecognisedTokenException {
     if (!isStatementStart()) {
       return null;
     }
-    ASTNode statementNode = statement();
-    ASTNode statementListNode = this.statementList();
+    statement();
+    statementList();
 
-    return new StatementListNode(statementNode, statementListNode);
+    return new MainNode(nodeName, statementListNode);
   }
 
   private ASTNode statement() throws ParserException, UnrecognisedTokenException {
-    ConstantNode constantNode = new Constant(utils, savedPosition).isConstant();
+    Constant constant = new Constant(utils, savedPosition);
+    MainNode constantNode = constant.isConstant();
     if (constantNode != null) {
       currentPosition = savedPosition.getSavedPosition();
+      statementListNode.addLast(constantNode);
       return constantNode;
     }
     savedPosition.setSavedPosition(currentPosition);
-    AssignmentExpressionNode assignmentExpressionNode = new Assignment(utils,
+    MainNode assignmentExpressionNode = new Assignment(utils,
         savedPosition).assignment();
     if (assignmentExpressionNode != null) {
       currentPosition = savedPosition.getSavedPosition();
+      statementListNode.addLast(assignmentExpressionNode);
       return assignmentExpressionNode;
     }
     savedPosition.setSavedPosition(currentPosition);
 
-    CallFunctionNode callFunctionNode = new FunctionCall(utils, savedPosition).isFunctionCall();
+    MainNode callFunctionNode = new FunctionCall(utils, savedPosition).isFunctionCall();
     if (callFunctionNode != null) {
-      if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.SEMICOLON)) {
-        savedPosition.add();
+      statementListNode.addLast(callFunctionNode);
+      /*todo*/
+      if (utils.matchIndex(TokenType.SEMICOLON, true)) {
         currentPosition = savedPosition.getSavedPosition();
+        statementListNode.addLast(utils.getGenericNode());
       }
       return callFunctionNode;
     }
     savedPosition.setSavedPosition(currentPosition);
 
-    ReturnNode returnNode = new Return(utils, savedPosition).isReturn();
+    MainNode returnNode = new Return(utils, savedPosition).isReturn();
     if (returnNode != null) {
       currentPosition = savedPosition.getSavedPosition();
+      statementListNode.addLast(returnNode);
       return returnNode;
     }
 
     savedPosition.setSavedPosition(currentPosition);
 
-    ASTNode controlStructureNod = new ControlStructure(utils, savedPosition).controlStructure();
-    if (controlStructureNod != null) {
+    MainNode controlStructureNode = new ControlStructure(utils, savedPosition).controlStructure();
+    if (controlStructureNode != null) {
       currentPosition = savedPosition.getSavedPosition();
-      return controlStructureNod;
+      statementListNode.addLast(controlStructureNode);
+
+      return controlStructureNode;
     }
 
     savedPosition.setSavedPosition(currentPosition);
 
-    FreeNode freeNode = new Free(utils, savedPosition).free();
+    MainNode freeNode = new Free(utils, savedPosition).free();
     if (freeNode != null) {
       currentPosition = savedPosition.getSavedPosition();
+      statementListNode.addLast(freeNode);
+
       return freeNode;
     }
     return null;
@@ -92,15 +102,10 @@ public class StatementList {
 
   private boolean isStatementStart() throws UnrecognisedTokenException, ParserException {
 
-    return utils.matchIndex(savedPosition.getSavedPosition(), TokenType.KEYWORD) ||
-        utils.matchIndex(savedPosition.getSavedPosition(), TokenType.IDENTIFIER) ||
-        utils.matchIndex(savedPosition.getSavedPosition(), TokenType.RECORD) ||
-        utils.matchIndex(savedPosition.getSavedPosition(), TokenType.BUILTINFUNCTION);
+    return utils.matchIndex(TokenType.KEYWORD, false) ||
+        utils.matchIndex(TokenType.IDENTIFIER, false) ||
+        utils.matchIndex(TokenType.RECORD, false) ||
+        utils.matchIndex(TokenType.BUILTINFUNCTION, false);
   }
 
 }
- /* try {
-      return new Control(utils).isFunctionCall();
-    } catch (Exception e) {
-      utils.restorePosition(savedPosition);
-    }*/

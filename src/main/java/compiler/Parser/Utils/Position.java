@@ -12,7 +12,7 @@ public class Position implements Subject {
   private int savedPosition;
 
   public Position() {
-    this.savedPosition = 0;
+    this.savedPosition = -1;
   }
 
   public void setSavedPosition(int savedPosition) {
@@ -22,6 +22,10 @@ public class Position implements Subject {
 
   public int getSavedPosition() {
     return savedPosition;
+  }
+
+  public int getNextPosition() {
+    return savedPosition + 1;
   }
 
   public int add() {
@@ -49,7 +53,7 @@ public class Position implements Subject {
   @Override
   public void notifyObservers() {
     for (Observer observer : observers) {
-      observer.update(this);
+      observer.updatePosition(this);
     }
   }
 }

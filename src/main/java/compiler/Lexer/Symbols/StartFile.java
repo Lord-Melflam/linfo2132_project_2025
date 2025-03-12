@@ -25,6 +25,11 @@ public class StartFile extends Symbol {
     return null;
   }
 
+  @Override
+  public Symbol clone() {
+    return new StartFile();
+  }
+
   public String toString() {
     return "<" + getName() + ">";
   }

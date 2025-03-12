@@ -45,6 +45,11 @@ public class Record extends Symbol {
   }
 
   @Override
+  public Symbol clone() {
+    return new Record(this.attribute, this.line_number);
+  }
+
+  @Override
   public String toString() {
     return "<" + getName() + "," + attribute + ">";
   }

@@ -47,6 +47,11 @@ public class Identifier extends Symbol {
   }
 
   @Override
+  public Symbol clone() {
+    return new Identifier(this.attribute, this.line_number);
+  }
+
+  @Override
   public String toString() {
     return "<" + getName() + "," + attribute + ">";
   }

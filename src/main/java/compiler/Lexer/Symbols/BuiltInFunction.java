@@ -39,6 +39,10 @@ public class BuiltInFunction extends Symbol {
     return BuiltInFunction.class.getSimpleName();
   }
 
+  @Override
+  public Symbol clone() {
+    return new BuiltInFunction(this.attribute, this.line_number);
+  }
 
   @Override
   public String toString() {

@@ -3,12 +3,10 @@ package compiler.Parser.Grammar.Declaration.Record.Node;
 import compiler.Parser.AST.KeywordNode;
 import compiler.Parser.AST.RecordNameNode;
 import compiler.Parser.AST.SpecialSymbolNode;
-import compiler.Parser.Utils.Interface.ASTNode;
-import compiler.Parser.Utils.Interface.ASTVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecordNode extends ASTNode {
+public class RecordNode {
 
   private RecordNameNode recordNameNode;
   private SpecialSymbolNode specialSymbolNodeOpen;
@@ -27,8 +25,5 @@ public class RecordNode extends ASTNode {
     this.children = fieldNodes;
   }
 
-  @Override
-  public void accept(ASTVisitor visitor) {
-    visitor.visit(this);
-  }
+
 }

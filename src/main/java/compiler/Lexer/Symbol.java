@@ -17,6 +17,8 @@ public abstract class Symbol {
     return ch <= 127;
   }
 
+  public abstract Symbol clone();
+
   public abstract String toString();
 
 }

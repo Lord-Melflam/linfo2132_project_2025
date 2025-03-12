@@ -23,6 +23,8 @@ public class Lexer implements Iterator<Symbol> {
   private int column = 0;
   private final List<UnrecognisedToken> unrecognisedTokens = new ArrayList<>();
 
+  private LinkedList<Symbol> allSymbolsClone;
+
   public Lexer(Reader input) throws IOException, NotASCIIException, UnrecognisedTokenException {
     this.symbols.add(new StartFile());
     symbolRegistry = new SymbolRegistry();
@@ -93,6 +95,7 @@ public class Lexer implements Iterator<Symbol> {
           symbols.add(createSymbols(longestMatch, word.toString()));
         }
         symbols.add(new EndFile(line));
+        deepCopySymbols(symbols);
         return;
       }
       UnrecognisedToken unrecognised = new UnrecognisedToken(line, word.substring(0, 1));
@@ -128,6 +131,19 @@ public class Lexer implements Iterator<Symbol> {
              NoSuchMethodException | ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public void deepCopySymbols(LinkedList<Symbol> originalList) {
+    LinkedList<Symbol> clonedList = new LinkedList<>();
+    for (Symbol symbol : originalList) {
+      clonedList.add(symbol.clone());
+    }
+    allSymbolsClone = clonedList;
+  }
+
+
+  public LinkedList<Symbol> getAllSymbolsClone() {
+    return allSymbolsClone;
   }
 
   public boolean notAdd(String longestMatch) {

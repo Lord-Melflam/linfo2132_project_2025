@@ -38,6 +38,11 @@ public class Punctuation extends Symbol {
   }
 
   @Override
+  public Symbol clone() {
+    return new Punctuation(this.attribute, this.line_number);
+  }
+
+  @Override
   public String toString() {
     return "<" + getName() + "," + attribute + ">";
   }

@@ -1,4 +1,4 @@
-package compiler.Parser.Grammar.Expression;
+package compiler.Parser.Grammar.Expression.Node;
 
 import compiler.Parser.AST.OperatorNode;
 import compiler.Parser.Utils.Interface.ASTNode;

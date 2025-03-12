@@ -142,6 +142,10 @@ public class Literal extends Symbol {
     return typeOfLiteral;
   }
 
+  @Override
+  public Symbol clone() {
+    return new Literal(this.attribute, this.line_number);
+  }
 
   @Override
   public String toString() {

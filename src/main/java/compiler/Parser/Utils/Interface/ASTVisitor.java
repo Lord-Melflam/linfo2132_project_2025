@@ -1,18 +1,15 @@
 package compiler.Parser.Utils.Interface;
 
-import compiler.Parser.Grammar.Declaration.Constant.Node.ConstantNode;
-import compiler.Parser.Grammar.Declaration.Function.Node.FunctionNode;
-import compiler.Parser.Grammar.Declaration.Global.Node.GlobalNode;
-import compiler.Parser.Grammar.Declaration.Record.Node.RecordNode;
+import compiler.Parser.Grammar.Declaration.Constant.Node.MainNode;
 
 public interface ASTVisitor {
 
-  void visit(ConstantNode constantNode);
+  void visit(MainNode constantNode);
 
-  void visit(RecordNode recordNode);
+  /*void visit(MainNode recordNode);
 
-  void visit(GlobalNode globalNode);
+  void visit(MainNode functionNode);
 
-  void visit(FunctionNode functionNode);
-
+  void visit(MainNode statementNode);
+*/
 }

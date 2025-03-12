@@ -37,6 +37,11 @@ public class Operator extends Symbol {
   }
 
   @Override
+  public Symbol clone() {
+    return new Operator(this.attribute, this.line_number);
+  }
+
+  @Override
   public String toString() {
     return "<" + getName() + "," + attribute + ">";
   }

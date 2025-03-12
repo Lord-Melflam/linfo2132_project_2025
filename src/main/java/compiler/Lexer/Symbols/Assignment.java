@@ -33,6 +33,11 @@ public class Assignment extends Symbol {
   }
 
   @Override
+  public Symbol clone() {
+    return new Assignment(this.attribute, this.line_number);
+  }
+
+  @Override
   public String toString() {
     return "<" + getName() + "," + attribute + ">";
   }

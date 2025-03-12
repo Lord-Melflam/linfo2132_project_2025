@@ -2,141 +2,111 @@ package compiler.Parser.Grammar.Assignment.Impl;
 
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
-import compiler.Parser.AST.AssignmentNode;
 import compiler.Parser.AST.IdentifierNode;
-import compiler.Parser.AST.SpecialSymbolNode;
-import compiler.Parser.Grammar.Assignment.Node.AssignmentExpressionNode;
+import compiler.Parser.Grammar.Declaration.Constant.Node.MainNode;
 import compiler.Parser.Grammar.Declaration.Function.Impl.FunctionCall;
-import compiler.Parser.Grammar.Declaration.Function.Node.CallFunctionNode;
 import compiler.Parser.Grammar.Expression.Impl.Expression;
-import compiler.Parser.Grammar.Expression.Node.ExpressionNode;
 import compiler.Parser.Utils.Enum.TokenType;
+import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Position;
 import compiler.Parser.Utils.Utils;
+import java.util.LinkedList;
+
 
 public class Assignment {
 
   private final Utils utils;
-  private Position savedPosition;
+  private final Position savedPosition;
   private int currentPosition;
+  LinkedList<ASTNode> assignmentNode;
+  private final String nodeName = "Assignment";
 
-  public Assignment(Utils utils, Position savedPosition)
-      throws UnrecognisedTokenException, ParserException {
+  public Assignment(Utils utils, Position savedPosition) {
     this.utils = utils;
     this.savedPosition = savedPosition;
     this.currentPosition = 0;
+    assignmentNode = new LinkedList<>();
   }
 
-  public AssignmentExpressionNode assignment() throws ParserException, UnrecognisedTokenException {
+  public MainNode assignment() throws ParserException, UnrecognisedTokenException {
 
-    AssignmentExpressionNode arrayAccessNode = null;
+    IdentifierNode identifierNode = null;
+    if (utils.matchIndex(TokenType.IDENTIFIER, true)) {
+      assignmentNode.addLast(utils.getGenericNode());
+    }
 
-    AssignmentExpressionNode recordAccessNode = null;
-    if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.IDENTIFIER)
-        || utils.matchIndex(savedPosition.getSavedPosition(), TokenType.DOT) || utils.matchIndex(
-        savedPosition.getSavedPosition(), TokenType.LBRACKET)) {
-/*
-      utils.matchIndex(savedPosition.getSavedPosition(), SymbolsName.Identifier.name());
-*/
-      IdentifierNode identifierNode2 = null;
-      if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.IDENTIFIER)) {
-        savedPosition.add();
-        identifierNode2 = new IdentifierNode("jhjhhj");
+    if (utils.matchIndex(TokenType.DOT, true)) {
+      assignmentNode.addLast(utils.getGenericNode());
+      if (utils.matchIndex(TokenType.IDENTIFIER, true)) {
+        assignmentNode.addLast(utils.getGenericNode());
+        return recordAccess();
       }
+    } else if (utils.matchIndex(TokenType.LBRACKET, true)) {
+      assignmentNode.addLast(utils.getGenericNode());
+      handleArrayOrFunctionCall();
+    }
 
-      if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.DOT)) {
-/*
-        utils.matchIndex(savedPosition.getSavedPosition(), SymbolsName.SpecialSymbol.name());
-*/
-        savedPosition.add();
-        SpecialSymbolNode specialSymbolNode = new SpecialSymbolNode(null);
-        if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.IDENTIFIER)) {
-/*
-          utils.matchIndex(savedPosition.getSavedPosition(), SymbolsName.Identifier.name());
-*/
-          savedPosition.add();
-          IdentifierNode identifierNode = new IdentifierNode(null);
-          recordAccessNode = recordAccess(identifierNode2, specialSymbolNode, identifierNode);
-        }
-      } else if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.LBRACKET)) {
-        savedPosition.add();
+    if (utils.matchIndex(TokenType.ASSIGNMENT, true)) {
+      assignmentNode.addLast(utils.getGenericNode());
+      return handleAssignment();
+    }
 
-        currentPosition = savedPosition.getSavedPosition();
-        CallFunctionNode callFunctionNode = new FunctionCall(utils, savedPosition).isFunctionCall();
-        if (callFunctionNode == null) {
-          savedPosition.setSavedPosition(currentPosition);
-          ExpressionNode expressionNode = new Expression(utils, savedPosition).expression();
-        }
-        arrayAccessNode = arrayAccess(identifierNode2, null, null);
-      }
+    return null;
+  }
 
-      if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.ASSIGNMENT)) {
-/*
-        return null;
-*/
+  private MainNode handleArrayOrFunctionCall() throws ParserException, UnrecognisedTokenException {
 
-        savedPosition.add();
-        AssignmentNode assignmentNode = new AssignmentNode();
-        ExpressionNode expressionNode = new Expression(utils, savedPosition).expression();
+    currentPosition = savedPosition.getSavedPosition();
+    MainNode callFunctionNode = new FunctionCall(utils, savedPosition).isFunctionCall();
+    if (callFunctionNode == null) {
+      savedPosition.setSavedPosition(currentPosition);
+      MainNode expressionNode = new Expression(utils, savedPosition).expression();
+      assignmentNode.addLast(expressionNode);
+    } else {
+      assignmentNode.addLast(callFunctionNode);
+    }
+    return arrayAccess();
+  }
 
-        if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.SEMICOLON)) {
-/*
-        return null;
-*/
+  private MainNode handleAssignment() throws ParserException, UnrecognisedTokenException {
 
-          savedPosition.add();
-          SpecialSymbolNode specialSymbolNode = new SpecialSymbolNode(null);
-
-          AssignmentExpressionNode assignmentExpressionNode = AssignmentExpressionNode.builder()
-              .assignmentNode(assignmentNode).expressionNode(null)
-              .specialSymbolNode(specialSymbolNode).build();
-
-          if (assignmentExpressionNode.getRecordAccessNode() != null) {
-            assignmentExpressionNode.setRecordAccessNode(recordAccessNode);
-          } else if (assignmentExpressionNode.getArrayAccessNode() != null) {
-            assignmentExpressionNode.setArrayAccessNode(arrayAccessNode);
-          } else {
-            assignmentExpressionNode.setIdentifierNode(identifierNode2);
-          }
-
-          return assignmentExpressionNode;
-        }
-      }
+    MainNode expression = new Expression(utils, savedPosition).expression();
+    assignmentNode.addLast(expression);
+    if (utils.matchIndex(TokenType.SEMICOLON, true)) {
+      assignmentNode.addLast(utils.getGenericNode());
+      return new MainNode(nodeName, assignmentNode);
     }
     return null;
   }
 
-  private AssignmentExpressionNode arrayAccess(IdentifierNode identifierNode2,
-      SpecialSymbolNode specialSymbolNodeOpen, ExpressionNode expressionNode)
-      throws ParserException, UnrecognisedTokenException {
-    if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.RBRACKET)) {
-      savedPosition.add();
-      SpecialSymbolNode specialSymbolNodeClose = new SpecialSymbolNode(null);
-      AssignmentExpressionNode assignmentExpressionNode = null;
-      /*if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.DOT) || utils.matchIndex(
-          savedPosition.getSavedPosition(), TokenType.LBRACKET)) {
-        assignmentExpressionNode = assignment();
+  private MainNode arrayAccess() throws ParserException, UnrecognisedTokenException {
 
-      }*/
-     /* return new ArrayAccessNode(assignmentExpressionNode, identifierNode2, specialSymbolNodeOpen,
-          expressionNode, specialSymbolNodeClose);*/
-      return assignment();
+    if (utils.matchIndex(TokenType.RBRACKET, true)) {
+      assignmentNode.addLast(utils.getGenericNode());
+      if (utils.matchIndex(TokenType.DOT, false) || utils.matchIndex(TokenType.LBRACKET, false)) {
+        MainNode nestedAssignment = assignment();
+        if (nestedAssignment != null) {
+          assignmentNode.addLast(nestedAssignment);
+          return nestedAssignment;
+        }
+      }
+
+      return new MainNode(nodeName, assignmentNode);
     }
-    return null;
 
+    return null;
   }
 
-  private AssignmentExpressionNode recordAccess(IdentifierNode identifierNode2,
-      SpecialSymbolNode specialSymbolNode, IdentifierNode identifierNode)
-      throws ParserException, UnrecognisedTokenException {
-    AssignmentExpressionNode assignmentExpressionNode = null;
-   /* if (utils.matchIndex(savedPosition.getSavedPosition(), TokenType.DOT) || utils.matchIndex(
-        savedPosition.getSavedPosition(), TokenType.LBRACKET)) {
-      assignmentExpressionNode = assignment();
+  private MainNode recordAccess() throws ParserException, UnrecognisedTokenException {
 
+    if (utils.matchIndex(TokenType.DOT, false) || utils.matchIndex(TokenType.LBRACKET, false)) {
+      MainNode nestedAssignment = assignment();
+      if (nestedAssignment != null) {
+        assignmentNode.addLast(nestedAssignment);
+        return nestedAssignment;
+      }
     }
-    return new RecordAccessNode(assignmentExpressionNode, identifierNode2, specialSymbolNode,
-        identifierNode);*/
-    return assignment();
+
+    return new MainNode(nodeName, assignmentNode);
   }
 }

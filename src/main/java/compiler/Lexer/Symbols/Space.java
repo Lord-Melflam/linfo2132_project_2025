@@ -31,6 +31,11 @@ public class Space extends Symbol {
     return line_number;
   }
 
+  @Override
+  public Symbol clone() {
+    return new Space();
+  }
+
   public String toString() {
     return "<" + getName() + ">";
   }

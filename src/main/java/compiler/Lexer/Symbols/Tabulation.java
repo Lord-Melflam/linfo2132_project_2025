@@ -31,6 +31,11 @@ public class Tabulation extends Symbol {
     return line_number;
   }
 
+  @Override
+  public Symbol clone() {
+    return new Tabulation();
+  }
+
   public String toString() {
     return "<" + getName() + ">";
   }

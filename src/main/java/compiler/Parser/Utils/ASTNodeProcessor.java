@@ -1,10 +1,8 @@
 package compiler.Parser.Utils;
 
 import compiler.Parser.AST.RootNode;
-import compiler.Parser.Grammar.Declaration.Constant.Node.ConstantNode;
-import compiler.Parser.Grammar.Declaration.Function.Node.FunctionNode;
-import compiler.Parser.Grammar.Declaration.Global.Node.GlobalNode;
-import compiler.Parser.Grammar.Declaration.Record.Node.RecordNode;
+import compiler.Parser.Grammar.Declaration.Constant.Node.MainNode;
+import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Interface.ASTVisitor;
 
 public class ASTNodeProcessor implements ASTVisitor {
@@ -19,24 +17,42 @@ public class ASTNodeProcessor implements ASTVisitor {
     return root;
   }
 
-  @Override
-  public void visit(ConstantNode constantNode) {
-    root.addNode(constantNode);
+
+  public void printTree(String prefix) {
+    for (MainNode child : root.getNodes()) {
+      if (child != null) {
+        System.out.println(prefix + child.getName());
+        for (ASTNode child2 : child.getChildren()) {
+          if (child2 != null) {
+            System.out.println(" " + child2.toString());
+          }
+        }
+      }
+    }
   }
 
   @Override
-  public void visit(RecordNode recordNode) {
+  public void visit(MainNode constantNode) {
+    root.addNode(constantNode);
+  }
+
+/*
+
+  @Override
+  public void visit(MainNode recordNode) {
     root.addNode(recordNode);
   }
 
   @Override
-  public void visit(GlobalNode globalNode) {
-    root.addNode(globalNode);
+  public void visit(MainNode functionNode) {
+    root.addNode(functionNode);
   }
 
   @Override
-  public void visit(FunctionNode functionNode) {
-    root.addNode(functionNode);
+  public void visit(MainNode statementNode) {
+    root.addNode(statementNode);
   }
+*/
+
 }
 

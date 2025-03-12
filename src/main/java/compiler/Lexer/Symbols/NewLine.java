@@ -32,6 +32,11 @@ public class NewLine extends Symbol {
   }
 
   @Override
+  public Symbol clone() {
+    return new NewLine();
+  }
+
+  @Override
   public String toString() {
     return "<" + getName() + ">";
   }

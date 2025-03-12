@@ -33,6 +33,11 @@ public class EndFile extends Symbol {
   }
 
   @Override
+  public Symbol clone() {
+    return new EndFile(this.line_number);
+  }
+
+  @Override
   public String toString() {
     return "<" + getName() + ">";
   }

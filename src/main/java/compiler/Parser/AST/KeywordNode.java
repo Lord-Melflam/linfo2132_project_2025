@@ -1,6 +1,9 @@
 package compiler.Parser.AST;
 
-public class KeywordNode {
+import compiler.Parser.Utils.Interface.ASTNode;
+import compiler.Parser.Utils.Interface.ASTVisitor;
+
+public class KeywordNode extends ASTNode {
 
   String name;
 
@@ -11,5 +14,10 @@ public class KeywordNode {
   @Override
   public String toString() {
     return "KeywordNode(" + name + ")";
+  }
+
+  @Override
+  public void accept(ASTVisitor visitor) {
+
   }
 }
