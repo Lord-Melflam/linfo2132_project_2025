@@ -57,6 +57,8 @@ public class Constant {
           constantNode.addLast(utils.getGenericNode());
         } else if (utils.matchIndex(TokenType.RECORD, true)) {
           constantNode.addLast(utils.getGenericNode());
+          MainNode callFunctionNode = new FunctionCall(utils, savedPosition).isFunctionCall();
+          constantNode.addLast(callFunctionNode);
         } else if (utils.lookahead_matches(expectedSymbolsGlobalArray, true)) {
           constantNode.addAll(utils.getAstNodes());
 
