@@ -2,6 +2,7 @@ package compiler.Parser.Grammar.Declaration.Constant.Node;
 
 import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Interface.ASTVisitor;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainNode extends ASTNode {
@@ -11,7 +12,13 @@ public class MainNode extends ASTNode {
 
   public MainNode(String name, List<ASTNode> children) {
     this.name = name;
-    this.children = children;
+    this.children = new LinkedList<>();
+
+    for (ASTNode node : children) {
+      if (node != null) {
+        this.children.addLast(node);
+      }
+    }
   }
 
   public String getName() {

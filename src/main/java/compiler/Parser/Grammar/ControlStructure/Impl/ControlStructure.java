@@ -104,7 +104,8 @@ public class ControlStructure {
           controlStructureNode.addLast(mainNode);
           if (utils.matchIndex(TokenType.RBRACE, true)) {
             controlStructureNode.addLast(utils.getGenericNode());
-            return new MainNode(nodeName, controlStructureNode);
+            MainNode test = new MainNode(nodeName, controlStructureNode);
+            return test;
           }
         }
       }

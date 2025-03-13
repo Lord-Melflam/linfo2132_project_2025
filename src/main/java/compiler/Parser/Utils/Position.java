@@ -15,6 +15,10 @@ public class Position implements Subject {
     this.savedPosition = -1;
   }
 
+  public Position(int savedPosition) {
+    this.savedPosition = savedPosition;
+  }
+
   public void setSavedPosition(int savedPosition) {
     this.savedPosition = savedPosition;
     notifyObservers();
@@ -26,6 +30,10 @@ public class Position implements Subject {
 
   public int getNextPosition() {
     return savedPosition + 1;
+  }
+
+  public int getPreviousPosition() {
+    return savedPosition - 1;
   }
 
   public int add() {

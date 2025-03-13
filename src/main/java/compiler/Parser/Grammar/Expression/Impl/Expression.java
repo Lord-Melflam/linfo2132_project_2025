@@ -5,8 +5,6 @@ import compiler.Exceptions.Parser.ParserException;
 import compiler.Parser.Grammar.Assignment.Impl.Assignment;
 import compiler.Parser.Grammar.Declaration.Constant.Node.MainNode;
 import compiler.Parser.Grammar.Declaration.Function.Impl.FunctionCall;
-import compiler.Parser.Grammar.Expression.Node.BinaryOperator;
-import compiler.Parser.Grammar.Expression.Node.ExpressionNode;
 import compiler.Parser.Grammar.Expression.Node.PrimaryOperator;
 import compiler.Parser.Grammar.Statement.Impl.StatementList;
 import compiler.Parser.Utils.Enum.TokenType;
@@ -34,31 +32,37 @@ public class Expression {
 
   public MainNode expression() throws UnrecognisedTokenException, ParserException {
 
-    ASTNode primary = primary();
-    ASTNode expressionTail = expressionTail();
+    primary();
+    expressionTail();
 
     return new MainNode(nodeName, expressionNode);
   }
 
-  private ASTNode expressionTail() throws UnrecognisedTokenException, ParserException {
+  private void expressionTail() throws UnrecognisedTokenException, ParserException {
     if (utils.matchIndex(TokenType.OPERATOR, false)) {
-      return new ExpressionNode(binary(), primary(), expressionTail());
+      binary();
+      primary();
+      expressionTail();
+      return;
     }
-    return null;
+    return;
   }
 
-  private ASTNode binary() throws UnrecognisedTokenException, ParserException {
+  private void binary() throws UnrecognisedTokenException, ParserException {
     if (utils.matchIndex(TokenType.OPERATOR, true)) {
       expressionNode.addLast(utils.getGenericNode());
-      return new BinaryOperator(null);
+/*
+      new BinaryOperator(null);
+*/
     }
-    return null;
   }
 
-  private ASTNode primary() throws UnrecognisedTokenException, ParserException {
+  private void primary() throws UnrecognisedTokenException, ParserException {
     if (utils.matchIndex(TokenType.LITERAL, true)) {
       expressionNode.addLast(utils.getGenericNode());
-      return new PrimaryOperator(null, null, null);
+/*
+      new PrimaryOperator(null, null, null);
+*/
     } else if (utils.matchIndex(TokenType.IDENTIFIER, true)
         || utils.matchIndex(TokenType.BUILTINFUNCTION, true)) {
       expressionNode.addLast(utils.getGenericNode());
@@ -80,22 +84,22 @@ public class Expression {
           expressionNode.addLast(callFunctionNode);
         }
       } else if (utils.matchIndex(TokenType.DOT, false) || utils.matchIndex(TokenType.LBRACKET,
-          false)) {
-        expressionNode.addLast(utils.getGenericNode());
+          false)) {/*todo*/
+        //expressionNode.addLast(utils.getGenericNode());
         MainNode mainNode = new Assignment(utils, savedPosition).assignment();
         expressionNode.addLast(mainNode);
       }
 
-      return new PrimaryOperator(null, null, null);
+      new PrimaryOperator(null, null, null);
     } else if (utils.matchIndex(TokenType.LPAREN, true)) {
       expressionNode.addLast(utils.getGenericNode());
       MainNode expression = expression();
-      expressionNode.addLast(expression);
+      /*todo*/
+      //expressionNode.addLast(expression);
       if (utils.matchIndex(TokenType.RPAREN, true)) {
         expressionNode.addLast(utils.getGenericNode());
-        return new PrimaryOperator(null, null, null);
+        new PrimaryOperator(null, null, null);
       }
     }
-    return null;
   }
 }

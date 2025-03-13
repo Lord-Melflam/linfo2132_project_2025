@@ -26,6 +26,11 @@ public class Constant {
       new HashSet<>(Set.of(TokenType.BUILTINFUNCTION)), new HashSet<>(Set.of(TokenType.LPAREN)));
   private final List<HashSet<TokenType>> expectedSymbolsGlobalAlternative = List.of(
       new HashSet<>(Set.of(TokenType.SEMICOLON)));
+  /*  private final List<HashSet<TokenType>> expectedSymbolsGlobalAlternative = List.of(
+        new HashSet<>(Set.of(TokenType.IDENTIFIER)),
+        new HashSet<>(Set.of(TokenType.TYPESPECIFIER, TokenType.RECORD)),
+        new HashSet<>(Set.of(TokenType.ASSIGNMENT)),
+        new HashSet<>(Set.of(TokenType.SEMICOLON)));*/
   private final List<HashSet<TokenType>> expectedSymbolsGlobal = List.of(
       new HashSet<>(Set.of(TokenType.IDENTIFIER)),
       new HashSet<>(Set.of(TokenType.TYPESPECIFIER, TokenType.RECORD)),
@@ -52,6 +57,7 @@ public class Constant {
     }
     if (utils.lookahead_matches(expectedSymbolsGlobal, true)) {
       constantNode.addAll(utils.getAstNodes());
+      //savedPosition.add(expectedSymbolsGlobal); false
       if (!utils.lookahead_matches(expectedSymbolsBuiltInFunction, false)) {
         if (utils.matchIndex(TokenType.PUNTUATION, true)) {
           constantNode.addLast(utils.getGenericNode());
@@ -112,9 +118,18 @@ public class Constant {
         constantNode.addLast(utils.getGenericNode());
         return new MainNode(nodeName, constantNode);
       }
-    } else if (utils.lookahead_matches(expectedSymbolsGlobalAlternative, true)) {
+    } else {
+      /*todo
+
+       */
       constantNode.addAll(utils.getAstNodes());
-      return new MainNode(nodeName, constantNode);
+      //
+      //if (!utils.getSymbol(savedPosition.getPreviousPosition()).getToken().equals("=")) {
+      if (utils.lookahead_matches(expectedSymbolsGlobalAlternative, true)) {
+        constantNode.addAll(utils.getAstNodes());
+        return new MainNode(nodeName, constantNode);
+      }
+      //}
     }
     return null;
   }

@@ -4,8 +4,6 @@ import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
 import compiler.Lexer.Symbol;
 import compiler.Parser.AST.GenericNode;
-import compiler.Parser.Grammar.Program.Program;
-import compiler.Parser.Parser;
 import compiler.Parser.Utils.Enum.TokenType;
 import compiler.Parser.Utils.Interface.ASTNode;
 import compiler.Parser.Utils.Interface.Observer;
@@ -16,35 +14,20 @@ import java.util.List;
 
 public class Utils implements Observer {
 
-  private Symbol currentSymbol;
-  private Symbol previousSymbol;
   private Position currentPosition;
-  private Parser parser;
-  private ArrayList<Symbol> symbols = new ArrayList<>();
+  private Position currentPositionClone;
   private LinkedList<Symbol> allSymbols;
-  private int index;
-  private Program program;
   private ArrayList<ASTNode> astNodes;
   private GenericNode<String> genericNode;
 
   public Utils() {
-
   }
 
-  public Utils(Parser parser, LinkedList<Symbol> allSymbols) {
-    this.parser = parser;
+  public Utils(LinkedList<Symbol> allSymbols) {
     this.allSymbols = allSymbols;
   }
 
-  public Program getProgram() {
-    return program;
-  }
-
-  public void setProgram(Program program) {
-    this.program = program;
-  }
-
-  private Symbol getSymbol(int index) {
+  public Symbol getSymbol(int index) {
     if (index < 0 || index >= allSymbols.size()) {
       throw new IndexOutOfBoundsException("Invalid symbol index: " + index);
     }
@@ -77,6 +60,17 @@ public class Utils implements Observer {
     }
   }
 
+  /*private void incrementPosition(boolean add) {
+    currentPositionClone.add();
+   *//* if (add) {
+      commitChanges();
+    }*//*
+  }*/
+
+  private void commitChanges() {
+    currentPosition.setSavedPosition(currentPositionClone.getSavedPosition());
+  }
+
   public ArrayList<ASTNode> getAstNodes() {
     return astNodes;
   }
@@ -85,10 +79,9 @@ public class Utils implements Observer {
     return genericNode;
   }
 
-  public int getIndex() {
-    return index;
-  }
-
+  /*private boolean resMatchIndex(TokenType tokenType, boolean add,boolean commit){
+      return matchIndex()
+  }*/
   public boolean lookahead_matches(List<HashSet<TokenType>> expectedSymbols,
       boolean add)
       throws UnrecognisedTokenException, ParserException {
@@ -112,18 +105,6 @@ public class Utils implements Observer {
     return false;
   }
 
-
-  public Symbol getCurrentSymbol() {
-    return currentSymbol;
-  }
-
-  public Symbol getPreviousSymbol() {
-    if (previousSymbol == null) {
-      return null;
-    }
-    return previousSymbol;
-  }
-
   private void createNode(Symbol currentSymbol) {
     genericNode = new GenericNode<>(currentSymbol.getName() + "Node",
         currentSymbol.getToken());
@@ -132,21 +113,11 @@ public class Utils implements Observer {
     }
   }
 
-  private void createNode() {
-    Symbol currentSymbol = getSymbol(currentPosition.getSavedPosition());
-    createNode(currentSymbol);
-    astNodes.add(genericNode);
-  }
-
-
-  public void nextSymbol() throws UnrecognisedTokenException {
-    previousSymbol = getCurrentSymbol();
-    program.nextSymbol();
-  }
 
   @Override
-  public void updatePosition(Position CurrentPosition) {
-    this.currentPosition = CurrentPosition;
+  public void updatePosition(Position currentPosition) {
+    this.currentPosition = currentPosition;
+    this.currentPositionClone = new Position(currentPosition.getSavedPosition());
   }
 
   @Override

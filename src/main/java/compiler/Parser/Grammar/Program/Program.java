@@ -59,12 +59,9 @@ public class Program implements Subject {
       if (matched) {
         currentPosition = savedPosition.getSavedPosition();
       } else {
-        Symbol incorrectSymbol = getLookahead();
-        throw new ParserException(
-            incorrectSymbol.getToken(),
-            "Unexpected token at line " + incorrectSymbol.getLine_number() +
-                ": '" + incorrectSymbol.getName() + "'"
-        );
+        Symbol incorrectSymbol = allSymbols.get(savedPosition.getSavedPosition());
+        throw new ParserException(incorrectSymbol.getToken(),
+            Integer.toString(incorrectSymbol.getLine_number()));
       }
 
       if (previousPosition == savedPosition.getSavedPosition()) {

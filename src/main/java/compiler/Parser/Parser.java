@@ -13,9 +13,8 @@ public class Parser {
   private final Program program;
 
   public Parser(Lexer lexer) throws UnrecognisedTokenException, ParserException {
-    Utils utils = new Utils(this, lexer.getSymbols());
+    Utils utils = new Utils(lexer.getSymbols());
     program = new Program(utils, lexer);
-    utils.setProgram(program);
     getAST();
   }
 
