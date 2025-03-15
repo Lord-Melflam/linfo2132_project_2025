@@ -31,7 +31,7 @@ jobs:
           ./gradlew --version
 
       - name: Vérifier les fichiers de test
-        run: ls -R src/test/resources
+        run: ls -R
 
       - name: Build with Gradle Wrapper
         run: ./gradlew build
