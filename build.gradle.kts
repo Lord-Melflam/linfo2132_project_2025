@@ -20,6 +20,12 @@ repositories {
 sourceSets.main.get().java.srcDir("src")
 sourceSets.test.get().java.srcDir("test")
 
+sourceSets {
+    test {
+        java.srcDirs("test")
+        resources.srcDirs("test")
+    }
+}
 dependencies {
     // Use JUnit test framework.
     testImplementation("junit:junit:4.13.2")

@@ -47,8 +47,8 @@ public class TestParser {
   @Test
   public void testEntireFile() {
     for (String testFile : fileName) {
-      String sourceFile = "test/TestFile/Code/" + testFile + ".txt";
-      String expectedFile = "test/TestFile/AnswersParser/" + testFile + ".json";
+      String sourceFile = "./test/TestFile/Code/" + testFile + ".txt";
+      String expectedFile = "./test/TestFile/AnswersParser/" + testFile + ".json";
 
       try {
         ASTNodeProcessor astNodeProcessorActual = getLexerFilePath(sourceFile).getAST();

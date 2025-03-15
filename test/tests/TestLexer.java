@@ -41,8 +41,8 @@ public class TestLexer {
   @Test
   public void testEntireFile() {
     for (String testFile : fileName) {
-      String sourceFile = "test/TestFile/Code/" + testFile + ".txt";
-      String expectedFile = "test/TestFile/AnswersLexer/" + testFile + ".txt";
+      String sourceFile = "./test/TestFile/Code/" + testFile + ".txt";
+      String expectedFile = "./test/TestFile/AnswersLexer/" + testFile + ".txt";
 
       try {
         List<Symbol> actualTokens = tokenizeFile(sourceFile).getSymbols();
