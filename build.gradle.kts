@@ -43,7 +43,9 @@ application {
     // Define the main class for the application.
     mainClass.set("compiler.Compiler")
 }
-
+tasks.withType<Test> {
+    systemProperty("file.encoding", "UTF-8")
+}
 tasks.register<Zip>("packageSource") {
     dependsOn("test")
     archiveBaseName.set("${project.name}-source")
