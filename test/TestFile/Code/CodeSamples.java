@@ -1,6 +1,5 @@
 package TestFile.Code;
 
-@SuppressWarnings("unused")
 public class CodeSamples {
 
   public static String basicCodeConstant = "$ Basic constant declarations\n"

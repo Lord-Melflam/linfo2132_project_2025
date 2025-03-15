@@ -15,7 +15,6 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
 public class UtilsTest {
 
   static public Lexer tokenizeFile(String filePath)
