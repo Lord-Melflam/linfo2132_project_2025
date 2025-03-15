@@ -30,12 +30,12 @@ jobs:
           java -version
           ./gradlew --version
 
-      - name: Build with Gradle Wrapper
-        run: ./gradlew build
-        
       - name: Vérifier les fichiers de test
         run: ls -R src/test/resources
 
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
+        
       - name: Clean Gradle cache
         run: ./gradlew clean
 
