@@ -1,1 +1,2 @@
- p Point = Point(a, a + value);
+snake case
+Record name with numbers

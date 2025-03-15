@@ -59,7 +59,7 @@ public class Lexer implements Iterator<Symbol> {
    * @param reader - File to read
    */
   private void parseSymbols(Reader reader)
-      throws IOException, NotASCIIException {
+      throws IOException, NotASCIIException, UnrecognisedTokenException {
     StringBuilder word = new StringBuilder();
     int nextChar;
 
@@ -101,6 +101,7 @@ public class Lexer implements Iterator<Symbol> {
       UnrecognisedToken unrecognised = new UnrecognisedToken(line, word.substring(0, 1));
       unrecognisedTokens.add(unrecognised);
       symbols.add(unrecognised);
+      checkForErrors();
     }
   }
 

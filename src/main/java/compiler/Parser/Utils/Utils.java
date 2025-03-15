@@ -3,10 +3,10 @@ package compiler.Parser.Utils;
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
 import compiler.Lexer.Symbol;
-import compiler.Parser.AST.GenericNode;
+import compiler.Parser.ASTNode.GenericNode;
 import compiler.Parser.Utils.Enum.TokenType;
-import compiler.Parser.Utils.Interface.ASTNode;
-import compiler.Parser.Utils.Interface.Observer;
+import compiler.Parser.Utils.Interfaces.ASTNode;
+import compiler.Parser.Utils.Interfaces.Observer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -36,7 +36,29 @@ public class Utils implements Observer {
 
   public boolean matchIndex(TokenType tokenType, boolean add)
       throws ParserException, UnrecognisedTokenException {
-    Symbol current = getSymbol(currentPosition.getSavedPosition());
+    Symbol current = getSymbol(currentPositionClone.getSavedPosition());
+
+    if (tokenType.getValue() == null || tokenType.getValue().isEmpty()) {
+      if (tokenType.getCategory().equals(current.getName())) {
+        incrementPosition(add);
+        createNode(current);
+        currentPositionClone = new Position(currentPosition.getSavedPosition());
+        return true;
+      }
+      currentPositionClone = new Position(currentPosition.getSavedPosition());
+    } else if (tokenType.getCategory().equals(current.getName()) &&
+        tokenType.getValue().equals(current.getToken())) {
+      incrementPosition(add);
+      createNode(current);
+      currentPositionClone = new Position(currentPosition.getSavedPosition());
+      return true;
+    }
+    currentPositionClone = new Position(currentPosition.getSavedPosition());
+    return false;
+  }
+
+  public boolean matchIndexList(TokenType tokenType, boolean add) {
+    Symbol current = getSymbol(currentPositionClone.getSavedPosition());
 
     if (tokenType.getValue() == null || tokenType.getValue().isEmpty()) {
       if (tokenType.getCategory().equals(current.getName())) {
@@ -50,26 +72,48 @@ public class Utils implements Observer {
       createNode(current);
       return true;
     }
-
+    currentPositionClone = new Position(currentPosition.getSavedPosition());
     return false;
   }
 
   private void incrementPosition(boolean add) {
+    currentPositionClone.add();
     if (add) {
-      currentPosition.add();
+      commitChanges();
     }
   }
-
-  /*private void incrementPosition(boolean add) {
-    currentPositionClone.add();
-   *//* if (add) {
-      commitChanges();
-    }*//*
-  }*/
 
   private void commitChanges() {
     currentPosition.setSavedPosition(currentPositionClone.getSavedPosition());
   }
+
+  public boolean lookahead_matches(List<HashSet<TokenType>> expectedSymbols, boolean add) {
+    int matchedCount = 0;
+    astNodes = new ArrayList<>();
+    Position originalPosition = new Position(currentPosition.getSavedPosition());
+
+    for (HashSet<TokenType> expectedSymbol : expectedSymbols) {
+      boolean matched = false;
+      for (TokenType tokenType : expectedSymbol) {
+        if (matchIndexList(tokenType, false)) {
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        currentPositionClone = new Position(
+            originalPosition.getSavedPosition());
+        return false;
+      }
+      matchedCount++;
+    }
+
+    if (matchedCount == expectedSymbols.size() && add) {
+      commitChanges();
+    }
+    return matchedCount == expectedSymbols.size();
+  }
+
 
   public ArrayList<ASTNode> getAstNodes() {
     return astNodes;
@@ -79,34 +123,8 @@ public class Utils implements Observer {
     return genericNode;
   }
 
-  /*private boolean resMatchIndex(TokenType tokenType, boolean add,boolean commit){
-      return matchIndex()
-  }*/
-  public boolean lookahead_matches(List<HashSet<TokenType>> expectedSymbols,
-      boolean add)
-      throws UnrecognisedTokenException, ParserException {
-    int counter = 0;
-    astNodes = new ArrayList<>();
-    for (HashSet<TokenType> expectedSymbol : expectedSymbols) {
-      for (TokenType tokenType : expectedSymbol) {
-        if (matchIndex(tokenType, add)) {
-          counter++;
-          break;
-        }
-      }
-      if (expectedSymbols.size() == counter) {
-        return true;
-      }
-      if (counter == 0) {
-        return false;
-      }
-
-    }
-    return false;
-  }
-
   private void createNode(Symbol currentSymbol) {
-    genericNode = new GenericNode<>(currentSymbol.getName() + "Node",
+    genericNode = new GenericNode<>(currentSymbol.getName(),
         currentSymbol.getToken());
     if (astNodes != null) {
       astNodes.add(genericNode);
@@ -120,7 +138,4 @@ public class Utils implements Observer {
     this.currentPositionClone = new Position(currentPosition.getSavedPosition());
   }
 
-  @Override
-  public void updateSymbol(Symbol currentSymbol) {
-  }
 }

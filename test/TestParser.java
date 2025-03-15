@@ -13,16 +13,21 @@ import static TestFile.Code.TestCode.scopeViolation;
 import static TestFile.Code.TestCode.typeMismatch;
 import static TestFile.Code.TestCode.unrecognisedToken;
 import static Utils.UtilsTest.getLexer;
-import static Utils.UtilsTest.loadExpectedTokens;
-import static Utils.UtilsTest.tokenizeFile;
+import static Utils.UtilsTest.getLexerFilePath;
+import static Utils.UtilsTest.getLexerInput;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import compiler.Exceptions.Lexer.NotASCIIException;
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
+import compiler.Exceptions.Parser.ParserException;
 import compiler.Lexer.Lexer;
 import compiler.Lexer.Symbol;
+import compiler.Parser.ASTNode.ASTNodeProcessor;
+import compiler.Parser.Utils.ASTUtils.ASTComparator;
+import compiler.Parser.Utils.ASTUtils.ASTUtils;
 import compiler.Parser.Utils.Enum.Token;
 import compiler.Parser.Utils.Enum.TokenType;
 import java.io.IOException;
@@ -31,45 +36,47 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
-public class TestLexer {
+public class TestParser {
 
   private final ArrayList<String> fileName = new ArrayList<>(
-      List.of("code2", "code", "code_full_lexer_test"));
+      List.of("code3", "code", "code_full_lexer_test"));
+
 
   @Test
   public void testEntireFile() {
     for (String testFile : fileName) {
       String sourceFile = "test/TestFile/Code/" + testFile + ".txt";
-      String expectedFile = "test/TestFile/AnswersLexer/" + testFile + ".txt";
+      String expectedFile = "test/TestFile/AnswersParser/" + testFile + ".json";
 
       try {
-        List<Symbol> actualTokens = tokenizeFile(sourceFile).getSymbols();
-        actualTokens.removeLast();
-        actualTokens.removeFirst();
-        List<Symbol> expectedTokens = loadExpectedTokens(expectedFile);
-
-        assertEquals("Nombre de tokens incorrect dans " + testFile, expectedTokens.size(),
-            actualTokens.size());
-
-        for (int i = 0; i < expectedTokens.size(); i++) {
-          assertEquals("Type incorrect à l'index " + i + " dans " + testFile,
-              expectedTokens.get(i).getName(),
-              actualTokens.get(i).getName());
-          assertEquals("Valeur incorrecte à l'index " + i + " dans " + testFile,
-              expectedTokens.get(i).getToken(), actualTokens.get(i).getToken());
-        }
-
+        ASTNodeProcessor astNodeProcessorActual = getLexerFilePath(sourceFile).getAST();
+        ASTNodeProcessor astNodeProcessorActualExpected = ASTUtils.loadAST(expectedFile);
+        boolean areEqual = ASTComparator.compareAST(astNodeProcessorActual,
+            astNodeProcessorActualExpected);
+        assertTrue(areEqual);
       } catch (IOException | NotASCIIException | UnrecognisedTokenException e) {
         fail("Erreur dans le fichier " + testFile + ": " + e.getMessage());
+      } catch (ParserException e) {
+        throw new RuntimeException(e);
       }
     }
+  }
+
+  @Test
+  public void testCode2() {
+    String sourceFile = "test/TestFile/Code/" + "code2" + ".txt";
+    assertThrows(ParserException.class, () -> {
+      ASTNodeProcessor astNodeProcessorActual = getLexerFilePath(sourceFile).getAST();
+    });
+
   }
 
   @Test
   public void testWithNotASCII()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     assertThrows(NotASCIIException.class, () -> {
-      Lexer lexer = getLexer(inputNotAscii);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(inputNotAscii).getAST();
+
     });
 
   }
@@ -78,7 +85,8 @@ public class TestLexer {
   public void testBasicCodeConstant()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(basicCodeConstant);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(basicCodeConstant).getAST();
+
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -88,7 +96,7 @@ public class TestLexer {
   public void testRecordArrayUsage()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(recordArrayUsage);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(recordArrayUsage).getAST();
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -98,7 +106,7 @@ public class TestLexer {
   public void testExpression()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(expression);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(expression).getAST();
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -108,7 +116,8 @@ public class TestLexer {
   public void testControlStructure()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(controlStructure);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(controlStructure).getAST();
+
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -117,18 +126,17 @@ public class TestLexer {
   @Test
   public void testConstantError()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
-    try {
-      getLexer(constantError);
-    } catch (Exception e) {
-      fail(e.getClass().getSimpleName() + " was thrown");
-    }
+    assertThrows(ParserException.class, () -> {
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(constantError).getAST();
+
+    });
   }
 
   @Test
   public void testTypeMismatch()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(typeMismatch);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(typeMismatch).getAST();
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -138,7 +146,7 @@ public class TestLexer {
   public void testInvalidArrayAccess()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(invalidArrayAccess);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(invalidArrayAccess).getAST();
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -148,7 +156,8 @@ public class TestLexer {
   public void testScopeViolation()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(scopeViolation);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(scopeViolation).getAST();
+
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -158,7 +167,7 @@ public class TestLexer {
   public void testOperatorPrecedence()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(operatorPrecedence);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(operatorPrecedence).getAST();
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -168,7 +177,8 @@ public class TestLexer {
   public void testMixedTypeOperations()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(mixedTypeOperations);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(mixedTypeOperations).getAST();
+
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -178,7 +188,7 @@ public class TestLexer {
   public void testNestedRecord()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(nestedRecord);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(nestedRecord).getAST();
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -188,7 +198,8 @@ public class TestLexer {
   public void testMemoryManagement()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(memoryManagement);
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(memoryManagement).getAST();
+
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }

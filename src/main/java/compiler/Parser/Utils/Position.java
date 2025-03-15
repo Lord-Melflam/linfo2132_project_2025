@@ -1,7 +1,7 @@
 package compiler.Parser.Utils;
 
-import compiler.Parser.Utils.Interface.Observer;
-import compiler.Parser.Utils.Interface.Subject;
+import compiler.Parser.Utils.Interfaces.Observer;
+import compiler.Parser.Utils.Interfaces.Subject;
 import java.util.ArrayList;
 import java.util.List;
 

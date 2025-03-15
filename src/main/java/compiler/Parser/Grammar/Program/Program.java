@@ -4,15 +4,15 @@ import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
 import compiler.Lexer.Lexer;
 import compiler.Lexer.Symbol;
-import compiler.Parser.AST.RootNode;
-import compiler.Parser.Grammar.Declaration.Constant.Impl.Constant;
-import compiler.Parser.Grammar.Declaration.Constant.Node.MainNode;
-import compiler.Parser.Grammar.Declaration.Function.Impl.Function;
-import compiler.Parser.Grammar.Declaration.Record.Impl.Record;
-import compiler.Parser.Grammar.Statement.Impl.StatementList;
-import compiler.Parser.Utils.ASTNodeProcessor;
-import compiler.Parser.Utils.Interface.Observer;
-import compiler.Parser.Utils.Interface.Subject;
+import compiler.Parser.ASTNode.ASTNodeProcessor;
+import compiler.Parser.ASTNode.MainNode;
+import compiler.Parser.ASTNode.RootNode;
+import compiler.Parser.Grammar.Declaration.Declaration;
+import compiler.Parser.Grammar.Function.Function;
+import compiler.Parser.Grammar.Record.Record;
+import compiler.Parser.Grammar.Statement.StatementList;
+import compiler.Parser.Utils.Interfaces.Observer;
+import compiler.Parser.Utils.Interfaces.Subject;
 import compiler.Parser.Utils.Position;
 import compiler.Parser.Utils.Utils;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class Program implements Subject {
 
   Position savedPosition;
 
-  public Program(Utils utils, Lexer lexer) throws UnrecognisedTokenException, ParserException {
+  public Program(Utils utils, Lexer lexer) throws UnrecognisedTokenException {
     this.utils = utils;
     nodeProcessor = new ASTNodeProcessor();
     currentPosition = 0;
@@ -73,7 +73,7 @@ public class Program implements Subject {
 
   public MainNode isDeclaration(Position savedPosition)
       throws UnrecognisedTokenException, ParserException {
-    return new Constant(utils, savedPosition).isConstant();
+    return new Declaration(utils, savedPosition).isConstant();
   }
 
   public MainNode isRecord(Position savedPosition)
@@ -91,8 +91,7 @@ public class Program implements Subject {
     return new StatementList(utils, savedPosition).statementList();
   }
 
-  public boolean checkNode(MainNode astNode)
-      throws ParserException, UnrecognisedTokenException {
+  public boolean checkNode(MainNode astNode) {
     if (astNode != null) {
       astNode.accept(nodeProcessor);
       return true;
@@ -129,7 +128,6 @@ public class Program implements Subject {
   public void notifyObservers() {
     for (Observer observer : observers) {
       observer.updatePosition(savedPosition);
-      observer.updateSymbol(lookahead);
     }
   }
 }
