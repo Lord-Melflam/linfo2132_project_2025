@@ -1,6 +1,7 @@
 package TestFile.Code;
 
-public final class TestCode {
+@SuppressWarnings("unused")
+public class CodeSamples {
 
   public static String basicCodeConstant = "$ Basic constant declarations\n"
       + "final pi float = 3.1415;\n"
