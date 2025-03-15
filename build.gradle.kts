@@ -37,10 +37,6 @@ application {
     // Define the main class for the application.
     mainClass.set("compiler.Compiler")
 }
-tasks.test {
-    exclude("**/TestFile")
-    exclude("**/Utils")
-}
 
 tasks.register<Zip>("packageSource") {
     dependsOn("test")

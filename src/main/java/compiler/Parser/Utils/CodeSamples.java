@@ -1,4 +1,4 @@
-package TestFile.Code;
+package compiler.Parser.Utils;
 
 public class CodeSamples {
 
