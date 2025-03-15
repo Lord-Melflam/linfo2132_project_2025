@@ -1,6 +1,6 @@
 package TestFile.Code;
 
-public class TestCode {
+public final class TestCode {
 
   public static String basicCodeConstant = "$ Basic constant declarations\n"
       + "final pi float = 3.1415;\n"

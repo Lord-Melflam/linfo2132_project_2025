@@ -1,3 +1,5 @@
+package Tests;
+
 import static TestFile.Code.TestCode.basicCodeConstant;
 import static TestFile.Code.TestCode.constantError;
 import static TestFile.Code.TestCode.controlStructure;

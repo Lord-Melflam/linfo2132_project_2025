@@ -15,7 +15,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilsTest {
+public final class UtilsTest {
 
   static public Lexer tokenizeFile(String filePath)
       throws IOException, NotASCIIException, UnrecognisedTokenException {
