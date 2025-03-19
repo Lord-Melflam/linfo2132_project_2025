@@ -36,7 +36,7 @@ import org.junit.Test;
 public class TestLexer {
 
   private final ArrayList<String> fileName = new ArrayList<>(
-      List.of("code2", "code", "code_full_lexer_test"));
+      List.of("code2", "code", "code_full_lexer_test", "code3", "parserTestCode_1", "parserTestCode_2", "parserTestCode_3", "parserTestCodeEdgeCase_1"));
 
   @Test
   public void testEntireFile() {

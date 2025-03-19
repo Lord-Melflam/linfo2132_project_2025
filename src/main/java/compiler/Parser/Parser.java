@@ -6,6 +6,8 @@ import compiler.Lexer.Lexer;
 import compiler.Parser.ASTNode.ASTNodeProcessor;
 import compiler.Parser.Grammar.Program.Program;
 import compiler.Parser.Utils.Utils;
+import compiler.Parser.Utils.ASTUtils.ASTUtils;
+
 import java.io.IOException;
 
 public class Parser {
@@ -23,8 +25,8 @@ public class Parser {
     ASTNodeProcessor astNodeProcessor = program.isProgram();
 
     astNodeProcessor.printTree("");
-    /*
-    ASTUtils.saveAST(astNodeProcessor, "test/TestFile/AnswersParser/code.json");*/
+    
+    ASTUtils.saveAST(astNodeProcessor, "test/TestFile/AnswersParser/test.json");
     return astNodeProcessor;
   }
 }

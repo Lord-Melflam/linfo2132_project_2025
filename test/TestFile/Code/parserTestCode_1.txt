@@ -1,0 +1,17 @@
+final a int = 5;
+final b float = 3.14 * 2.0;
+final message string = "Parser Test!";
+final isActive bool = true;
+
+x int = 10 + 20;
+y float = x * 2.5;
+isValid bool = (x < y) && (b != 6.28);
+
+fun computeSum(int x, int y) int {
+    return x + y;
+}
+
+fun main() {
+    writeln("Welcome to the Parser Test!");
+    writeln(computeSum(a, x));
+}

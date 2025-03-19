@@ -41,7 +41,7 @@ import org.junit.Test;
 public class TestParser {
 
   private final ArrayList<String> fileName = new ArrayList<>(
-      List.of("code3", "code", "code_full_lexer_test"));
+      List.of("code3", "code", "code_full_lexer_test", "code2" , "code3", "parserTestCode_1", "parserTestCode_2", "parserTestCode_3", "parserTestCodeEdgeCase_1"));
 
 
   @Test
