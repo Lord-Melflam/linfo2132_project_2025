@@ -8,11 +8,12 @@
 # Folder view configuration files
 .DS_Store
 Desktop.ini
-
+.vscode/settings.json
 # Thumbnail cache files
 ._*
 Thumbs.db
-
+res.txt
+test/TestFile/AnswersParser/test.json
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes

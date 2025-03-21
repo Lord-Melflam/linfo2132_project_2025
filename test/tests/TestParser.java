@@ -17,6 +17,7 @@ import static compiler.Parser.Utils.CodeSamples.unrecognisedToken;
 import static compiler.Parser.Utils.UtilsTest.getLexer;
 import static compiler.Parser.Utils.UtilsTest.getLexerFilePath;
 import static compiler.Parser.Utils.UtilsTest.getLexerInput;
+import static compiler.Parser.Utils.UtilsTest.readLexer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -35,13 +36,15 @@ import compiler.Parser.Utils.Enum.TokenType;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.Test;
 
 public class TestParser {
 
   private final ArrayList<String> fileName = new ArrayList<>(
-      List.of("code3", "code", "code_full_lexer_test"));
+      List.of("code", "code_full_lexer_test", "code3", "parserTestCode_1", "parserTestCode_2",
+          "parserTestCode_3", "parserTestCodeEdgeCase_1"));
 
 
   @Test
@@ -51,14 +54,17 @@ public class TestParser {
       String expectedFile = "./test/TestFile/AnswersParser/" + testFile + ".json";
 
       try {
-        ASTNodeProcessor astNodeProcessorActual = getLexerFilePath(sourceFile).getAST();
+        ASTNodeProcessor astNodeProcessorActual = getLexerFilePath(
+            sourceFile).getAstNodeProcessor();
         ASTNodeProcessor astNodeProcessorActualExpected = ASTUtils.loadAST(expectedFile);
         boolean areEqual = ASTComparator.compareAST(astNodeProcessorActual,
             astNodeProcessorActualExpected);
+
         assertTrue(areEqual);
       } catch (IOException | NotASCIIException | UnrecognisedTokenException e) {
         fail("Erreur dans le fichier " + testFile + ": " + e.getMessage());
       } catch (ParserException e) {
+        System.out.println(testFile);
         throw new RuntimeException(e);
       }
     }
@@ -211,7 +217,7 @@ public class TestParser {
   public void testWithUnrecognisedToken()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     assertThrows(UnrecognisedTokenException.class, () -> {
-      Lexer lexer = getLexer(unrecognisedToken);
+      readLexer(getLexer(unrecognisedToken));
     });
   }
 
@@ -236,9 +242,8 @@ public class TestParser {
         new Token(TokenType.RBRACE, "}")
     );
 
-    List<Symbol> actualTokens = lexer.getSymbols();
-    actualTokens.removeLast();
-    actualTokens.removeFirst();
+    LinkedList<Symbol> actualTokens = readLexer(lexer);
+
     assertEquals("Nombre de tokens incorrect", Integer.toString(expectedTokens.size()),
         Integer.toString(actualTokens.size()));
 

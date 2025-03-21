@@ -3,7 +3,6 @@ package compiler.Parser.Grammar.Function;
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
 import compiler.Parser.ASTNode.MainNode;
-import compiler.Parser.Grammar.Assignment.Assignment;
 import compiler.Parser.Grammar.Expression.Expression;
 import compiler.Parser.Utils.Enum.TokenType;
 import compiler.Parser.Utils.Interfaces.ASTNode;
@@ -22,8 +21,8 @@ public class ParameterList {
   private final List<HashSet<TokenType>> expectedSymbolsGlobalArray = List.of(
       new HashSet<>(Set.of(TokenType.ARRAY)),
       new HashSet<>(Set.of(TokenType.LBRACKET)));
-  LinkedList<ASTNode> ParameterListNode;
-  private final String nodeName = "ParameterList";
+  private LinkedList<ASTNode> ParameterListNode;
+  private final String nodeName = "Parameters";
 
   public ParameterList(Utils utils, Position savedPosition) {
     this.utils = utils;
@@ -71,17 +70,8 @@ public class ParameterList {
       return;
     } else if (utils.lookahead_matches(expectedSymbolsGlobalArray, true)) {
       ParameterListNode.addAll(utils.getAstNodes());
-
-      currentPosition = savedPosition.getSavedPosition();
-      MainNode callFunctionNode = new FunctionCall(utils,
-          savedPosition).isFunctionCall();
-      if (callFunctionNode == null) {
-        savedPosition.setSavedPosition(currentPosition);
-        MainNode expressionNode = new Expression(utils, savedPosition).expression();
-        ParameterListNode.addLast(expressionNode);
-      } else {
-        ParameterListNode.addLast(callFunctionNode);
-      }
+      MainNode expressionNode = new Expression(utils, savedPosition).expression();
+      ParameterListNode.addLast(expressionNode);
       if (utils.matchIndex(TokenType.RBRACKET, true)) {
         ParameterListNode.addLast(utils.getGenericNode());
         if (utils.matchIndex(TokenType.OF, true)) {
@@ -96,24 +86,8 @@ public class ParameterList {
       }
       return;
     } else {
-      currentPosition = savedPosition.getSavedPosition();
-      MainNode callFunctionNode = new FunctionCall(utils, savedPosition).isFunctionCall();
-      if (callFunctionNode == null) {
-        savedPosition.setSavedPosition(currentPosition);
-        MainNode assignmentExpressionNode = new Assignment(utils,
-            savedPosition).assignment();
-        if (assignmentExpressionNode == null) {
-          savedPosition.setSavedPosition(currentPosition);
-          MainNode expressionNode = new Expression(utils, savedPosition).expression();
-          ParameterListNode.addLast(expressionNode);
-
-        } else {
-          ParameterListNode.addLast(assignmentExpressionNode);
-        }
-      } else {
-        ParameterListNode.addLast(callFunctionNode);
-      }
-      return;
+      MainNode expressionNode = new Expression(utils, savedPosition).expression();
+      ParameterListNode.addLast(expressionNode);
     }
   }
 }

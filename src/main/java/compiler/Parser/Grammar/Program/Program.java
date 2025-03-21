@@ -6,7 +6,6 @@ import compiler.Lexer.Lexer;
 import compiler.Lexer.Symbol;
 import compiler.Parser.ASTNode.ASTNodeProcessor;
 import compiler.Parser.ASTNode.MainNode;
-import compiler.Parser.ASTNode.RootNode;
 import compiler.Parser.Grammar.Declaration.Declaration;
 import compiler.Parser.Grammar.Function.Function;
 import compiler.Parser.Grammar.Record.Record;
@@ -23,50 +22,52 @@ public class Program implements Subject {
 
   private int currentPosition;
 
-  private final Utils utils;
-  private final ASTNodeProcessor nodeProcessor;
+  private Utils utils;
   private final Lexer lexer;
   private final List<Observer> observers = new ArrayList<>();
   private Symbol lookahead;
-  private final LinkedList<Symbol> allSymbols;
-
+  private LinkedList<Symbol> allSymbols;
   Position savedPosition;
 
-  public Program(Utils utils, Lexer lexer) throws UnrecognisedTokenException {
-    this.utils = utils;
-    nodeProcessor = new ASTNodeProcessor();
+  public Program(Lexer lexer) {
     currentPosition = 0;
     this.lexer = lexer;
     savedPosition = new Position();
-    allSymbols = lexer.getAllSymbolsClone();
-    allSymbols.pop();
+  }
+
+  public void setAllSymbols(LinkedList<Symbol> allSymbols) {
+    this.allSymbols = allSymbols;
+  }
+
+  public void setUtils(Utils utils) {
+    this.utils = utils;
+  }
+
+  public ASTNodeProcessor isProgram(Utils utils, LinkedList<Symbol> symbols,
+      ASTNodeProcessor nodeProcessor)
+      throws UnrecognisedTokenException, ParserException {
+    setUtils(utils);
+    setAllSymbols(symbols);
     this.addObserver(utils);
     savedPosition.addObserver(utils);
     savedPosition.add();
-    this.lookahead = lexer.getNextSymbol();
-  }
+    int previousPosition = savedPosition.getSavedPosition();
 
-  public ASTNodeProcessor isProgram()
-      throws UnrecognisedTokenException, ParserException {
-    while (!allSymbols.get(savedPosition.getSavedPosition()).getName().equals("EndFile")) {
-      int previousPosition = savedPosition.getSavedPosition();
+    boolean matched = checkNode(isDeclaration(savedPosition), nodeProcessor) ||
+        checkNode(isRecord(savedPosition), nodeProcessor) ||
+        checkNode(isFunction(savedPosition), nodeProcessor) ||
+        checkNode(isStatement(savedPosition), nodeProcessor);
 
-      boolean matched = checkNode(isDeclaration(savedPosition)) ||
-          checkNode(isRecord(savedPosition)) ||
-          checkNode(isFunction(savedPosition)) ||
-          checkNode(isStatement(savedPosition));
+    if (matched) {
+      currentPosition = savedPosition.getSavedPosition();
+    } else {
+      Symbol incorrectSymbol = allSymbols.get(savedPosition.getSavedPosition());
+      throw new ParserException(incorrectSymbol.getToken(),
+          Integer.toString(incorrectSymbol.getLine_number()));
+    }
 
-      if (matched) {
-        currentPosition = savedPosition.getSavedPosition();
-      } else {
-        Symbol incorrectSymbol = allSymbols.get(savedPosition.getSavedPosition());
-        throw new ParserException(incorrectSymbol.getToken(),
-            Integer.toString(incorrectSymbol.getLine_number()));
-      }
-
-      if (previousPosition == savedPosition.getSavedPosition()) {
-        throw new ParserException("Parser is stuck at position ", "2");
-      }
+    if (previousPosition == savedPosition.getSavedPosition()) {
+      throw new ParserException("Parser is stuck at position ", "2");
     }
     return nodeProcessor;
   }
@@ -91,27 +92,12 @@ public class Program implements Subject {
     return new StatementList(utils, savedPosition).statementList();
   }
 
-  public boolean checkNode(MainNode astNode) {
+  public boolean checkNode(MainNode astNode, ASTNodeProcessor nodeProcessor) {
     if (astNode != null) {
       astNode.accept(nodeProcessor);
       return true;
     }
     return false;
-  }
-
-  public RootNode getRootNode() {
-    return nodeProcessor.getRoot();
-  }
-
-  public Symbol getLookahead() {
-    return lookahead;
-  }
-
-
-  public Symbol nextSymbol() throws UnrecognisedTokenException {
-    this.lookahead = lexer.getNextSymbol();
-    notifyObservers();
-    return lookahead;
   }
 
   @Override

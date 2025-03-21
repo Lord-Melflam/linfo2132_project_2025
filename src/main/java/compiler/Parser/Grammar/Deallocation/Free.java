@@ -15,20 +15,15 @@ import java.util.Set;
 public class Free {
 
   private final Utils utils;
-  private int currentPosition;
-  private Position savedPosition;
   private final List<HashSet<TokenType>> expectedSymbolsFree = List.of(
       new HashSet<>(Set.of(TokenType.FREE)),
       new HashSet<>(Set.of(TokenType.IDENTIFIER)),
       new HashSet<>(Set.of(TokenType.SEMICOLON)));
   LinkedList<ASTNode> freeNode;
-  private final String nodeName = "Free";
+  private final String nodeName = "Deallocation";
 
-  public Free(Utils utils, Position savedPosition)
-      throws UnrecognisedTokenException, ParserException {
+  public Free(Utils utils, Position savedPosition) {
     this.utils = utils;
-    this.savedPosition = savedPosition;
-    this.currentPosition = 0;
     freeNode = new LinkedList<>();
   }
 

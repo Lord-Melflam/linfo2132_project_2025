@@ -54,14 +54,12 @@ public class Literal extends Symbol {
     }
   }
 
-  public boolean isInt(String word) {
+  /*public boolean isInt(String word) {
     if (word == null || word.isEmpty()) {
       return false;
     }
-/*
-   int i = (word.charAt(0) == '-') ? 1 : 0;
-*/
-    for (int i = 0; i < word.length(); i++) {
+    int i = (word.charAt(0) == '-') ? 1 : 0;
+    for (; i < word.length(); i++) {
       if (word.charAt(i) < '0' || word.charAt(i) > '9') {
         return false;
       }
@@ -72,36 +70,54 @@ public class Literal extends Symbol {
     } else {
       return false;
     }
+  }*/
+  public boolean isInt(String word) {
+    return word.matches("[-+]?\\d+");
   }
 
   public boolean isFloat(String word) {
-    if (word == null || word.isEmpty()) {
-      return false;
-    }
-    boolean hasDot = false, hasDigit = false;
-    int i = (word.charAt(0) == '-') ? 1 : 0;
-    for (; i < word.length(); i++) {
-      char c = word.charAt(i);
-      if (c == '.') {
-        if (hasDot) {
-          return false;
-        }
-        hasDot = true;
-      } else if (c >= '0' && c <= '9') {
-        hasDigit = true;
-      } else {
-        return false;
-      }
-    }
-    if (hasDot && hasDigit && Float.parseFloat(word) < Float.MAX_VALUE
-        && Float.parseFloat(word) > Float.MIN_VALUE) {
-      setTypeOfLiteral("float");
-      return true;
-    } else {
-      return false;
-    }
+    return word.matches("[-+]?(\\d*\\.\\d+|\\d+\\.\\d*)");
   }
 
+  /* public boolean isFloat(String word) {
+     if (word == null || word.isEmpty()) {
+       return false;
+     }
+     if (word.contains(".0")) {
+       for (int i = 1; i < word.length(); i++) {
+         if (word.charAt(i) < '0' || word.charAt(i) > '9') {
+           return false;
+         }
+       }
+       return true;
+     }
+     if (word.trim().equals("0.")) {
+       return true;
+     }
+     boolean hasDot = false, hasDigit = false;
+     int i = (word.charAt(0) == '-') ? 1 : 0;
+     for (; i < word.length(); i++) {
+       char c = word.charAt(i);
+       if (c == '.') {
+         if (hasDot) {
+           return false;
+         }
+         hasDot = true;
+       } else if (c >= '0' && c <= '9') {
+         hasDigit = true;
+       } else {
+         return false;
+       }
+     }
+     if (hasDot && hasDigit && Float.parseFloat(word) < Float.MAX_VALUE
+         && Float.parseFloat(word) > Float.MIN_VALUE) {
+       setTypeOfLiteral("float");
+       return true;
+     } else {
+       return false;
+     }
+   }
+ */
   private boolean isString(String word) {
     if (word == null || word.length() < 2) {
       return false;

@@ -30,23 +30,21 @@ public class Function {
       new HashSet<>(Set.of(TokenType.LPAREN)),
       new HashSet<>(Set.of(TokenType.RPAREN))
   );
-  LinkedList<ASTNode> functionNode;
+  private LinkedList<ASTNode> functionNode;
+  private LinkedList<ASTNode> functionBlock;
+
   private final String nodeName = "Function";
-  private int currentPosition;
 
   public Function(Utils utils, Position savedPosition)
       throws UnrecognisedTokenException, ParserException {
     this.utils = utils;
     this.savedPosition = savedPosition;
     functionNode = new LinkedList<>();
-    this.currentPosition = 0;
-
+    functionBlock = new LinkedList<>();
   }
 
   public MainNode isFunction() throws UnrecognisedTokenException, ParserException {
-
     if (utils.lookahead_matches(expectedSymbolsFunctionAlternative, false)) {
-
       savedPosition.add(expectedSymbolsFunctionAlternative);
       functionNode.addAll(utils.getAstNodes());
     } else if (utils.lookahead_matches(expectedSymbolsFunction, true)) {
@@ -66,32 +64,31 @@ public class Function {
 
     }
     if (utils.matchIndex(TokenType.LBRACE, true)) {
-      functionNode.addLast(utils.getGenericNode());
+      //functionBlock.addLast(utils.getGenericNode());
       StatementList statementList = new StatementList(utils, savedPosition);
       MainNode astNode = statementList.statementList();
-      functionNode.addLast(astNode);
+
+      functionBlock.addLast(astNode);
 
       if (utils.matchIndex(TokenType.ASSIGNMENT, true)) {
-        functionNode.addLast(utils.getGenericNode());
-        currentPosition = savedPosition.getSavedPosition();
-        MainNode callFunctionNode = new FunctionCall(utils,
-            savedPosition).isFunctionCall();
-        if (callFunctionNode == null) {
-          savedPosition.setSavedPosition(currentPosition);
-          MainNode expressionNode = new Expression(utils, savedPosition).expression();
-          functionNode.addLast(expressionNode);
-        } else {
-          functionNode.addLast(callFunctionNode);
-        }
+        functionBlock.addLast(utils.getGenericNode());
+        MainNode expressionNode = new Expression(utils, savedPosition).expression();
+        functionBlock.addLast(expressionNode);
         if (utils.matchIndex(TokenType.SEMICOLON, true)) {
+          functionBlock.addLast(utils.getGenericNode());
           if (utils.matchIndex(TokenType.RBRACE, true)) {
-            functionNode.addLast(utils.getGenericNode());
+            functionBlock.addLast(utils.getGenericNode());
+            functionNode.addLast(new MainNode("FunctionBlock", functionBlock));
             return new MainNode(nodeName, functionNode);
           }
         }
       }
+      if (utils.matchIndex(TokenType.SEMICOLON, true)) {
+        functionBlock.addLast(utils.getGenericNode());
+      }
       if (utils.matchIndex(TokenType.RBRACE, true)) {
-        functionNode.addLast(utils.getGenericNode());
+        //functionBlock.addLast(utils.getGenericNode());
+        functionNode.addLast(new MainNode("FunctionBlock", functionBlock));
         return new MainNode(nodeName, functionNode);
       }
     }

@@ -16,20 +16,23 @@ import static compiler.Parser.Utils.CodeSamples.typeMismatch;
 import static compiler.Parser.Utils.CodeSamples.unrecognisedToken;
 import static compiler.Parser.Utils.UtilsTest.getLexer;
 import static compiler.Parser.Utils.UtilsTest.loadExpectedTokens;
+import static compiler.Parser.Utils.UtilsTest.readLexer;
 import static compiler.Parser.Utils.UtilsTest.tokenizeFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import compiler.Exceptions.Lexer.NotASCIIException;
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Lexer.Lexer;
 import compiler.Lexer.Symbol;
+import compiler.Lexer.Symbols.Literal;
 import compiler.Parser.Utils.Enum.Token;
 import compiler.Parser.Utils.Enum.TokenType;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.Test;
 
@@ -41,13 +44,12 @@ public class TestLexer {
   @Test
   public void testEntireFile() {
     for (String testFile : fileName) {
-      String sourceFile = "./test/TestFile/Code/" + testFile + ".txt";
-      String expectedFile = "./test/TestFile/AnswersLexer/" + testFile + ".txt";
+      String sourceFile = "test/TestFile/Code/" + testFile + ".txt";
+      String expectedFile = "test/TestFile/AnswersLexer/" + testFile + ".txt";
 
       try {
-        List<Symbol> actualTokens = tokenizeFile(sourceFile).getSymbols();
-        actualTokens.removeLast();
-        actualTokens.removeFirst();
+        Lexer lexer = tokenizeFile(sourceFile);
+        List<Symbol> actualTokens = readLexer(lexer);
         List<Symbol> expectedTokens = loadExpectedTokens(expectedFile);
 
         assertEquals("Nombre de tokens incorrect dans " + testFile, expectedTokens.size(),
@@ -71,7 +73,7 @@ public class TestLexer {
   public void testWithNotASCII()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     assertThrows(NotASCIIException.class, () -> {
-      Lexer lexer = getLexer(inputNotAscii);
+      readLexer(getLexer(inputNotAscii));
     });
 
   }
@@ -80,7 +82,7 @@ public class TestLexer {
   public void testBasicCodeConstant()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(basicCodeConstant);
+      readLexer(getLexer(basicCodeConstant));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -90,7 +92,7 @@ public class TestLexer {
   public void testRecordArrayUsage()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(recordArrayUsage);
+      readLexer(getLexer(recordArrayUsage));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -100,7 +102,7 @@ public class TestLexer {
   public void testExpression()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(expression);
+      readLexer(getLexer(expression));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -110,7 +112,7 @@ public class TestLexer {
   public void testControlStructure()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(controlStructure);
+      readLexer(getLexer(controlStructure));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -120,7 +122,7 @@ public class TestLexer {
   public void testConstantError()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(constantError);
+      readLexer(getLexer(constantError));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -130,7 +132,7 @@ public class TestLexer {
   public void testTypeMismatch()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(typeMismatch);
+      readLexer(getLexer(typeMismatch));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -140,7 +142,7 @@ public class TestLexer {
   public void testInvalidArrayAccess()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(invalidArrayAccess);
+      readLexer(getLexer(invalidArrayAccess));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -150,7 +152,7 @@ public class TestLexer {
   public void testScopeViolation()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(scopeViolation);
+      readLexer(getLexer(scopeViolation));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -160,7 +162,7 @@ public class TestLexer {
   public void testOperatorPrecedence()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(operatorPrecedence);
+      readLexer(getLexer(operatorPrecedence));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -170,7 +172,7 @@ public class TestLexer {
   public void testMixedTypeOperations()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(mixedTypeOperations);
+      readLexer(getLexer(mixedTypeOperations));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -180,7 +182,7 @@ public class TestLexer {
   public void testNestedRecord()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(nestedRecord);
+      readLexer(getLexer(nestedRecord));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -190,7 +192,7 @@ public class TestLexer {
   public void testMemoryManagement()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
-      getLexer(memoryManagement);
+      readLexer(getLexer(memoryManagement));
     } catch (Exception e) {
       fail(e.getClass().getSimpleName() + " was thrown");
     }
@@ -200,7 +202,7 @@ public class TestLexer {
   public void testWithUnrecognisedToken()
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     assertThrows(UnrecognisedTokenException.class, () -> {
-      Lexer lexer = getLexer(unrecognisedToken);
+      readLexer(getLexer(unrecognisedToken));
     });
   }
 
@@ -209,8 +211,7 @@ public class TestLexer {
       throws NotASCIIException, IOException, UnrecognisedTokenException {
 
     String input = "Person rec { name string; \n age int; }";
-    StringReader reader = new StringReader(input);
-    Lexer lexer = new Lexer(reader);
+    Lexer lexer = getLexer(input);
 
     List<Token> expectedTokens = List.of(
         new Token(TokenType.RECORD, "Person"),
@@ -225,9 +226,7 @@ public class TestLexer {
         new Token(TokenType.RBRACE, "}")
     );
 
-    List<Symbol> actualTokens = lexer.getSymbols();
-    actualTokens.removeLast();
-    actualTokens.removeFirst();
+    LinkedList<Symbol> actualTokens = readLexer(lexer);
     assertEquals("Nombre de tokens incorrect", Integer.toString(expectedTokens.size()),
         Integer.toString(actualTokens.size()));
 
@@ -241,5 +240,39 @@ public class TestLexer {
     }
   }
 
+  @Test
+  public void TestFloat() {
+    Literal literal = new Literal("0.9", 2);
+    assertTrue(literal.isFloat(literal.getToken()));
+    assertTrue(literal.isFloat("1.00001"));
+    assertTrue(literal.isFloat("0.00001"));
+    assertTrue(literal.isFloat("11.00001"));
+    assertTrue(literal.isFloat("11.9867"));
+    assertTrue(literal.isFloat("897667.786675"));
+    assertTrue(literal.isFloat(".00001"));
+    assertTrue(literal.isFloat(".1100001"));
+    assertTrue(literal.isFloat(".263461"));
+    assertTrue(literal.isFloat("-0.1100001"));
+    assertTrue(literal.isFloat("-0.263461"));
+    assertTrue(literal.isFloat("-0.01100001"));
+    assertTrue(literal.isFloat("-0.000000263461"));
+  }
+
+  @Test
+  public void TestInt() {
+    Literal literal = new Literal("9", 2);
+    assertTrue(literal.isInt(literal.getToken()));
+    assertTrue(literal.isInt("1"));
+    assertTrue(literal.isInt("00001"));
+    assertTrue(literal.isInt("111"));
+    assertTrue(literal.isInt("119867"));
+    assertTrue(literal.isInt("897667786675"));
+    assertTrue(literal.isInt("1100001"));
+    assertTrue(literal.isInt("263461"));
+    assertTrue(literal.isInt("-1100001"));
+    assertTrue(literal.isInt("-263461"));
+    assertTrue(literal.isInt("0"));
+    assertTrue(literal.isInt("-0"));
+  }
 
 }

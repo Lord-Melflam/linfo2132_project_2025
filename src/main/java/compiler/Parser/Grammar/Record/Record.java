@@ -83,9 +83,8 @@ public class Record {
           recordNode.addLast(utils.getGenericNode());
           LinkedList<ASTNode> recordFields = new RecordField(utils, savedPosition).isRecordField();
           if (recordFields != null) {
-            recordNode.addAll(recordFields);
+            recordNode.addLast(new MainNode("RecordFields", recordFields));
           }
-
           if (utils.matchIndex(TokenType.RBRACE, true)) {
             recordNode.addLast(utils.getGenericNode());
           }

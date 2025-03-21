@@ -1,0 +1,23 @@
+final threshold int = 50;
+
+fun calculateFactorial(int n) int {
+    if (n == 0) {
+        return 1;
+    } else {
+        return n * calculateFactorial(n - 1);
+    }
+}
+
+fun main() {
+    i int;
+    for (i, 1, 10, 1) {
+        if (i % 2 == 0) {
+            writeln("Even Number: " + chr(i));
+        } else {
+            writeln("Odd Number: " + chr(i));
+        }
+    }
+
+    result int = calculateFactorial(5);
+    writeln("Factorial of 5: " + result);
+}

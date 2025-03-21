@@ -1,0 +1,23 @@
+final size int = 5;
+
+Point rec {
+    x int;
+    y int;
+}
+
+Rectangle rec {
+    topLeft Point;
+    bottomRight Point;
+}
+
+coordinates Point[] = array [size] of Point;
+
+fun computeArea(Rectangle rect) int {
+    return (rect.bottomRight.x - rect.topLeft.x) *
+           (rect.bottomRight.y - rect.topLeft.y);
+}
+
+fun main() {
+    rect Rectangle = Rectangle(Point(0, 0), Point(10, 20));
+    writeln(computeArea(rect));
+}

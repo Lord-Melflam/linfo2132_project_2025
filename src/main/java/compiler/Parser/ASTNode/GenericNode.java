@@ -5,7 +5,6 @@ import compiler.Parser.Utils.Interfaces.ASTNode;
 import compiler.Parser.Utils.Interfaces.ASTVisitor;
 
 @JsonTypeName("GenericNode")
-
 public class GenericNode<T> extends ASTNode {
 
   private String name;

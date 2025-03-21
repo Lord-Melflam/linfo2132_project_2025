@@ -16,5 +16,7 @@ import compiler.Parser.ASTNode.TypeSpecifierNode;
 
 public abstract class ASTNode {
 
+  public abstract String getName();
+
   public abstract void accept(ASTVisitor visitor);
 }

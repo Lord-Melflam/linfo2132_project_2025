@@ -29,7 +29,7 @@ public class Utils implements Observer {
 
   public Symbol getSymbol(int index) {
     if (index < 0 || index >= allSymbols.size()) {
-      throw new IndexOutOfBoundsException("Invalid symbol index: " + index);
+      return null;
     }
     return allSymbols.get(index);
   }
@@ -37,7 +37,9 @@ public class Utils implements Observer {
   public boolean matchIndex(TokenType tokenType, boolean add)
       throws ParserException, UnrecognisedTokenException {
     Symbol current = getSymbol(currentPositionClone.getSavedPosition());
-
+    if (current == null) {
+      return false;
+    }
     if (tokenType.getValue() == null || tokenType.getValue().isEmpty()) {
       if (tokenType.getCategory().equals(current.getName())) {
         incrementPosition(add);
@@ -46,8 +48,8 @@ public class Utils implements Observer {
         return true;
       }
       currentPositionClone = new Position(currentPosition.getSavedPosition());
-    } else if (tokenType.getCategory().equals(current.getName()) &&
-        tokenType.getValue().equals(current.getToken())) {
+    } else if (tokenType.getCategory().equals(current.getName()) && tokenType.getValue()
+        .equals(current.getToken())) {
       incrementPosition(add);
       createNode(current);
       currentPositionClone = new Position(currentPosition.getSavedPosition());
@@ -66,8 +68,8 @@ public class Utils implements Observer {
         createNode(current);
         return true;
       }
-    } else if (tokenType.getCategory().equals(current.getName()) &&
-        tokenType.getValue().equals(current.getToken())) {
+    } else if (tokenType.getCategory().equals(current.getName()) && tokenType.getValue()
+        .equals(current.getToken())) {
       incrementPosition(add);
       createNode(current);
       return true;
@@ -101,8 +103,7 @@ public class Utils implements Observer {
         }
       }
       if (!matched) {
-        currentPositionClone = new Position(
-            originalPosition.getSavedPosition());
+        currentPositionClone = new Position(originalPosition.getSavedPosition());
         return false;
       }
       matchedCount++;
@@ -124,8 +125,7 @@ public class Utils implements Observer {
   }
 
   private void createNode(Symbol currentSymbol) {
-    genericNode = new GenericNode<>(currentSymbol.getName(),
-        currentSymbol.getToken());
+    genericNode = new GenericNode<>(currentSymbol.getName(), currentSymbol.getToken());
     if (astNodes != null) {
       astNodes.add(genericNode);
     }

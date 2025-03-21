@@ -13,15 +13,35 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class UtilsTest {
 
   static public Lexer tokenizeFile(String filePath)
       throws IOException, NotASCIIException, UnrecognisedTokenException {
-    try (Reader reader = new FileReader(filePath)) {
-      return new Lexer(reader);
+    Reader reader = new FileReader(filePath);
+    return new Lexer(reader);
+  }
+
+
+  /* static public void readLexer(Lexer lexer)
+       throws IOException, NotASCIIException, UnrecognisedTokenException {
+     Symbol symbol = lexer.getNextSymbol();
+     while (!symbol.getName().equals("EndFile")) {
+       symbol = lexer.getNextSymbol();
+     }
+   }
+ */
+  static public LinkedList<Symbol> readLexer(Lexer lexer)
+      throws IOException, NotASCIIException, UnrecognisedTokenException {
+    LinkedList<Symbol> list = new LinkedList<>();
+    Symbol symbol = lexer.getNextSymbol();
+    while (symbol != null && !symbol.getName().equals("EndFile")) {
+      list.add(symbol);
+      symbol = lexer.getNextSymbol();
     }
+    return list;
   }
 
   static public Lexer getLexer(String input)

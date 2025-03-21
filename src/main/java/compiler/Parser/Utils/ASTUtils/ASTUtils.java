@@ -9,8 +9,12 @@ public class ASTUtils {
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
-  public static void saveAST(ASTNodeProcessor ast, String filePath) throws IOException {
-    objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), ast);
+  public static void saveAST(ASTNodeProcessor ast, String filePath, boolean print)
+      throws IOException {
+
+    if (print) {
+      objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), ast);
+    }
   }
 
   public static String saveAST(ASTNodeProcessor ast) throws IOException {
