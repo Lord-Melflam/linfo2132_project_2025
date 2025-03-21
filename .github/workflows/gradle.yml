@@ -2,9 +2,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "parserv3,parserv4" ]
+    branches: [ "parserv3","parserv4" ]
   pull_request:
-    branches: [ "parserv3,parserv4" ]
+    branches: [ "parserv3","parserv4" ]
 
 jobs:
   build:
@@ -32,7 +32,7 @@ jobs:
 
       - name: Vérifier les fichiers de test
         run: ls -R
-        
+
       - name: Clean Gradle cache
         run: ./gradlew clean
 
