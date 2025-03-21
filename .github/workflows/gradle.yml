@@ -2,9 +2,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "parserv3" ]
+    branches: [ "parserv3,parserv4" ]
   pull_request:
-    branches: [ "parserv3" ]
+    branches: [ "parserv3,parserv4" ]
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-        
+
       - name: Check Java and Gradle version
         run: |
           java -version
@@ -32,12 +32,12 @@ jobs:
 
       - name: Vérifier les fichiers de test
         run: ls -R
-
-      - name: Build with Gradle Wrapper
-        run: ./gradlew build
         
       - name: Clean Gradle cache
         run: ./gradlew clean
+
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
 
       - name: Run tests
         run: ./gradlew test --tests "TestSuite"
