@@ -1,8 +1,4 @@
-> Task :compileJava UP-TO-DATE
-> Task :processResources NO-SOURCE
-> Task :classes UP-TO-DATE
 
-> Task :run
 <StartFile>
 <Keyword,final>
 <Record,PI>
@@ -414,6 +410,3 @@
 <Punctuation,;>
 <SpecialSymbol,}>
 <EndFile>
-
-BUILD SUCCESSFUL in 998ms
-2 actionable tasks: 1 executed, 1 up-to-date

@@ -72,7 +72,7 @@ public class TestParser {
 
   @Test
   public void testCode2() {
-    String sourceFile = "test/TestFile/Code/" + "code2" + ".txt";
+    String sourceFile = "test/TestFile/Code/code2.txt";
     assertThrows(ParserException.class, () -> {
       ASTNodeProcessor astNodeProcessorActual = getLexerFilePath(sourceFile).getAST();
     });
