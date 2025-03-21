@@ -94,8 +94,8 @@ public class TestParser {
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     try {
       ASTNodeProcessor astNodeProcessorActual = getLexerInput(basicCodeConstant).getAST();
-
     } catch (Exception e) {
+      System.out.println(e.getMessage());
       fail(e.getClass().getSimpleName() + " was thrown");
     }
   }

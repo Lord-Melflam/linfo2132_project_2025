@@ -56,7 +56,10 @@ public class TestLexer {
             actualTokens.size());
 
         for (int i = 0; i < expectedTokens.size(); i++) {
-          assertEquals("Type incorrect à l'index " + i + " dans " + testFile,
+          assertEquals(
+              "Type incorrect à l'index " + i + " dans " + testFile + " " + expectedTokens.get(i)
+                  .getToken()
+                  + " " + actualTokens.get(i).getToken(),
               expectedTokens.get(i).getName(),
               actualTokens.get(i).getName());
           assertEquals("Valeur incorrecte à l'index " + i + " dans " + testFile,
