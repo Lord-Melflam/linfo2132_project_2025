@@ -86,8 +86,9 @@ public class Lexer implements Iterator<Symbol> {
         } else {
           word.setLength(0);
         }
-      } else if (symbolSet.size() == 1 && symbolSet.getFirst().equals("Literal")
-          && (previousSymbols.peek().getName().equals("Literal") || previousSymbols.peek()
+      } else  if (symbolSet.size() == 1 && symbolSet.getFirst().equals("Literal")
+          && (previousSymbols.peek().getName().equals("Literal") || previousSymbols.peek().getName()
+          .equals("Identifier") || previousSymbols.peek()
           .getToken().equals(")"))) {
         String longestMatch = symbolRegistry.getSymbolType(word.substring(0, word.length() - 1));
         stack.push(String.valueOf(word.charAt(word.length() - 1)));
