@@ -6,14 +6,16 @@ import java.util.List;
 
 public class Operator extends Symbol {
 
-  private int line_number;
   private static final ArrayList<String> OPERATORS = new ArrayList<>(
       List.of("+", "-", "*", "/", "%", "==", "!=", "<", ">", "<=", ">=", "&&", "||"));
   private String attribute;
+  private int line_number;
+  private int column;
 
-  public Operator(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public Operator(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
   }
 
   public Operator() {
@@ -21,6 +23,11 @@ public class Operator extends Symbol {
 
   public String getToken() {
     return attribute;
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public boolean matches(String word) {
@@ -38,7 +45,7 @@ public class Operator extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Operator(this.attribute, this.line_number);
+    return new Operator(this.attribute, this.line_number, this.column);
   }
 
   @Override

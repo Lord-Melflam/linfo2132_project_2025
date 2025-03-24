@@ -50,7 +50,7 @@ public class Declaration {
         return declaration();
       }
     }
-
+    utils.throwParserException();
     return null;
   }
 
@@ -65,8 +65,7 @@ public class Declaration {
           if (utils.matchIndex(TokenType.PUNTUATION, true)) {
             constantNode.addLast(utils.getGenericNode());
           } else if (utils.matchIndex(TokenType.RECORD, false)) {
-            MainNode callFunctionNode = new Expression(utils,
-                savedPosition).expression();
+            MainNode callFunctionNode = new Expression(utils, savedPosition).expression();
             constantNode.addLast(callFunctionNode);
           } else if (utils.lookahead_matches(expectedSymbolsGlobalArray, true)) {
             constantNode.addAll(utils.getAstNodes());
@@ -102,6 +101,8 @@ public class Declaration {
         if (utils.matchIndex(TokenType.SEMICOLON, true)) {
           constantNode.addLast(utils.getGenericNode());
           return new MainNode(nodeName, constantNode);
+        } else {
+          /*todo*/
         }
       } else {
         if (utils.matchIndex(TokenType.SEMICOLON, true)) {
@@ -110,7 +111,7 @@ public class Declaration {
         }
       }
     }
-
+    utils.throwParserException();
     return null;
   }
 }

@@ -5,17 +5,24 @@ import compiler.Lexer.Symbol;
 public class NewLine extends Symbol {
 
   private int line_number;
+  private int column;
 
-
-  public NewLine(String value, int line) {
-    line_number = line;
+  public NewLine(int line_number, int column) {
+    this.line_number = line_number;
+    this.column = column;
   }
+
 
   public NewLine() {
   }
 
   public boolean matches(String word) {
     return word.equals("\n");
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public String getToken() {

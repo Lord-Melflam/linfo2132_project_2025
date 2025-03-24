@@ -1,4 +1,4 @@
-package compiler.Parser.Utils;
+package compiler.Parser.Utils.Test;
 
 public class CodeSamples {
 
@@ -124,4 +124,16 @@ public class CodeSamples {
       + "}\n"
       + "\n"
       + "a int = 10;\n";
+  public static String identifierError = "final PI float = 3.14 ";
+  public static String ifWithoutBraces = "if (x > 3)\n"
+      + "        writeln(\"x is greater\");";
+  public static String forCStyle = "for (i = 0; i < 10; i++) {\n"
+      + "        writeln(i);\n"
+      + "    }";
+  public static String arrayDeclarationError = "fun main() {\n"
+      + "    x int = 5\n"
+      + "    a[2] int = 10;\n"
+      + "}";
+
+  public static String expectedSemicolon = "x int = 5";
 }

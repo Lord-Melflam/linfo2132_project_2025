@@ -6,14 +6,21 @@ public class Identifier extends Symbol {
 
   private String attribute;
   private int line_number;
+  private int column;
 
-
-  public Identifier(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public Identifier(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
   }
 
+
   public Identifier() {
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public String getToken() {
@@ -48,7 +55,7 @@ public class Identifier extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Identifier(this.attribute, this.line_number);
+    return new Identifier(this.attribute, this.line_number, this.column);
   }
 
   @Override

@@ -17,11 +17,6 @@ public class Compiler {
   public static void main(String[] args) {
     try (Reader reader = new FileReader(args[1])) {
       Lexer lexer = new Lexer(reader);
-      //Symbol v = lexer.getNextSymbol();
-     /* while (!v.getName().equals("EndFile")) {
-        System.out.println(v);
-        v = lexer.getNextSymbol();
-      }*/
       Parser parser = new Parser(lexer);
     } catch (IOException | NotASCIIException | UnrecognisedTokenException | ParserException e) {
       throw new RuntimeException(e);

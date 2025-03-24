@@ -9,6 +9,8 @@ public abstract class Symbol {
 
   public abstract String getName();
 
+  public abstract int getColumn();
+
   public abstract int getLine_number();
 
   public abstract String getToken();

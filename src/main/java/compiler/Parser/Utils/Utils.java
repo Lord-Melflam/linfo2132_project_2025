@@ -131,6 +131,10 @@ public class Utils implements Observer {
     }
   }
 
+  public void throwParserException() throws ParserException {
+    Symbol symbol = getSymbol(currentPosition.getSavedPosition());
+    throw new ParserException(symbol.getToken(), Integer.toString(symbol.getLine_number()));
+  }
 
   @Override
   public void updatePosition(Position currentPosition) {

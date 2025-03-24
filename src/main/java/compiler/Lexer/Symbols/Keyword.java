@@ -11,13 +11,21 @@ public class Keyword extends Symbol {
       List.of("free", "final", "rec", "fun", "for", "while", "if", "else", "return", "of",
           "array"));
   private String attribute;
+  private int column;
 
-  public Keyword(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public Keyword(String attribute, int line_number, int column) {
+    this.line_number = line_number;
+    this.attribute = attribute;
+    this.column = column;
   }
 
+
   public Keyword() {
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public String getToken() {
@@ -39,7 +47,7 @@ public class Keyword extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Keyword(this.attribute, this.line_number);
+    return new Keyword(this.attribute, this.line_number, this.column);
   }
 
   @Override

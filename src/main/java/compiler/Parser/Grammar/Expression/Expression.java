@@ -16,6 +16,7 @@ public class Expression {
   private final Position savedPosition;
   private final LinkedList<ASTNode> expressionNode;
   private final String nodeName = "Expression";
+  private ASTNode identifier;
 
   public Expression(Utils utils, Position savedPosition) {
     this.utils = utils;
@@ -28,6 +29,7 @@ public class Expression {
     this.savedPosition = savedPosition;
     expressionNode = new LinkedList<>();
     expressionNode.addLast(identifier);
+    this.identifier = identifier;
   }
 
   public MainNode expression() throws UnrecognisedTokenException, ParserException {
@@ -124,19 +126,29 @@ public class Expression {
         true) || utils.matchIndex(TokenType.BUILTINFUNCTION, true)) {
       node = functionOrVariable();
     } else if (utils.matchIndex(TokenType.LPAREN, true)) {
+
       ASTNode lparen = utils.getGenericNode();
       node = expression();
       if (!utils.matchIndex(TokenType.RPAREN, true)) {
+        /* utils.throwParserException();*/
         return null;
       }
       ASTNode rparen = utils.getGenericNode();
       if (utils.matchIndex(TokenType.SEMICOLON, false)) {
+        if (node != null) {
+          node.add(List.of(rparen));
+          if (identifier == null) {
+            return node;
+          }
+          return new MainNode("Expression", List.of(identifier, lparen, node, rparen));
+        }
         expressionNode.addLast(new MainNode("Parameters", List.of(lparen, rparen)));
         return new MainNode("Function", expressionNode);
       }
     } else if (utils.matchIndex(TokenType.ARRAY, true)) {
       node = parseArrayInitialization();
     } else {
+      /*utils.throwParserException();*/
       return null;
     }
 
@@ -152,6 +164,7 @@ public class Expression {
     localNodes.add(utils.getGenericNode()); // "array"
 
     if (!utils.matchIndex(TokenType.LBRACKET, true)) {
+      /*utils.throwParserException();*/
       return null;
     }
     MainNode sizeExpression = expression();
@@ -168,6 +181,7 @@ public class Expression {
         }
       }
     }
+    /*utils.throwParserException();*/
     return null;
   }
 
@@ -182,6 +196,7 @@ public class Expression {
       }
 
       if (!utils.matchIndex(TokenType.RBRACKET, true)) {
+        /*utils.throwParserException();*/
         return null;
       }
       node = new MainNode("ArrayAccess", localNodes);
@@ -233,11 +248,14 @@ public class Expression {
     localNodes.add(left);
 
     while (true) {
-      if (utils.matchIndex(TokenType.LBRACKET, true)) {
+      if (utils.matchIndex(TokenType.LBRACKET, false)) {
         left = parseArrayAccess(left);
+        localNodes.add(left);
+        System.out.println();
       } else if (utils.matchIndex(TokenType.DOT, true)) {
         localNodes.add(utils.getGenericNode());
         if (!utils.matchIndex(TokenType.IDENTIFIER, true)) {
+          /*utils.throwParserException();*/
           return null;
         }
         localNodes.add(utils.getGenericNode());
@@ -247,7 +265,10 @@ public class Expression {
         MainNode right = addition();
         localNodes.add(right);
         left = new MainNode("BinaryExpression", localNodes);
-      } else {
+      } /*else if (utils.matchIndex(TokenType.BUILTINFUNCTION, true)) {
+        left = functionOrVariable();
+        System.out.println();
+      }*/ else {
         break;
       }
     }

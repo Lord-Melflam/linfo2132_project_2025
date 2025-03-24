@@ -10,11 +10,19 @@ public class Literal extends Symbol {
       List.of("true", "false"));
   private String attribute;
   private int line_number;
+  private int column;
+
   private String typeOfLiteral;
 
-  public Literal(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public Literal(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
+  }
+
+  public Literal(String attribute, int line_number) {
+    this.attribute = attribute;
+    this.line_number = line_number;
   }
 
   public Literal() {
@@ -39,6 +47,11 @@ public class Literal extends Symbol {
   @Override
   public String getName() {
     return Literal.class.getSimpleName();
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public int getLine_number() {
@@ -160,7 +173,7 @@ public class Literal extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Literal(this.attribute, this.line_number);
+    return new Literal(this.attribute, this.line_number, this.column);
   }
 
   @Override

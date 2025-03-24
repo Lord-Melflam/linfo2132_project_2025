@@ -1,0 +1,72 @@
+$ Declaration de constantes
+final maxValue int = 100;
+final pi float = 3.14159;
+final welcomeMessage string = "Bienvenue dans notre programme";
+final isRunning bool = true;
+
+$ Definition d'un record
+Rectangle rec {
+    width int;
+    height int;
+}
+
+$ Definition d'un record complexe
+User rec {
+    name string;
+    age int;
+    scores float[];
+}
+
+$ Declaration et initialisation de variables globales
+counter int = 0;
+users User[] = array [5] of User;
+
+$ Fonction pour calculer l'aire d'un rectangle
+fun area(Rectangle r) int {
+    return r.width * r.height;
+}
+
+$ Fonction pour doubler une valeur
+fun double(int x) int {
+    return x * 2;
+}
+
+$ Fonction pour afficher les scores d'un utilisateur
+fun printScores(User u) {
+    i int;
+    for (i, 0, len(u.scores) - 1, 1) {
+        writeln("Score ", i, ": ", u.scores[i]);
+    }
+}
+
+$ Fonction principale
+fun main() {
+    writeln(welcomeMessage);
+
+    rect Rectangle = Rectangle(5, 10);
+    writeln("Aire du rectangle: ", area(rect));
+
+    inputValue int = readInt();
+    writeln("Le double de votre valeur est: ", double(inputValue));
+
+    $ Declaration d'un utilisateur
+    newUser User = User("Alice", 25, array [3] of float);
+    newUser.scores[0] = 95.5;
+    newUser.scores[1] = 88.2;
+    newUser.scores[2] = 76.3;
+
+    printScores(newUser);
+
+    $ Boucle et condition
+    i int;
+    for (i, 0, 10, 1) {
+        if (i % 2 == 0) {
+            writeln(i, " est pair.");
+        } else {
+            writeln(i, " est impair.");
+        }
+    }
+
+    free rect;
+    free newUser;
+}

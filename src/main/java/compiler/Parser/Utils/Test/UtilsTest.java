@@ -1,4 +1,4 @@
-package compiler.Parser.Utils;
+package compiler.Parser.Utils.Test;
 
 import compiler.Exceptions.Lexer.NotASCIIException;
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;

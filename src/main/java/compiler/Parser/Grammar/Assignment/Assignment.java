@@ -36,6 +36,15 @@ public class Assignment {
       assignmentNode.addLast(utils.getGenericNode());
       if (utils.matchIndex(TokenType.IDENTIFIER, true)) {
         assignmentNode.addLast(utils.getGenericNode());
+        if (utils.matchIndex(TokenType.ASSIGNMENT, true)) {
+          MainNode expressionNode = new Expression(utils, savedPosition).expression();
+          assignmentNode.addLast(expressionNode);
+          if (utils.matchIndex(TokenType.SEMICOLON, true)) {
+            assignmentNode.addLast(utils.getGenericNode());
+            return new MainNode(nodeName, assignmentNode);
+          }
+
+        }
         return recordAccess();
       }
     } else if (utils.matchIndex(TokenType.LBRACKET, true)) {
@@ -48,6 +57,7 @@ public class Assignment {
       return handleAssignment();
     }
 
+    utils.throwParserException();
     return null;
   }
 
@@ -64,6 +74,7 @@ public class Assignment {
       assignmentNode.addLast(utils.getGenericNode());
       return new MainNode(nodeName, assignmentNode);
     }
+    utils.throwParserException();
     return null;
   }
 
@@ -74,6 +85,7 @@ public class Assignment {
       return isArrayOperation();
     }
 
+    utils.throwParserException();
     return null;
   }
 

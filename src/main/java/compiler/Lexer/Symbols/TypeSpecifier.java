@@ -10,11 +10,13 @@ public class TypeSpecifier extends Symbol {
       List.of("int", "float", "bool", "string"));
   private String attribute;
   private int line_number;
+  private int column;
 
 
-  public TypeSpecifier(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public TypeSpecifier(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
   }
 
   public TypeSpecifier() {
@@ -23,6 +25,11 @@ public class TypeSpecifier extends Symbol {
 
   public boolean matches(String word) {
     return TYPE_SPECIFIERS.contains(word) || isArrayTypeSpecifier(word) || isArrayRecord(word);
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public boolean endWithBracket(String word) {
@@ -77,7 +84,7 @@ public class TypeSpecifier extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new TypeSpecifier(this.attribute, this.line_number);
+    return new TypeSpecifier(this.attribute, this.line_number, this.column);
   }
 
   @Override

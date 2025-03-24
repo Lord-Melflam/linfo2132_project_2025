@@ -1,1 +1,15 @@
-snakecase et gestion des erreurs
+final test int =person.history[len(employees[floor(i/2.0)].history) - 1] * 2;
+final test bool = !(isEmpty && message == "") || (age >= 18 && score < floor(avg*1.1));
+final test string = (chr(65 + index%26) + "_" + stringVar)[(x*y) % len(stringVar)];
+final test float = floor() % (len(users) + 1);
+final test bool =(stringArray[(i + j) % len(stringArray)] + suffix)[0] == "A";
+
+
+fun main() {
+    p Person = Person("Alice", 20);
+    if (checkAge(p)) {
+        writeln("Adult");
+    } else {
+        writeln("Minor");
+    }
+}

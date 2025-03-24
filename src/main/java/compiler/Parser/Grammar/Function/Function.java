@@ -93,6 +93,7 @@ public class Function {
       }
     }
 
+    utils.throwParserException();
     return null;
   }
 }

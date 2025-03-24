@@ -12,13 +12,14 @@ public class SpecialSymbol extends Symbol {
       List.of("(", "{", "["));
   private static final ArrayList<String> CLOSE_SPECIAL_SYMBOLS = new ArrayList<>(
       List.of(")", "}", "]"));
-  private int line_number;
-
   private String attribute;
+  private int line_number;
+  private int column;
 
-  public SpecialSymbol(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public SpecialSymbol(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
   }
 
   public SpecialSymbol() {
@@ -26,6 +27,11 @@ public class SpecialSymbol extends Symbol {
 
   public boolean matches(String word) {
     return SPECIAL_SYMBOLS.contains(word);
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   @Override
@@ -58,7 +64,7 @@ public class SpecialSymbol extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new SpecialSymbol(this.attribute, this.line_number);
+    return new SpecialSymbol(this.attribute, this.line_number, this.column);
   }
 
   @Override

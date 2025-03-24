@@ -74,6 +74,7 @@ public class ControlStructure {
         return new MainNode("For" + nodeName, controlStructureNode);
       }
     }
+    utils.throwParserException();
     return null;
   }
 
@@ -90,6 +91,9 @@ public class ControlStructure {
         }
       }
     }
+/*
+    utils.throwParserException();
+*/
     return false;
   }
 
@@ -105,6 +109,9 @@ public class ControlStructure {
         }
       }
     }
+/*
+    utils.throwParserException();
+*/
     return null;
   }
 
@@ -113,9 +120,10 @@ public class ControlStructure {
       controlStructureNode.addLast(utils.getGenericNode());
       if (utils.matchIndex(TokenType.LPAREN, true)) {
         controlStructureNode.addLast(utils.getGenericNode());
-        if (utils.matchIndex(TokenType.IDENTIFIER, true) || utils.matchIndex(TokenType.RECORD, true)
-            || utils.matchIndex(TokenType.BUILTINFUNCTION, true)) {
-          if (!utils.getGenericNode().getName().equals("IdentifierNode")) {
+        if (utils.matchIndex(TokenType.IDENTIFIER, false) || utils.matchIndex(TokenType.RECORD,
+            false)
+            || utils.matchIndex(TokenType.BUILTINFUNCTION, false)) {
+          if (!utils.getGenericNode().getName().equals("Identifier")) {
             controlStructureNode.addLast(utils.getGenericNode());
           }
         }
@@ -147,8 +155,9 @@ public class ControlStructure {
         }
       }
     }
+/*
+    utils.throwParserException();
+*/
     return null;
   }
-
-
 }

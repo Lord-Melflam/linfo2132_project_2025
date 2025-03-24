@@ -33,6 +33,7 @@ public class Return {
         return new MainNode(nodeName, returnNode);
       }
     }
+    utils.throwParserException();
     return null;
   }
 

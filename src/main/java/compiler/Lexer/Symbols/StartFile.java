@@ -17,6 +17,11 @@ public class StartFile extends Symbol {
   }
 
   @Override
+  public int getColumn() {
+    return 0;
+  }
+
+  @Override
   public int getLine_number() {
     return 1;
   }

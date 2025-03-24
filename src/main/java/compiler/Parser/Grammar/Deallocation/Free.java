@@ -32,6 +32,7 @@ public class Free {
       freeNode.addAll(utils.getAstNodes());
       return new MainNode(nodeName, freeNode);
     }
+    utils.throwParserException();
     return null;
   }
 

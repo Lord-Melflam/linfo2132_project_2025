@@ -6,13 +6,20 @@ public class Assignment extends Symbol {
 
   private int line_number;
   private String attribute;
+  private int column;
 
-  public Assignment(String value, int line) {
+  public Assignment(String value, int line, int column) {
     attribute = value;
     line_number = line;
+    this.column = column;
   }
 
   public Assignment() {
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public int getLine_number() {
@@ -34,7 +41,7 @@ public class Assignment extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Assignment(this.attribute, this.line_number);
+    return new Assignment(this.attribute, this.line_number, this.column);
   }
 
   @Override

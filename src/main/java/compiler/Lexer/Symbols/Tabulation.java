@@ -23,6 +23,11 @@ public class Tabulation extends Symbol {
     return Tabulation.class.getSimpleName();
   }
 
+  @Override
+  public int getColumn() {
+    return 0;
+  }
+
   public String getToken() {
     return "  ";
   }

@@ -28,6 +28,11 @@ public class Generic extends Symbol {
     return name;
   }
 
+  @Override
+  public int getColumn() {
+    return 0;
+  }
+
   public int getLine_number() {
     return -1;
   }

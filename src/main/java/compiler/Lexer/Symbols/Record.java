@@ -6,11 +6,13 @@ public class Record extends Symbol {
 
   private String attribute;
   private int line_number;
+  private int column;
 
 
-  public Record(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public Record(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
   }
 
   public Record() {
@@ -18,6 +20,11 @@ public class Record extends Symbol {
 
   public String getToken() {
     return attribute;
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public boolean isLetter(String word) {
@@ -46,7 +53,7 @@ public class Record extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Record(this.attribute, this.line_number);
+    return new Record(this.attribute, this.line_number, this.column);
   }
 
   @Override

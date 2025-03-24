@@ -151,6 +151,7 @@ public class StatementList {
         parseExpression(getGenericNode);
       }
       default -> {
+        utils.throwParserException();
         return;
       }
     }
@@ -166,6 +167,7 @@ public class StatementList {
       }
       return;
     }
+    utils.throwParserException();
     return;
   }
 
@@ -178,6 +180,7 @@ public class StatementList {
       }
       return;
     }
+    utils.throwParserException();
     return;
   }
 

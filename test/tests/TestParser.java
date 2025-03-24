@@ -1,23 +1,28 @@
 package tests;
 
-import static compiler.Parser.Utils.CodeSamples.basicCodeConstant;
-import static compiler.Parser.Utils.CodeSamples.constantError;
-import static compiler.Parser.Utils.CodeSamples.controlStructure;
-import static compiler.Parser.Utils.CodeSamples.expression;
-import static compiler.Parser.Utils.CodeSamples.inputNotAscii;
-import static compiler.Parser.Utils.CodeSamples.invalidArrayAccess;
-import static compiler.Parser.Utils.CodeSamples.memoryManagement;
-import static compiler.Parser.Utils.CodeSamples.mixedTypeOperations;
-import static compiler.Parser.Utils.CodeSamples.nestedRecord;
-import static compiler.Parser.Utils.CodeSamples.operatorPrecedence;
-import static compiler.Parser.Utils.CodeSamples.recordArrayUsage;
-import static compiler.Parser.Utils.CodeSamples.scopeViolation;
-import static compiler.Parser.Utils.CodeSamples.typeMismatch;
-import static compiler.Parser.Utils.CodeSamples.unrecognisedToken;
-import static compiler.Parser.Utils.UtilsTest.getLexer;
-import static compiler.Parser.Utils.UtilsTest.getLexerFilePath;
-import static compiler.Parser.Utils.UtilsTest.getLexerInput;
-import static compiler.Parser.Utils.UtilsTest.readLexer;
+import static compiler.Parser.Utils.Test.CodeSamples.arrayDeclarationError;
+import static compiler.Parser.Utils.Test.CodeSamples.basicCodeConstant;
+import static compiler.Parser.Utils.Test.CodeSamples.constantError;
+import static compiler.Parser.Utils.Test.CodeSamples.controlStructure;
+import static compiler.Parser.Utils.Test.CodeSamples.expectedSemicolon;
+import static compiler.Parser.Utils.Test.CodeSamples.expression;
+import static compiler.Parser.Utils.Test.CodeSamples.forCStyle;
+import static compiler.Parser.Utils.Test.CodeSamples.identifierError;
+import static compiler.Parser.Utils.Test.CodeSamples.ifWithoutBraces;
+import static compiler.Parser.Utils.Test.CodeSamples.inputNotAscii;
+import static compiler.Parser.Utils.Test.CodeSamples.invalidArrayAccess;
+import static compiler.Parser.Utils.Test.CodeSamples.memoryManagement;
+import static compiler.Parser.Utils.Test.CodeSamples.mixedTypeOperations;
+import static compiler.Parser.Utils.Test.CodeSamples.nestedRecord;
+import static compiler.Parser.Utils.Test.CodeSamples.operatorPrecedence;
+import static compiler.Parser.Utils.Test.CodeSamples.recordArrayUsage;
+import static compiler.Parser.Utils.Test.CodeSamples.scopeViolation;
+import static compiler.Parser.Utils.Test.CodeSamples.typeMismatch;
+import static compiler.Parser.Utils.Test.CodeSamples.unrecognisedToken;
+import static compiler.Parser.Utils.Test.UtilsTest.getLexer;
+import static compiler.Parser.Utils.Test.UtilsTest.getLexerFilePath;
+import static compiler.Parser.Utils.Test.UtilsTest.getLexerInput;
+import static compiler.Parser.Utils.Test.UtilsTest.readLexer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -44,7 +49,7 @@ public class TestParser {
 
   private final ArrayList<String> fileName = new ArrayList<>(
       List.of("code", "code_full_lexer_test", "code3", "parserTestCode_1", "parserTestCode_2",
-          "parserTestCode_3", "parserTestCodeEdgeCase_1"));
+          "parserTestCode_3", "parserTestCodeEdgeCase_1", "code4", "code5"));
 
 
   @Test
@@ -63,11 +68,51 @@ public class TestParser {
         assertTrue(areEqual);
       } catch (IOException | NotASCIIException | UnrecognisedTokenException e) {
         fail("Erreur dans le fichier " + testFile + ": " + e.getMessage());
-      } catch (ParserException e) {
+      } catch (ParserException | AssertionError e) {
         System.out.println(testFile);
         throw new RuntimeException(e);
       }
     }
+  }
+
+  @Test
+  public void testIdentifierError()
+      throws NotASCIIException, IOException, UnrecognisedTokenException {
+    assertThrows(ParserException.class, () -> {
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(identifierError).getAST();
+    });
+  }
+
+  @Test
+  public void testExpectedSemicolon()
+      throws NotASCIIException, IOException, UnrecognisedTokenException {
+    assertThrows(ParserException.class, () -> {
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(expectedSemicolon).getAST();
+    });
+  }
+
+  @Test
+  public void testIfWithoutBraces()
+      throws NotASCIIException, IOException, UnrecognisedTokenException {
+    assertThrows(ParserException.class, () -> {
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(ifWithoutBraces).getAST();
+    });
+  }
+
+  @Test
+  public void testForCStyle()
+      throws NotASCIIException, IOException, UnrecognisedTokenException {
+    assertThrows(ParserException.class, () -> {
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(forCStyle).getAST();
+    });
+  }
+
+  @Test
+  public void testArrayDeclarationError()
+      throws NotASCIIException, IOException, UnrecognisedTokenException {
+    assertThrows(ParserException.class, () -> {
+      ASTNodeProcessor astNodeProcessorActual = getLexerInput(arrayDeclarationError).getAST();
+    });
   }
 
   @Test
@@ -136,7 +181,6 @@ public class TestParser {
       throws NotASCIIException, IOException, UnrecognisedTokenException {
     assertThrows(ParserException.class, () -> {
       ASTNodeProcessor astNodeProcessorActual = getLexerInput(constantError).getAST();
-
     });
   }
 

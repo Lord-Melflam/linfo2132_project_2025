@@ -6,13 +6,20 @@ public class Comment extends Symbol {
 
   private String attribute;
   private int line_number;
+  private int column;
 
-  public Comment(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public Comment(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
   }
 
   public Comment() {
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   public String getToken() {
@@ -41,6 +48,6 @@ public class Comment extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Comment(this.attribute, this.line_number);
+    return new Comment(this.attribute, this.line_number, this.column);
   }
 }

@@ -84,7 +84,10 @@ public class Parser {
       }
       symbol = lexer.getNextSymbol();
     }
-    ASTUtils.saveAST(nodeProcessor, "test/TestFile/AnswersParser/parserTestCodeEdgeCase_1.json",
+    if (nodeProcessor.getRoot().getNodes().isEmpty()) {
+      throw new ParserException(Integer.toString(symbols.getLast().getLine_number()));
+    }
+    ASTUtils.saveAST(nodeProcessor, "test/TestFile/AnswersParser/code5.json",
         false);
     return nodeProcessor;
   }

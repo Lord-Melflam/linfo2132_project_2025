@@ -4,10 +4,17 @@ import compiler.Lexer.Symbol;
 
 public class UnrecognisedToken extends Symbol {
 
-  private int line_number;
   private String token;
+  private int line_number;
+  private int column;
 
   public UnrecognisedToken() {
+  }
+
+  public UnrecognisedToken(String token, int line_number, int column) {
+    this.token = token;
+    this.line_number = line_number;
+    this.column = column;
   }
 
   public UnrecognisedToken(int line, String token) {
@@ -22,6 +29,11 @@ public class UnrecognisedToken extends Symbol {
 
   public String getName() {
     return UnrecognisedToken.class.getSimpleName();
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   @Override

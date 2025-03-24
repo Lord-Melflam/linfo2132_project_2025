@@ -19,7 +19,7 @@ public class Lexer implements Iterator<Symbol> {
   private final LinkedList<Symbol> symbols = new LinkedList<Symbol>();
   private final SymbolRegistry symbolRegistry;
   private int line = 1;
-  private int column = 0;
+  private int column = 1;
   private final List<UnrecognisedToken> unrecognisedTokens = new ArrayList<>();
   public final Reader reader;
   private LinkedList<Symbol> allSymbolsClone;
@@ -60,19 +60,21 @@ public class Lexer implements Iterator<Symbol> {
   private Symbol parseSymbols()
       throws IOException, NotASCIIException, UnrecognisedTokenException {
     StringBuilder word = new StringBuilder();
+
     if (!stack.isEmpty()) {
       word.append(stack.pop());
     }
     int nextChar;
-
     while ((nextChar = reader.read()) != -1) {
       char ch = (char) nextChar;
       if (!Symbol.isAscii(ch)) {
         throw new NotASCIIException(Character.toString(ch), Integer.toString(line));
       }
+
+      column++;
+
       word.append(ch);
       List<String> symbolSet = symbolRegistry.getSymbolTypeList(word.toString());
-
       if (symbolSet.isEmpty()) {
         if (!word.isEmpty()) {
           String longestMatch = symbolRegistry.getSymbolType(word.substring(0, word.length() - 1));
@@ -87,17 +89,16 @@ public class Lexer implements Iterator<Symbol> {
           word.setLength(0);
         }
       } else if (symbolSet.size() == 1 && symbolSet.getFirst().equals("Literal")
-          && (previousSymbols.peek().getName().equals("Literal") || previousSymbols.peek()
+          && (previousSymbols.peek().getName().equals("Literal") || previousSymbols.peek().getName()
+          .equals("Identifier") || previousSymbols.peek()
           .getToken().equals(")"))) {
         String longestMatch = symbolRegistry.getSymbolType(word.substring(0, word.length() - 1));
         stack.push(String.valueOf(word.charAt(word.length() - 1)));
         return createSymbols(longestMatch, word.substring(0, word.length() - 1));
       }
-      column++;
     }
 
     if (!word.isEmpty()) {
-      column++;
       String longestMatch = symbolRegistry.getSymbolType(word.toString());
       if (longestMatch != null) {
         if (notAdd(longestMatch)) {
@@ -135,9 +136,9 @@ public class Lexer implements Iterator<Symbol> {
     try {
       Class<?> clazz = Class.forName("compiler.Lexer.Symbols." + symbolName);
       java.lang.reflect.Constructor<?> constructor = clazz.getDeclaredConstructor(String.class,
-          int.class);
+          int.class, int.class);
 
-      T newInstance = (T) constructor.newInstance(value, line);
+      T newInstance = (T) constructor.newInstance(value, line, 0);
       previousSymbols.clear();
       previousSymbols.push((Symbol) newInstance);
       return newInstance;
@@ -170,7 +171,7 @@ public class Lexer implements Iterator<Symbol> {
   public void countLine(String symbolName) {
     if (symbolName.equals("NewLine")) {
       line++;
-      column = 0;
+      column = 1;
     }
   }
 }

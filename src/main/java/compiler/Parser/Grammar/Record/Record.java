@@ -93,6 +93,7 @@ public class Record {
         }
       }
     }
+    utils.throwParserException();
     return null;
   }
 }

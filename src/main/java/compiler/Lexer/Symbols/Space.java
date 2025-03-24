@@ -6,6 +6,7 @@ public class Space extends Symbol {
 
   private int line_number;
 
+
   public Space(String value, int line) {
     line_number = line;
   }
@@ -25,6 +26,11 @@ public class Space extends Symbol {
   @Override
   public String getName() {
     return Space.class.getSimpleName();
+  }
+
+  @Override
+  public int getColumn() {
+    return 0;
   }
 
   public int getLine_number() {

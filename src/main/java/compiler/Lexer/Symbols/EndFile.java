@@ -18,6 +18,11 @@ public class EndFile extends Symbol {
     return false;
   }
 
+  @Override
+  public int getColumn() {
+    return 0;
+  }
+
   public String getToken() {
     return null;
   }

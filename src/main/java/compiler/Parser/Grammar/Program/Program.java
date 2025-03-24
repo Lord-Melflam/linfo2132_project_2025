@@ -5,11 +5,14 @@ import compiler.Exceptions.Parser.ParserException;
 import compiler.Lexer.Lexer;
 import compiler.Lexer.Symbol;
 import compiler.Parser.ASTNode.ASTNodeProcessor;
+import compiler.Parser.ASTNode.GenericNode;
 import compiler.Parser.ASTNode.MainNode;
+import compiler.Parser.Grammar.Deallocation.Free;
 import compiler.Parser.Grammar.Declaration.Declaration;
 import compiler.Parser.Grammar.Function.Function;
 import compiler.Parser.Grammar.Record.Record;
 import compiler.Parser.Grammar.Statement.StatementList;
+import compiler.Parser.Utils.Enum.TokenType;
 import compiler.Parser.Utils.Interfaces.Observer;
 import compiler.Parser.Utils.Interfaces.Subject;
 import compiler.Parser.Utils.Position;
@@ -44,20 +47,17 @@ public class Program implements Subject {
   }
 
   public ASTNodeProcessor isProgram(Utils utils, LinkedList<Symbol> symbols,
-      ASTNodeProcessor nodeProcessor)
-      throws UnrecognisedTokenException, ParserException {
+      ASTNodeProcessor nodeProcessor) throws UnrecognisedTokenException, ParserException {
     setUtils(utils);
     setAllSymbols(symbols);
     this.addObserver(utils);
     savedPosition.addObserver(utils);
     savedPosition.add();
     int previousPosition = savedPosition.getSavedPosition();
-
-    boolean matched = checkNode(isDeclaration(savedPosition), nodeProcessor) ||
-        checkNode(isRecord(savedPosition), nodeProcessor) ||
-        checkNode(isFunction(savedPosition), nodeProcessor) ||
-        checkNode(isStatement(savedPosition), nodeProcessor);
-
+    boolean matched = rules(nodeProcessor);
+    /*if (!matched) {
+      matched = checkNode(isStatement(savedPosition), nodeProcessor);
+    }*/
     if (matched) {
       currentPosition = savedPosition.getSavedPosition();
     } else {
@@ -72,7 +72,12 @@ public class Program implements Subject {
     return nodeProcessor;
   }
 
-  public MainNode isDeclaration(Position savedPosition)
+  public MainNode isDeclaration(Position savedPosition, GenericNode<String> getGenericNode)
+      throws UnrecognisedTokenException, ParserException {
+    return new Declaration(utils, savedPosition, getGenericNode).declaration();
+  }
+
+  public MainNode isConstant(Position savedPosition)
       throws UnrecognisedTokenException, ParserException {
     return new Declaration(utils, savedPosition).isConstant();
   }
@@ -85,6 +90,11 @@ public class Program implements Subject {
   public MainNode isFunction(Position savedPosition)
       throws ParserException, UnrecognisedTokenException {
     return new Function(utils, savedPosition).isFunction();
+  }
+
+  public MainNode isFree(Position savedPosition)
+      throws ParserException, UnrecognisedTokenException {
+    return new Free(utils, savedPosition).free();
   }
 
   public MainNode isStatement(Position savedPosition)
@@ -114,6 +124,53 @@ public class Program implements Subject {
   public void notifyObservers() {
     for (Observer observer : observers) {
       observer.updatePosition(savedPosition);
+    }
+  }
+
+
+  private boolean rules(ASTNodeProcessor nodeProcessor)
+      throws ParserException, UnrecognisedTokenException {
+    Symbol symbol = utils.getSymbol(savedPosition.getSavedPosition());
+    switch (symbol.getName()) {
+      case "Keyword" -> {
+        if (symbol.getToken().equals(TokenType.FUN.getValue())) {
+          return checkNode(isFunction(savedPosition), nodeProcessor);
+        }
+        if (symbol.getToken().equals(TokenType.FINAL.getValue())) {
+
+          return checkNode(isConstant(savedPosition), nodeProcessor);
+        }
+        if (symbol.getToken().equals(TokenType.FREE.getValue())) {
+          return checkNode(isStatement(savedPosition), nodeProcessor);
+        }
+        return false;
+      }
+
+      case "Record" -> {
+
+        return checkNode(isRecord(savedPosition), nodeProcessor);
+      }
+      case "Identifier" -> {
+
+        GenericNode<String> getGenericNode = null;
+        if (utils.matchIndex(TokenType.IDENTIFIER, true)) {
+          getGenericNode = utils.getGenericNode();
+          Symbol next = utils.getSymbol(savedPosition.getSavedPosition());
+          if (next.getName().equals(TokenType.TYPESPECIFIER.getCategory()) || next.getName()
+              .equals(TokenType.RECORD.getCategory())) {
+            return checkNode(isDeclaration(savedPosition, getGenericNode), nodeProcessor);
+          } /*else {
+            return checkNode(new Expression(utils, savedPosition).expression(), nodeProcessor);
+          }*/
+        }
+        return false;
+      }
+      case "BuiltInFunction" -> {
+        return checkNode(isStatement(savedPosition), nodeProcessor);
+      }
+      default -> {
+        return false;
+      }
     }
   }
 }

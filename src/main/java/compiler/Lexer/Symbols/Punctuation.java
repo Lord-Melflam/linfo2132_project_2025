@@ -8,13 +8,15 @@ public class Punctuation extends Symbol {
 
   private static final ArrayList<String> PUNCTUATIONS = new ArrayList<>(
       List.of(".", ";", ","));
-  private int line_number;
 
   private String attribute;
+  private int line_number;
+  private int column;
 
-  public Punctuation(String value, int line) {
-    attribute = value;
-    line_number = line;
+  public Punctuation(String attribute, int line_number, int column) {
+    this.attribute = attribute;
+    this.line_number = line_number;
+    this.column = column;
   }
 
   public Punctuation() {
@@ -22,6 +24,11 @@ public class Punctuation extends Symbol {
 
   public boolean matches(String word) {
     return PUNCTUATIONS.contains(word);
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 
   @Override
@@ -39,7 +46,7 @@ public class Punctuation extends Symbol {
 
   @Override
   public Symbol clone() {
-    return new Punctuation(this.attribute, this.line_number);
+    return new Punctuation(this.attribute, this.line_number, this.column);
   }
 
   @Override
