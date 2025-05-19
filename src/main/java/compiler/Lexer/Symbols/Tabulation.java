@@ -15,7 +15,7 @@ public class Tabulation extends Symbol {
 
   @Override
   public boolean matches(String word) {
-    return word.equals("    ");
+    return word.equals("\t");
   }
 
   @Override

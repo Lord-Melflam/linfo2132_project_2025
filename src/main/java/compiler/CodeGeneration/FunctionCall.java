@@ -35,7 +35,28 @@ public class FunctionCall {
     MainNode params = (MainNode) astNode.getChildrenList().get(1);
     Table function = Utils.searchIdentifier(mv, table, functionName.getValue(), false, false);
     HashMap<String, String> functionArgs = new HashMap<>();
-    getParams(mv, params, functionArgs);
+    if (!params.getChildrenList().isEmpty()) {
+      getParams(mv, params, functionArgs);
+
+    } else {
+      System.out.println();
+//      Table funcNoArgs = table.resolve(functionName.getValue());
+//      setFunc(funcNoArgs);
+//      mv.visitMethodInsn(INVOKESPECIAL, table.getClassName(),
+//          functionName.getValue(),
+//          function.descriptorFunction, false);
+//      if (!funcNoArgs.descriptor.equals("V")) {
+//        int index = allocator.allocate();
+//        //methodVisitor.visitVarInsn(Opcodes.ISTORE, index);
+//        Utils.execute("store", mv,
+//            new SimpleEntry<String, String>("", function.descriptor), index);
+//        StringBuilder stringBuilder = new StringBuilder("_");
+//        String res = function.name + stringBuilder.substring(0, stringBuilder.length() - 1);
+//        table.getSymbols()
+//            .put(res, new Table(res, function.descriptor, false, false, false, null, index));
+//        functionArgs.put("Function", String.valueOf(index));
+//      }
+    }
     mv.visitVarInsn(ALOAD, 1);
 
     for (Entry<String, String> entry : functionArgs.entrySet()) {
@@ -67,6 +88,9 @@ public class FunctionCall {
     }
     mv.visitMethodInsn(INVOKESPECIAL, table.getClassName(), functionName.getValue(),
         function.descriptorFunction, false);
+    if (function.descriptor.equals("V")) {
+      return new Table("void_res", function.descriptor, false, false, false, null, -1);
+    }
     int ind = allocator.allocate();
     Utils.execute("store", mv, new SimpleEntry<>("", function.descriptor), ind);
     return new Table("unk", function.descriptor, false, false, false, null, ind);

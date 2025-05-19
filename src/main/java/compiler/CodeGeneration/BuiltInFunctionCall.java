@@ -329,7 +329,7 @@ public class BuiltInFunctionCall {
           functionArgs.put("Function", String.valueOf(index));
         }
       } else if (node.getName().equals("BinaryExpression") || node.getName()
-          .equals("UnaryExpression")) {
+          .equals("UnaryExpression") || node.getName().equals("FieldAccess")) {
         ExpressionCodeGenerator expressionCodeGenerator = new ExpressionCodeGenerator(table,
             allocator, start, end);
         Table table1 = expressionCodeGenerator.checkExpression(

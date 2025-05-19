@@ -1,32 +1,7 @@
-$ Good luck
-
-final message string = "Hello";
-final run bool = false;
-
-Point rec {
-    x int;
-    y int;
+Testing rec {
+	x int;
 }
-
-a int = 3;
-
-fun square(v int) int {
-    return v * v;
-}
-
 fun main() {
-
-    i int=9;
-
-
-
-            if (run) {
-                    writeInt(i);
-
-            } else {
-            i=10;
-                   writeInt(i);
-}
-                    writeInt(i);
-
+test Testing = Testing(3);
+write(test.x);
 }
