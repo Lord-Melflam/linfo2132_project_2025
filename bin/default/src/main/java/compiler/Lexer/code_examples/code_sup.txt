@@ -1,0 +1,56 @@
+(* Grammaire EBNF pour le langage *)
+
+(* Programme principal *)
+Program       ::= ConstDecls RecordDecls GlobalVars Functions Main
+ConstDecls    ::= ("final" Identifier Type "=" Expression ";")*
+RecordDecls   ::= (Identifier "rec" "{" (Identifier Type ";")+ "}")*
+GlobalVars    ::= (Identifier Type "=" Expression ";")*
+Functions     ::= ("fun" Identifier "(" Parameters ")" ReturnType "{" Statements "}")*
+Main          ::= "fun main() {" Statements "}"
+
+(* Types et paramètres *)
+Type          ::= "int" | "float" | "bool" | "string" | Identifier | Type "[]"
+Parameters    ::= (Identifier Type ("," Identifier Type)*)?
+ReturnType    ::= Type | "void"
+
+(* Expressions *)
+Expression    ::= AssignmentExpression
+AssignmentExpression ::= LogicalOrExpression ("=" AssignmentExpression)?
+LogicalOrExpression  ::= LogicalAndExpression ("||" LogicalAndExpression)*
+LogicalAndExpression ::= EqualityExpression ("&&" EqualityExpression)*
+EqualityExpression   ::= RelationalExpression (("==" | "!=") RelationalExpression)*
+RelationalExpression ::= AdditiveExpression (("<" | ">" | "<=" | ">=") AdditiveExpression)*
+AdditiveExpression   ::= MultiplicativeExpression (("+" | "-") MultiplicativeExpression)*
+MultiplicativeExpression ::= UnaryExpression (("*" | "/" | "%") UnaryExpression)*
+UnaryExpression  ::= ("-" | "!")? PrimaryExpression
+PrimaryExpression ::= Identifier | Literal | "(" Expression ")" | FunctionCall | ArrayAccess | RecordAccess
+Literal       ::= IntegerLiteral | FloatLiteral | StringLiteral | BooleanLiteral
+BooleanLiteral ::= "true" | "false"
+ArrayAccess   ::= Identifier "[" Expression "]"
+RecordAccess  ::= Identifier "." Identifier
+FunctionCall  ::= Identifier "(" Arguments ")"
+Arguments     ::= (Expression ("," Expression)*)?
+
+(* Déclarations et blocs *)
+Statements    ::= (Statement)*
+Statement     ::= Block | VariableDeclaration | Assignment | ControlStructure | FunctionCall ";" | Deallocation
+Block         ::= "{" Statements "}"
+VariableDeclaration ::= Identifier Type "=" Expression ";"
+Assignment    ::= (Identifier | ArrayAccess | RecordAccess) "=" Expression ";"
+Deallocation  ::= "free" Identifier ";"
+
+(* Structures de contrôle *)
+ControlStructure ::= IfStatement | WhileStatement | ForStatement
+IfStatement  ::= "if" "(" Expression ")" Block ("else" Block)?
+WhileStatement ::= "while" "(" Expression ")" Block
+ForStatement ::= "for" "(" Identifier "," Expression "," Expression "," Expression ")" Block
+
+(* Opérations et fonctions intégrées *)
+BuiltinFunction ::= "readInt()" | "readFloat()" | "readString()" | "writeInt(" Expression ")" | "writeFloat(" Expression ")" | "write(" Expression ")" | "writeln()"
+UnaryOperation ::= "-" UnaryExpression | "!" UnaryExpression
+BinaryOperation ::= Expression Operator Expression
+Operator ::= "+" | "-" | "*" | "/" | "%" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "&&" | "||"
+
+(* Gestion de la mémoire *)
+MemoryManagement ::= "free" Identifier ";"
+

@@ -1,5 +1,10 @@
+18:00:44: Executing ':Compiler.main()'...
 
-<StartFile>
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :Compiler.main()
 <Keyword,final>
 <Identifier,message>
 <TypeSpecifier,string>
@@ -30,8 +35,8 @@
 <Keyword,fun>
 <Identifier,square>
 <SpecialSymbol,(>
-<TypeSpecifier,int>
 <Identifier,v>
+<TypeSpecifier,int>
 <SpecialSymbol,)>
 <TypeSpecifier,int>
 <SpecialSymbol,{>
@@ -131,4 +136,3 @@
 <Literal,2>
 <Punctuation,;>
 <SpecialSymbol,}>
-<EndFile>

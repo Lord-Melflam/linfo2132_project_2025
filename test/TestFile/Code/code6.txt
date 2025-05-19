@@ -1,0 +1,61 @@
+final pi float = 3.14159;
+final greeting string = "Bienvenue dans le programme!";
+final maxCount int = 10;
+
+counter int = 0;
+numbers int[] = array [maxCount] of int;
+
+
+fun factorial(n int) int {
+    result int = 1;
+    i int;
+    for (i, 1, n + 1, 1) {
+        result = result * i;
+    }
+    return result;
+}
+
+fun isEven(n int) bool {
+    return (n % 2) == 0;
+}
+
+fun printMessage(message string)  {
+    writeln(message);
+}
+
+fun sumArray(arr int[]) int {
+    sum int = 0;
+    i int;
+    for (i, 0, len(arr), 1) {
+        sum = sum + arr[i];
+    }
+    return sum;
+}
+
+fun fillArray(arr int[],value int)  {
+    i int;
+    for (i, 0, len(arr), 1) {
+        arr[i] = value;
+    }
+}
+
+fun main()  {
+    printMessage(greeting);
+
+    writeln("Veuillez entrer un nombre:");
+    input int = readInt();
+
+    writeln("Le factoriel de votre nombre est:");
+    writeln(factorial(input));
+
+    if (isEven(input)) {
+        writeln("Votre nombre est pair.");
+    } else {
+        writeln("Votre nombre est impair.");
+    }
+
+    fillArray(numbers, input);
+
+    writeln("Somme des elements du tableau:");
+    writeln(sumArray(numbers));
+}

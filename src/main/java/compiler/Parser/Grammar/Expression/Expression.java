@@ -17,11 +17,13 @@ public class Expression {
   private final LinkedList<ASTNode> expressionNode;
   private final String nodeName = "Expression";
   private ASTNode identifier;
+  private int line;
 
   public Expression(Utils utils, Position savedPosition) {
     this.utils = utils;
     this.savedPosition = savedPosition;
     this.expressionNode = new LinkedList<>();
+    line = utils.getLine();
   }
 
   public Expression(Utils utils, Position savedPosition, ASTNode identifier) {
@@ -30,6 +32,7 @@ public class Expression {
     expressionNode = new LinkedList<>();
     expressionNode.addLast(identifier);
     this.identifier = identifier;
+    line = utils.getLine();
   }
 
   public MainNode expression() throws UnrecognisedTokenException, ParserException {
@@ -45,7 +48,7 @@ public class Expression {
       localNodes.add(node);
       localNodes.add(operator);
       localNodes.add(right);
-      node = new MainNode("LogicalExpression", localNodes);
+      node = new MainNode("LogicalExpression", localNodes, line);
     }
     return node;
   }
@@ -59,7 +62,7 @@ public class Expression {
       localNodes.add(node);
       localNodes.add(operator);
       localNodes.add(right);
-      node = new MainNode("LogicalExpression", localNodes);
+      node = new MainNode("LogicalExpression", localNodes, line);
     }
     return node;
   }
@@ -73,7 +76,7 @@ public class Expression {
         true)) {
       expressionNode.addLast(utils.getGenericNode());
       expressionNode.addLast(addition());
-      node = new MainNode(nodeName, expressionNode);
+      node = new MainNode(nodeName, expressionNode, line);
     }
     return node;
   }
@@ -89,7 +92,7 @@ public class Expression {
       localNodes.add(operator);
       localNodes.add(right);
 
-      left = new MainNode("BinaryExpression", localNodes);
+      left = new MainNode("BinaryExpression", localNodes, line);
     }
 
     return left;
@@ -101,7 +104,7 @@ public class Expression {
     while (utils.matchIndex(TokenType.STAR, true) || utils.matchIndex(TokenType.SLASH, true)
         || utils.matchIndex(TokenType.MOD, true)) {
       expressionNode.addLast(unary());
-      node = new MainNode(nodeName, expressionNode);
+      node = new MainNode(nodeName, expressionNode, line);
     }
     return node;
   }
@@ -112,7 +115,7 @@ public class Expression {
       expressionNode.addLast(operator);
       MainNode mainNode = primary();
       expressionNode.addLast(mainNode);
-      return new MainNode("UnaryExpression", expressionNode);
+      return new MainNode("UnaryExpression", expressionNode, line);
     }
     return primary();
   }
@@ -121,7 +124,7 @@ public class Expression {
     MainNode node;
 
     if (utils.matchIndex(TokenType.LITERAL, true)) {
-      return new MainNode(nodeName, List.of(utils.getGenericNode()));
+      return continuation(new MainNode(nodeName, List.of(utils.getGenericNode()), line));
     } else if (utils.matchIndex(TokenType.IDENTIFIER, true) || utils.matchIndex(TokenType.RECORD,
         true) || utils.matchIndex(TokenType.BUILTINFUNCTION, true)) {
       node = functionOrVariable();
@@ -130,25 +133,24 @@ public class Expression {
       ASTNode lparen = utils.getGenericNode();
       node = expression();
       if (!utils.matchIndex(TokenType.RPAREN, true)) {
-        /* utils.throwParserException();*/
         return null;
       }
       ASTNode rparen = utils.getGenericNode();
       if (utils.matchIndex(TokenType.SEMICOLON, false)) {
         if (node != null) {
-          node.add(List.of(rparen));
+          //node.add(List.of(rparen));
           if (identifier == null) {
             return node;
           }
-          return new MainNode("Expression", List.of(identifier, lparen, node, rparen));
+          return new MainNode("Expression", List.of(identifier,/* lparen,*/ node/*, rparen*/),
+              line);
         }
-        expressionNode.addLast(new MainNode("Parameters", List.of(lparen, rparen)));
-        return new MainNode("Function", expressionNode);
+        expressionNode.addLast(new MainNode("Parameters", List.of(/*lparen, rparen*/), line));
+        return new MainNode("Function", expressionNode, line);
       }
     } else if (utils.matchIndex(TokenType.ARRAY, true)) {
       node = parseArrayInitialization();
     } else {
-      /*utils.throwParserException();*/
       return null;
     }
 
@@ -161,14 +163,15 @@ public class Expression {
 
   private MainNode parseArrayInitialization() throws UnrecognisedTokenException, ParserException {
     LinkedList<ASTNode> localNodes = new LinkedList<>();
-    localNodes.add(utils.getGenericNode()); // "array"
+    localNodes.add(utils.getGenericNode());
 
     if (!utils.matchIndex(TokenType.LBRACKET, true)) {
-      /*utils.throwParserException();*/
       return null;
     }
     MainNode sizeExpression = expression();
-
+    while (utils.matchIndex(TokenType.COMMA, true)) {
+      localNodes.add(expression());
+    }
     if (utils.matchIndex(TokenType.RBRACKET, true)) {
       if (utils.matchIndex(TokenType.OF, true)) {
         ASTNode ofNode = utils.getGenericNode();
@@ -177,11 +180,10 @@ public class Expression {
           localNodes.add(sizeExpression);
           localNodes.add(ofNode);
           localNodes.add(typeNode);
-          return new MainNode("ArrayInitialization", localNodes);
+          return new MainNode("ArrayInitialization", localNodes, line);
         }
       }
     }
-    /*utils.throwParserException();*/
     return null;
   }
 
@@ -196,10 +198,9 @@ public class Expression {
       }
 
       if (!utils.matchIndex(TokenType.RBRACKET, true)) {
-        /*utils.throwParserException();*/
         return null;
       }
-      node = new MainNode("ArrayAccess", localNodes);
+      node = new MainNode("ArrayAccess", localNodes, line);
     }
     return node;
   }
@@ -211,35 +212,31 @@ public class Expression {
     localNodes.add(node);
 
     if (utils.matchIndex(TokenType.LPAREN, true)) {
-      localNodes.add(utils.getGenericNode());
+      //localNodes.add(utils.getGenericNode());
       LinkedList<ASTNode> argNodes = new LinkedList<>();
 
       while (!utils.matchIndex(TokenType.RPAREN, true)) {
         argNodes.add(expression());
         if (utils.matchIndex(TokenType.COMMA, true)) {
-          //localNodes.add(utils.getGenericNode());
         }
       }
-      MainNode mainNodeArg = new MainNode("Parameters", argNodes);
+      MainNode mainNodeArg = new MainNode("Parameters", argNodes, line);
       localNodes.add(mainNodeArg);
       localNodes.add(utils.getGenericNode());
       switch (node.getName()) {
         case "Record" -> {
-          return new MainNode("RecordConstructorCall", localNodes);
+          return new MainNode("RecordConstructorCall", localNodes, line);
         }
         case "BuiltInFunction" -> {
-          return new MainNode("BuiltInFunctionCall", localNodes);
+          return new MainNode("BuiltInFunctionCall", localNodes, line);
         }
         case "Identifier" -> {
-          return new MainNode("FunctionCall", localNodes);
+          return new MainNode("FunctionCall", localNodes, line);
         }
       }
-/*
-      return new MainNode("FunctionCall", localNodes);
-*/
     }
 
-    return new MainNode(nodeName, localNodes);
+    return new MainNode(nodeName, localNodes, line);
   }
 
 
@@ -251,7 +248,6 @@ public class Expression {
       if (utils.matchIndex(TokenType.LBRACKET, false)) {
         left = parseArrayAccess(left);
         localNodes.add(left);
-        System.out.println();
       } else if (utils.matchIndex(TokenType.DOT, true)) {
         localNodes.add(utils.getGenericNode());
         if (!utils.matchIndex(TokenType.IDENTIFIER, true)) {
@@ -259,12 +255,19 @@ public class Expression {
           return null;
         }
         localNodes.add(utils.getGenericNode());
-        left = new MainNode("FieldAccess", localNodes);
+        left = new MainNode("FieldAccess", localNodes, line);
       } else if (utils.matchIndex(TokenType.OPERATOR, true)) {
+        /*todo code gen*/
+        if (left.getName().equals("FieldAccess")) {
+          localNodes.clear();
+          localNodes.addLast(left);
+        }
         localNodes.add(utils.getGenericNode());
+        //localNodes.add(utils.getGenericNode());
+        /*todo code gen*/
         MainNode right = addition();
         localNodes.add(right);
-        left = new MainNode("BinaryExpression", localNodes);
+        left = new MainNode("BinaryExpression", localNodes, line);
       } /*else if (utils.matchIndex(TokenType.BUILTINFUNCTION, true)) {
         left = functionOrVariable();
         System.out.println();

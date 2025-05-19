@@ -3,11 +3,19 @@
  */
 package compiler;
 
+import compiler.CodeGeneration.CodeGeneration;
 import compiler.Exceptions.Lexer.NotASCIIException;
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
+import compiler.Exceptions.Semantic.ArgumentError;
+import compiler.Exceptions.Semantic.GenericError;
+import compiler.Exceptions.Semantic.OperatorError;
+import compiler.Exceptions.Semantic.RecordError;
+import compiler.Exceptions.Semantic.ScopeError;
+import compiler.Exceptions.Semantic.TypeError;
 import compiler.Lexer.Lexer;
 import compiler.Parser.Parser;
+import compiler.Semantic.Semantic_analysis;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -15,10 +23,20 @@ import java.io.Reader;
 public class Compiler {
 
   public static void main(String[] args) {
-    try (Reader reader = new FileReader(args[1])) {
+    try (Reader reader = new FileReader(args[0])) {
       Lexer lexer = new Lexer(reader);
       Parser parser = new Parser(lexer);
-    } catch (IOException | NotASCIIException | UnrecognisedTokenException | ParserException e) {
+      Semantic_analysis semantic_analysis = new Semantic_analysis(parser);
+      String outputName = "output";
+      if (args[1].contains("-o")) {
+        outputName = args[2];
+      }
+      CodeGeneration codeGeneration = new CodeGeneration(outputName, parser.mainNodeCopy,
+          semantic_analysis.symbolTable);
+
+    } catch (IOException | NotASCIIException | UnrecognisedTokenException | TypeError |
+             ArgumentError | GenericError | ScopeError | RecordError | ParserException |
+             OperatorError e) {
       throw new RuntimeException(e);
     }
   }

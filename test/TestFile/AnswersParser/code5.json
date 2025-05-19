@@ -1,510 +1,2601 @@
 {
   "root" : {
     "nodes" : [ {
-      "type" : "MainNode",
       "name" : "Constant",
       "children" : [ {
-        "type" : "GenericNode",
         "name" : "Keyword",
-        "value" : "final"
+        "value" : "final",
+        "line" : 2
       }, {
-        "type" : "GenericNode",
         "name" : "Identifier",
-        "value" : "x"
+        "value" : "pi",
+        "line" : 2
       }, {
-        "type" : "GenericNode",
         "name" : "TypeSpecifier",
-        "value" : "int"
+        "value" : "float",
+        "line" : 2
       }, {
-        "type" : "GenericNode",
         "name" : "Assignment",
-        "value" : "="
+        "value" : "=",
+        "line" : 2
       }, {
-        "type" : "MainNode",
         "name" : "Expression",
         "children" : [ {
-          "type" : "GenericNode",
           "name" : "Literal",
-          "value" : "10"
+          "value" : "3.1415",
+          "line" : 2
+        } ],
+        "line" : 2,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "3.1415",
+          "line" : 2
         } ]
       }, {
-        "type" : "GenericNode",
         "name" : "Punctuation",
-        "value" : ";"
+        "value" : ";",
+        "line" : 2
+      } ],
+      "line" : 2,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 2
+      }, {
+        "name" : "Identifier",
+        "value" : "pi",
+        "line" : 2
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "float",
+        "line" : 2
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 2
+      }, {
+        "name" : "Expression",
+        "children" : [ {
+          "name" : "Literal",
+          "value" : "3.1415",
+          "line" : 2
+        } ],
+        "line" : 2,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "3.1415",
+          "line" : 2
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 2
       } ]
     }, {
-      "type" : "MainNode",
       "name" : "Constant",
       "children" : [ {
-        "type" : "GenericNode",
         "name" : "Keyword",
-        "value" : "final"
+        "value" : "final",
+        "line" : 3
       }, {
-        "type" : "GenericNode",
         "name" : "Identifier",
-        "value" : "y"
+        "value" : "tau",
+        "line" : 3
       }, {
-        "type" : "GenericNode",
         "name" : "TypeSpecifier",
-        "value" : "float"
+        "value" : "float",
+        "line" : 3
       }, {
-        "type" : "GenericNode",
         "name" : "Assignment",
-        "value" : "="
+        "value" : "=",
+        "line" : 3
       }, {
-        "type" : "MainNode",
         "name" : "BinaryExpression",
         "children" : [ {
-          "type" : "MainNode",
           "name" : "Expression",
           "children" : [ {
-            "type" : "GenericNode",
             "name" : "Identifier",
-            "value" : "x"
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
           } ]
         }, {
-          "type" : "GenericNode",
           "name" : "Operator",
-          "value" : "/"
+          "value" : "*",
+          "line" : 3
         }, {
-          "type" : "MainNode",
           "name" : "Expression",
           "children" : [ {
-            "type" : "GenericNode",
             "name" : "Literal",
-            "value" : "0"
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ]
+        } ],
+        "line" : 3,
+        "childrenList" : [ {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ]
+        }, {
+          "name" : "Operator",
+          "value" : "*",
+          "line" : 3
+        }, {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
           } ]
         } ]
       }, {
-        "type" : "GenericNode",
         "name" : "Punctuation",
-        "value" : ";"
+        "value" : ";",
+        "line" : 3
+      } ],
+      "line" : 3,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 3
+      }, {
+        "name" : "Identifier",
+        "value" : "tau",
+        "line" : 3
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "float",
+        "line" : 3
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 3
+      }, {
+        "name" : "BinaryExpression",
+        "children" : [ {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ]
+        }, {
+          "name" : "Operator",
+          "value" : "*",
+          "line" : 3
+        }, {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ]
+        } ],
+        "line" : 3,
+        "childrenList" : [ {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ]
+        }, {
+          "name" : "Operator",
+          "value" : "*",
+          "line" : 3
+        }, {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ]
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 3
       } ]
     }, {
-      "type" : "MainNode",
-      "name" : "Declaration",
+      "name" : "Constant",
       "children" : [ {
-        "type" : "GenericNode",
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 4
+      }, {
         "name" : "Identifier",
-        "value" : "a"
+        "value" : "name",
+        "line" : 4
       }, {
-        "type" : "GenericNode",
         "name" : "TypeSpecifier",
-        "value" : "int"
+        "value" : "string",
+        "line" : 4
       }, {
-        "type" : "GenericNode",
         "name" : "Assignment",
-        "value" : "="
+        "value" : "=",
+        "line" : 4
       }, {
-        "type" : "MainNode",
         "name" : "Expression",
         "children" : [ {
-          "type" : "GenericNode",
           "name" : "Literal",
-          "value" : "5"
+          "value" : "\"Tester\"",
+          "line" : 4
+        } ],
+        "line" : 4,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "\"Tester\"",
+          "line" : 4
         } ]
       }, {
-        "type" : "GenericNode",
         "name" : "Punctuation",
-        "value" : ";"
-      } ]
-    }, {
-      "type" : "MainNode",
-      "name" : "Declaration",
-      "children" : [ {
-        "type" : "GenericNode",
-        "name" : "Identifier",
-        "value" : "b"
+        "value" : ";",
+        "line" : 4
+      } ],
+      "line" : 4,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 4
       }, {
-        "type" : "GenericNode",
+        "name" : "Identifier",
+        "value" : "name",
+        "line" : 4
+      }, {
         "name" : "TypeSpecifier",
-        "value" : "int"
+        "value" : "string",
+        "line" : 4
       }, {
-        "type" : "GenericNode",
         "name" : "Assignment",
-        "value" : "="
+        "value" : "=",
+        "line" : 4
       }, {
-        "type" : "MainNode",
-        "name" : "ArrayAccess",
+        "name" : "Expression",
         "children" : [ {
-          "type" : "MainNode",
-          "name" : "Expression",
-          "children" : [ {
-            "type" : "GenericNode",
-            "name" : "Identifier",
-            "value" : "a"
-          } ]
-        }, {
-          "type" : "MainNode",
-          "name" : "Expression",
-          "children" : [ {
-            "type" : "GenericNode",
-            "name" : "Literal",
-            "value" : "0"
-          } ]
+          "name" : "Literal",
+          "value" : "\"Tester\"",
+          "line" : 4
+        } ],
+        "line" : 4,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "\"Tester\"",
+          "line" : 4
         } ]
       }, {
-        "type" : "GenericNode",
         "name" : "Punctuation",
-        "value" : ";"
+        "value" : ";",
+        "line" : 4
       } ]
     }, {
-      "type" : "MainNode",
-      "name" : "Declaration",
+      "name" : "Constant",
       "children" : [ {
-        "type" : "GenericNode",
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 5
+      }, {
         "name" : "Identifier",
-        "value" : "p"
+        "value" : "isValid",
+        "line" : 5
       }, {
-        "type" : "GenericNode",
-        "name" : "Record",
-        "value" : "Point"
+        "name" : "TypeSpecifier",
+        "value" : "bool",
+        "line" : 5
       }, {
-        "type" : "GenericNode",
         "name" : "Assignment",
-        "value" : "="
+        "value" : "=",
+        "line" : 5
       }, {
-        "type" : "MainNode",
-        "name" : "RecordConstructorCall",
-        "children" : [ {
-          "type" : "GenericNode",
-          "name" : "Record",
-          "value" : "Point"
-        }, {
-          "type" : "GenericNode",
-          "name" : "SpecialSymbol",
-          "value" : "("
-        }, {
-          "type" : "MainNode",
-          "name" : "Parameters",
-          "children" : [ {
-            "type" : "MainNode",
-            "name" : "Expression",
-            "children" : [ {
-              "type" : "GenericNode",
-              "name" : "Literal",
-              "value" : "1"
-            } ]
-          }, {
-            "type" : "MainNode",
-            "name" : "Expression",
-            "children" : [ {
-              "type" : "GenericNode",
-              "name" : "Literal",
-              "value" : "2"
-            } ]
-          } ]
-        }, {
-          "type" : "GenericNode",
-          "name" : "SpecialSymbol",
-          "value" : ")"
-        } ]
-      }, {
-        "type" : "GenericNode",
-        "name" : "Punctuation",
-        "value" : ";"
-      } ]
-    }, {
-      "type" : "MainNode",
-      "name" : "Statements",
-      "children" : [ {
-        "type" : "MainNode",
-        "name" : "Deallocation",
-        "children" : [ {
-          "type" : "GenericNode",
-          "name" : "Keyword",
-          "value" : "free"
-        }, {
-          "type" : "GenericNode",
-          "name" : "Identifier",
-          "value" : "p"
-        }, {
-          "type" : "GenericNode",
-          "name" : "Punctuation",
-          "value" : ";"
-        } ]
-      } ]
-    }, {
-      "type" : "MainNode",
-      "name" : "Statements",
-      "children" : [ {
-        "type" : "MainNode",
         "name" : "BuiltInFunctionCall",
         "children" : [ {
-          "type" : "GenericNode",
           "name" : "BuiltInFunction",
-          "value" : "writeln"
+          "value" : "!",
+          "line" : 5
         }, {
-          "type" : "GenericNode",
-          "name" : "SpecialSymbol",
-          "value" : "("
-        }, {
-          "type" : "MainNode",
           "name" : "Parameters",
           "children" : [ {
-            "type" : "MainNode",
             "name" : "Expression",
             "children" : [ {
-              "type" : "GenericNode",
-              "name" : "Identifier",
-              "value" : "p"
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
             } ]
           } ]
         }, {
-          "type" : "GenericNode",
           "name" : "SpecialSymbol",
-          "value" : ")"
-        } ]
-      }, {
-        "type" : "GenericNode",
-        "name" : "Punctuation",
-        "value" : ";"
-      } ]
-    }, {
-      "type" : "MainNode",
-      "name" : "Function",
-      "children" : [ {
-        "type" : "GenericNode",
-        "name" : "Keyword",
-        "value" : "fun"
-      }, {
-        "type" : "GenericNode",
-        "name" : "Identifier",
-        "value" : "test"
-      }, {
-        "type" : "GenericNode",
-        "name" : "SpecialSymbol",
-        "value" : "("
-      }, {
-        "type" : "MainNode",
-        "name" : "Parameters",
-        "children" : [ {
-          "type" : "GenericNode",
-          "name" : "TypeSpecifier",
-          "value" : "int"
+          "value" : ")",
+          "line" : 5
+        } ],
+        "line" : 5,
+        "childrenList" : [ {
+          "name" : "BuiltInFunction",
+          "value" : "!",
+          "line" : 5
         }, {
-          "type" : "GenericNode",
-          "name" : "Identifier",
-          "value" : "v"
-        } ]
-      }, {
-        "type" : "GenericNode",
-        "name" : "SpecialSymbol",
-        "value" : ")"
-      }, {
-        "type" : "GenericNode",
-        "name" : "TypeSpecifier",
-        "value" : "int"
-      }, {
-        "type" : "MainNode",
-        "name" : "FunctionBlock",
-        "children" : [ {
-          "type" : "MainNode",
-          "name" : "Statements",
+          "name" : "Parameters",
           "children" : [ {
-            "type" : "MainNode",
-            "name" : "Return",
+            "name" : "Expression",
             "children" : [ {
-              "type" : "GenericNode",
-              "name" : "Keyword",
-              "value" : "return"
-            }, {
-              "type" : "MainNode",
-              "name" : "FunctionCall",
-              "children" : [ {
-                "type" : "GenericNode",
-                "name" : "Identifier",
-                "value" : "test"
-              }, {
-                "type" : "GenericNode",
-                "name" : "SpecialSymbol",
-                "value" : "("
-              }, {
-                "type" : "MainNode",
-                "name" : "Parameters",
-                "children" : [ {
-                  "type" : "MainNode",
-                  "name" : "Expression",
-                  "children" : [ {
-                    "type" : "GenericNode",
-                    "name" : "Identifier",
-                    "value" : "v"
-                  } ]
-                } ]
-              }, {
-                "type" : "GenericNode",
-                "name" : "SpecialSymbol",
-                "value" : ")"
-              } ]
-            }, {
-              "type" : "GenericNode",
-              "name" : "Punctuation",
-              "value" : ";"
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
             } ]
           } ]
+        }, {
+          "name" : "SpecialSymbol",
+          "value" : ")",
+          "line" : 5
         } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 5
+      } ],
+      "line" : 5,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 5
+      }, {
+        "name" : "Identifier",
+        "value" : "isValid",
+        "line" : 5
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "bool",
+        "line" : 5
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 5
+      }, {
+        "name" : "BuiltInFunctionCall",
+        "children" : [ {
+          "name" : "BuiltInFunction",
+          "value" : "!",
+          "line" : 5
+        }, {
+          "name" : "Parameters",
+          "children" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ]
+        }, {
+          "name" : "SpecialSymbol",
+          "value" : ")",
+          "line" : 5
+        } ],
+        "line" : 5,
+        "childrenList" : [ {
+          "name" : "BuiltInFunction",
+          "value" : "!",
+          "line" : 5
+        }, {
+          "name" : "Parameters",
+          "children" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ]
+        }, {
+          "name" : "SpecialSymbol",
+          "value" : ")",
+          "line" : 5
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 5
       } ]
     }, {
-      "type" : "MainNode",
       "name" : "Function",
       "children" : [ {
-        "type" : "GenericNode",
         "name" : "Keyword",
-        "value" : "fun"
+        "value" : "fun",
+        "line" : 7
       }, {
-        "type" : "GenericNode",
         "name" : "Identifier",
-        "value" : "main"
+        "value" : "main",
+        "line" : 7
       }, {
-        "type" : "GenericNode",
         "name" : "SpecialSymbol",
-        "value" : "("
+        "value" : "(",
+        "line" : 7
       }, {
-        "type" : "GenericNode",
         "name" : "SpecialSymbol",
-        "value" : ")"
+        "value" : ")",
+        "line" : 7
       }, {
-        "type" : "TypeSpecifierNode",
-        "type" : "void",
-        "name" : "TypeSpecifier"
+        "name" : "TypeSpecifier",
+        "value" : "void",
+        "line" : 7
       }, {
-        "type" : "MainNode",
         "name" : "FunctionBlock",
         "children" : [ {
-          "type" : "MainNode",
           "name" : "Statements",
           "children" : [ {
-            "type" : "MainNode",
-            "name" : "Declaration",
-            "children" : [ {
-              "type" : "GenericNode",
-              "name" : "Identifier",
-              "value" : "arr"
-            }, {
-              "type" : "GenericNode",
-              "name" : "TypeSpecifier",
-              "value" : "int[]"
-            }, {
-              "type" : "GenericNode",
-              "name" : "Assignment",
-              "value" : "="
-            }, {
-              "type" : "GenericNode",
-              "name" : "Keyword",
-              "value" : "array"
-            }, {
-              "type" : "GenericNode",
-              "name" : "SpecialSymbol",
-              "value" : "["
-            }, {
-              "type" : "MainNode",
-              "name" : "Expression",
-              "children" : [ {
-                "type" : "GenericNode",
-                "name" : "Literal",
-                "value" : "-5"
-              } ]
-            }, {
-              "type" : "GenericNode",
-              "name" : "SpecialSymbol",
-              "value" : "]"
-            }, {
-              "type" : "GenericNode",
-              "name" : "Keyword",
-              "value" : "of"
-            }, {
-              "type" : "GenericNode",
-              "name" : "TypeSpecifier",
-              "value" : "int"
-            }, {
-              "type" : "GenericNode",
-              "name" : "Punctuation",
-              "value" : ";"
-            } ]
-          }, {
-            "type" : "MainNode",
             "name" : "BuiltInFunctionCall",
             "children" : [ {
-              "type" : "GenericNode",
               "name" : "BuiltInFunction",
-              "value" : "writeln"
+              "value" : "writeln",
+              "line" : 8
             }, {
-              "type" : "GenericNode",
-              "name" : "SpecialSymbol",
-              "value" : "("
-            }, {
-              "type" : "MainNode",
               "name" : "Parameters",
               "children" : [ {
-                "type" : "MainNode",
-                "name" : "BuiltInFunctionCall",
+                "name" : "Expression",
                 "children" : [ {
-                  "type" : "GenericNode",
-                  "name" : "BuiltInFunction",
-                  "value" : "chr"
-                }, {
-                  "type" : "GenericNode",
-                  "name" : "SpecialSymbol",
-                  "value" : "("
-                }, {
-                  "type" : "MainNode",
-                  "name" : "Parameters",
-                  "children" : [ {
-                    "type" : "MainNode",
-                    "name" : "Expression",
-                    "children" : [ {
-                      "type" : "GenericNode",
-                      "name" : "Literal",
-                      "value" : "300"
-                    } ]
-                  } ]
-                }, {
-                  "type" : "GenericNode",
-                  "name" : "SpecialSymbol",
-                  "value" : ")"
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
                 } ]
               } ]
             }, {
-              "type" : "GenericNode",
               "name" : "SpecialSymbol",
-              "value" : ")"
-            } ]
-          }, {
-            "type" : "GenericNode",
-            "name" : "Punctuation",
-            "value" : ";"
-          }, {
-            "type" : "MainNode",
-            "name" : "Expression",
-            "children" : [ {
-              "type" : "GenericNode",
-              "name" : "Identifier",
-              "value" : "test"
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
             }, {
-              "type" : "GenericNode",
-              "name" : "SpecialSymbol",
-              "value" : "("
-            }, {
-              "type" : "MainNode",
-              "name" : "Expression",
+              "name" : "Parameters",
               "children" : [ {
-                "type" : "GenericNode",
-                "name" : "Literal",
-                "value" : "5"
-              }, {
-                "type" : "GenericNode",
-                "name" : "SpecialSymbol",
-                "value" : ")"
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
               } ]
             }, {
-              "type" : "GenericNode",
               "name" : "SpecialSymbol",
-              "value" : ")"
+              "value" : ")",
+              "line" : 8
             } ]
           }, {
-            "type" : "GenericNode",
             "name" : "Punctuation",
-            "value" : ";"
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ]
+        } ],
+        "line" : 7,
+        "childrenList" : [ {
+          "name" : "Statements",
+          "children" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ]
+        } ]
+      } ],
+      "line" : 7,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "fun",
+        "line" : 7
+      }, {
+        "name" : "Identifier",
+        "value" : "main",
+        "line" : 7
+      }, {
+        "name" : "SpecialSymbol",
+        "value" : "(",
+        "line" : 7
+      }, {
+        "name" : "SpecialSymbol",
+        "value" : ")",
+        "line" : 7
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "void",
+        "line" : 7
+      }, {
+        "name" : "FunctionBlock",
+        "children" : [ {
+          "name" : "Statements",
+          "children" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ]
+        } ],
+        "line" : 7,
+        "childrenList" : [ {
+          "name" : "Statements",
+          "children" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ]
+        } ]
+      } ]
+    } ],
+    "nodesAst" : [ {
+      "name" : "Constant",
+      "children" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 2
+      }, {
+        "name" : "Identifier",
+        "value" : "pi",
+        "line" : 2
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "float",
+        "line" : 2
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 2
+      }, {
+        "name" : "Expression",
+        "children" : [ {
+          "name" : "Literal",
+          "value" : "3.1415",
+          "line" : 2
+        } ],
+        "line" : 2,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "3.1415",
+          "line" : 2
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 2
+      } ],
+      "line" : 2,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 2
+      }, {
+        "name" : "Identifier",
+        "value" : "pi",
+        "line" : 2
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "float",
+        "line" : 2
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 2
+      }, {
+        "name" : "Expression",
+        "children" : [ {
+          "name" : "Literal",
+          "value" : "3.1415",
+          "line" : 2
+        } ],
+        "line" : 2,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "3.1415",
+          "line" : 2
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 2
+      } ]
+    }, {
+      "name" : "Constant",
+      "children" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 3
+      }, {
+        "name" : "Identifier",
+        "value" : "tau",
+        "line" : 3
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "float",
+        "line" : 3
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 3
+      }, {
+        "name" : "BinaryExpression",
+        "children" : [ {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ]
+        }, {
+          "name" : "Operator",
+          "value" : "*",
+          "line" : 3
+        }, {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ]
+        } ],
+        "line" : 3,
+        "childrenList" : [ {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ]
+        }, {
+          "name" : "Operator",
+          "value" : "*",
+          "line" : 3
+        }, {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ]
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 3
+      } ],
+      "line" : 3,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 3
+      }, {
+        "name" : "Identifier",
+        "value" : "tau",
+        "line" : 3
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "float",
+        "line" : 3
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 3
+      }, {
+        "name" : "BinaryExpression",
+        "children" : [ {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ]
+        }, {
+          "name" : "Operator",
+          "value" : "*",
+          "line" : 3
+        }, {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ]
+        } ],
+        "line" : 3,
+        "childrenList" : [ {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Identifier",
+            "value" : "pi",
+            "line" : 3
+          } ]
+        }, {
+          "name" : "Operator",
+          "value" : "*",
+          "line" : 3
+        }, {
+          "name" : "Expression",
+          "children" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ],
+          "line" : 3,
+          "childrenList" : [ {
+            "name" : "Literal",
+            "value" : "2.0",
+            "line" : 3
+          } ]
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 3
+      } ]
+    }, {
+      "name" : "Constant",
+      "children" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 4
+      }, {
+        "name" : "Identifier",
+        "value" : "name",
+        "line" : 4
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "string",
+        "line" : 4
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 4
+      }, {
+        "name" : "Expression",
+        "children" : [ {
+          "name" : "Literal",
+          "value" : "\"Tester\"",
+          "line" : 4
+        } ],
+        "line" : 4,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "\"Tester\"",
+          "line" : 4
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 4
+      } ],
+      "line" : 4,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 4
+      }, {
+        "name" : "Identifier",
+        "value" : "name",
+        "line" : 4
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "string",
+        "line" : 4
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 4
+      }, {
+        "name" : "Expression",
+        "children" : [ {
+          "name" : "Literal",
+          "value" : "\"Tester\"",
+          "line" : 4
+        } ],
+        "line" : 4,
+        "childrenList" : [ {
+          "name" : "Literal",
+          "value" : "\"Tester\"",
+          "line" : 4
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 4
+      } ]
+    }, {
+      "name" : "Constant",
+      "children" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 5
+      }, {
+        "name" : "Identifier",
+        "value" : "isValid",
+        "line" : 5
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "bool",
+        "line" : 5
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 5
+      }, {
+        "name" : "BuiltInFunctionCall",
+        "children" : [ {
+          "name" : "BuiltInFunction",
+          "value" : "!",
+          "line" : 5
+        }, {
+          "name" : "Parameters",
+          "children" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ]
+        }, {
+          "name" : "SpecialSymbol",
+          "value" : ")",
+          "line" : 5
+        } ],
+        "line" : 5,
+        "childrenList" : [ {
+          "name" : "BuiltInFunction",
+          "value" : "!",
+          "line" : 5
+        }, {
+          "name" : "Parameters",
+          "children" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ]
+        }, {
+          "name" : "SpecialSymbol",
+          "value" : ")",
+          "line" : 5
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 5
+      } ],
+      "line" : 5,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "final",
+        "line" : 5
+      }, {
+        "name" : "Identifier",
+        "value" : "isValid",
+        "line" : 5
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "bool",
+        "line" : 5
+      }, {
+        "name" : "Assignment",
+        "value" : "=",
+        "line" : 5
+      }, {
+        "name" : "BuiltInFunctionCall",
+        "children" : [ {
+          "name" : "BuiltInFunction",
+          "value" : "!",
+          "line" : 5
+        }, {
+          "name" : "Parameters",
+          "children" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ]
+        }, {
+          "name" : "SpecialSymbol",
+          "value" : ")",
+          "line" : 5
+        } ],
+        "line" : 5,
+        "childrenList" : [ {
+          "name" : "BuiltInFunction",
+          "value" : "!",
+          "line" : 5
+        }, {
+          "name" : "Parameters",
+          "children" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ],
+          "line" : 5,
+          "childrenList" : [ {
+            "name" : "Expression",
+            "children" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ],
+            "line" : 5,
+            "childrenList" : [ {
+              "name" : "Literal",
+              "value" : "false",
+              "line" : 5
+            } ]
+          } ]
+        }, {
+          "name" : "SpecialSymbol",
+          "value" : ")",
+          "line" : 5
+        } ]
+      }, {
+        "name" : "Punctuation",
+        "value" : ";",
+        "line" : 5
+      } ]
+    }, {
+      "name" : "Function",
+      "children" : [ {
+        "name" : "Keyword",
+        "value" : "fun",
+        "line" : 7
+      }, {
+        "name" : "Identifier",
+        "value" : "main",
+        "line" : 7
+      }, {
+        "name" : "SpecialSymbol",
+        "value" : "(",
+        "line" : 7
+      }, {
+        "name" : "SpecialSymbol",
+        "value" : ")",
+        "line" : 7
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "void",
+        "line" : 7
+      }, {
+        "name" : "FunctionBlock",
+        "children" : [ {
+          "name" : "Statements",
+          "children" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ]
+        } ],
+        "line" : 7,
+        "childrenList" : [ {
+          "name" : "Statements",
+          "children" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ]
+        } ]
+      } ],
+      "line" : 7,
+      "childrenList" : [ {
+        "name" : "Keyword",
+        "value" : "fun",
+        "line" : 7
+      }, {
+        "name" : "Identifier",
+        "value" : "main",
+        "line" : 7
+      }, {
+        "name" : "SpecialSymbol",
+        "value" : "(",
+        "line" : 7
+      }, {
+        "name" : "SpecialSymbol",
+        "value" : ")",
+        "line" : 7
+      }, {
+        "name" : "TypeSpecifier",
+        "value" : "void",
+        "line" : 7
+      }, {
+        "name" : "FunctionBlock",
+        "children" : [ {
+          "name" : "Statements",
+          "children" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ]
+        } ],
+        "line" : 7,
+        "childrenList" : [ {
+          "name" : "Statements",
+          "children" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
+          } ],
+          "line" : 8,
+          "childrenList" : [ {
+            "name" : "BuiltInFunctionCall",
+            "children" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ],
+            "line" : 8,
+            "childrenList" : [ {
+              "name" : "BuiltInFunction",
+              "value" : "writeln",
+              "line" : 8
+            }, {
+              "name" : "Parameters",
+              "children" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ],
+              "line" : 8,
+              "childrenList" : [ {
+                "name" : "Expression",
+                "children" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ],
+                "line" : 8,
+                "childrenList" : [ {
+                  "name" : "Literal",
+                  "value" : "\"constants: , pi, , tau, , name\"",
+                  "line" : 8
+                } ]
+              } ]
+            }, {
+              "name" : "SpecialSymbol",
+              "value" : ")",
+              "line" : 8
+            } ]
+          }, {
+            "name" : "Punctuation",
+            "value" : ";",
+            "line" : 8
           } ]
         } ]
       } ]

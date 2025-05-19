@@ -18,6 +18,7 @@ public class Literal extends Symbol {
     this.attribute = attribute;
     this.line_number = line_number;
     this.column = column;
+
   }
 
   public Literal(String attribute, int line_number) {
@@ -131,7 +132,7 @@ public class Literal extends Symbol {
      }
    }
  */
-  private boolean isString(String word) {
+  public boolean isString(String word) {
     if (word == null || word.length() < 2) {
       return false;
     }
@@ -167,8 +168,17 @@ public class Literal extends Symbol {
     }
   }
 
-  public String typeOfLiteral() {
-    return typeOfLiteral;
+  public String typeOfLiteral(String word) {
+    if (isInt(word)) {
+      return "int";
+    } else if (isFloat(word)) {
+      return "float";
+    } else if (isString(word)) {
+      return "string";
+    } else if (BOOL.contains(word)) {
+      return "boolean";
+    }
+    return "other";
   }
 
   @Override

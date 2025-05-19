@@ -7,7 +7,7 @@ import java.util.List;
 public class Keyword extends Symbol {
 
   private int line_number;
-  private static final ArrayList<String> KEYWORDS = new ArrayList<>(
+  public static final ArrayList<String> KEYWORDS = new ArrayList<>(
       List.of("free", "final", "rec", "fun", "for", "while", "if", "else", "return", "of",
           "array"));
   private String attribute;

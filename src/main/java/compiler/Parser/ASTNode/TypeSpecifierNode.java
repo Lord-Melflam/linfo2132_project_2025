@@ -34,7 +34,22 @@ public class TypeSpecifierNode extends ASTNode {
   }
 
   @Override
-  public void accept(ASTVisitor visitor) {
+  public int getLine() {
+    return 0;
+  }
 
+  @Override
+  public void acceptAST(ASTVisitor visitor) {
+
+  }
+
+  @Override
+  public <T> T accept(ASTVisitor<T> visitor) {
+    return null;
+  }
+
+  @Override
+  public ASTNode deepCopy() {
+    return new TypeSpecifierNode(this.type);
   }
 }

@@ -40,4 +40,14 @@ public class ASTNodeProcessor implements ASTVisitor {
   public void visit(MainNode constantNode) {
     root.addNode(constantNode);
   }
+
+  @Override
+  public Object visitMainNode(MainNode node) {
+    return null;
+  }
+
+  @Override
+  public Object visitGenericNode(GenericNode node) {
+    return null;
+  }
 }

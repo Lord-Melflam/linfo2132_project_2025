@@ -2,6 +2,7 @@ package compiler.Parser.Grammar.Record;
 
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
+import compiler.Parser.ASTNode.GenericNode;
 import compiler.Parser.ASTNode.MainNode;
 import compiler.Parser.Utils.Enum.TokenType;
 import compiler.Parser.Utils.Interfaces.ASTNode;
@@ -13,9 +14,13 @@ public class RecordField {
 
   private final Utils utils;
   private final String nodeName = "RecordField";
+  private int line;
+  private Position position;
 
   public RecordField(Utils utils, Position savedPosition) {
     this.utils = utils;
+    line = utils.getLine();
+    position = savedPosition;
   }
 
   public LinkedList<ASTNode> isRecordField() throws UnrecognisedTokenException, ParserException {
@@ -27,15 +32,37 @@ public class RecordField {
 
       if (!utils.matchIndex(TokenType.RECORD, true) && !utils.matchIndex(TokenType.TYPESPECIFIER,
           true)) {
-        break;
+        continue;
       }
+
       field.add(utils.getGenericNode());
+      if (utils.matchIndex(TokenType.SEMICOLON, true)) {
+        recordFieldNodes.addLast(new MainNode("Field", field, line));
+        continue;
+      }
+/*      if (((GenericNode<?>) field.getLast()).getValue().contains("[]")) {
+        MainNode mainNode = new MainNode("ArrayRecord", field, utils.getLine());
+        field.clear();
+        field.add(mainNode);
+
+      }*/
+      if (utils.matchIndex(TokenType.LITERAL, true)) {
+        if (utils.getGenericNode().getValue().equals("[]")) {
+          field.add(new GenericNode<>("TypeSpecifier",
+              ((GenericNode<?>) field.removeLast()).getValue() + utils.getGenericNode().getValue(),
+              utils.getLine()));
+          recordFieldNodes.addLast(new MainNode("Field", field, line));
+         /* MainNode mainNode = new MainNode("ArrayRecord", field, utils.getLine());
+          field.clear();
+          field.add(mainNode);*/
+        }
+      }
 
       if (!utils.matchIndex(TokenType.SEMICOLON, true)) {
         break;
       }
-      field.add(utils.getGenericNode());
-      recordFieldNodes.addLast(new MainNode("Field", field));
+      //field.add(utils.getGenericNode());
+      //recordFieldNodes.addLast(new MainNode("Field", field, line));
     }
 
     return recordFieldNodes;

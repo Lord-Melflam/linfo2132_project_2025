@@ -1,0 +1,101 @@
+$ Petit programme : Constantes et fonction simple
+final pi float = 3.14;
+final message string = "Hello World!";
+final test int = ((a % 5) * 3.5 + floor(b/2)) / (c - d.x);
+final test int =person.history[len(employees[floor(i/2.0)].history) - 1] * 2;
+final test bool = !(isEmpty && message == "") || (age >= 18 && score < floor(avg*1.1));
+final test string = (chr(65 + index%26) + "_" + stringVar)[(x*y) % len(stringVar)];
+final test float = floor() % (len(users) + 1);
+final test bool =(stringArray[(i + j) % len(stringArray)] + suffix)[0] == "A";
+
+fun greet() {
+    writeln(message);
+}
+
+fun main() {
+    greet();
+}
+
+$ Programme intermediaire : Structures de controle et enregistrements
+Person rec {
+    name string;
+    age int;
+}
+
+a int = 10;
+
+fun checkAge(p Person) bool {
+    return p.age >= 18;
+}
+
+fun main() {
+    p Person = Person("Alice", 20);
+    if (checkAge(p)) {
+        writeln("Adult");
+    } else {
+        writeln("Minor");
+    }
+}
+
+$ Grand programme : Tableaux, allocation memoire et fonctions avancees
+Point rec {
+    x int;
+    y int;
+}
+
+fun sumArray(arr int[]) int {
+    total int = 0;
+    i int;
+    for (i, 0, len(arr)-1, 1) {
+        total = total + arr[i];
+    }
+    return total;
+}
+
+fun main() {
+    nums int[] = array [5] of int;
+    nums[0] = 1;
+    nums[1] = 2;
+    nums[2] = 3;
+    nums[3] = 4;
+    nums[4] = 5;
+
+    writeln("Sum: ", sumArray(nums));
+
+    p Point = Point(3, 4);
+    free p;
+}
+
+$ Programme avance : Manipulation de booleens et operations logiques
+fun isEven(n int) bool {
+    return (n % 2) == 0;
+}
+
+fun logicalTest() {
+    a bool = true;
+    b bool = false;
+    writeln("A && B: ", a && b);
+    writeln("A || B: ", a || b);
+    writeln("!(A): ", !(a));
+}
+
+fun main() {
+    writeln("Is 4 even? ", isEven(4));
+    logicalTest();
+}
+
+$ Programme complexe : Utilisation de boucles imbriquees et conditions
+fun complexLoop() {
+    i int;
+    j int;
+    for (i, 1, 5, 1) {
+        for (j, 1, 5, 1) {
+            if ((i * j) % 2 == 0) {
+                writeln(i, " * ", j, " = ", i * j, " is even");
+            } else {
+                writeln(i, " * ", j, " = ", i * j, " is odd");
+            }
+        }
+    }
+}
+

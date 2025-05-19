@@ -9,7 +9,7 @@ public class CodeSamples {
       + "final isValid bool = !(false);\n"
       + "\n"
       + "fun main() {\n"
-      + "    writeln(\"constants: \", pi, \" \", tau, \" \", name);\n"
+      + "    writeln(\"constants: , pi, , tau, , name\");\n"
       + "}\n";
   public static String recordArrayUsage = "final size int = 10;\n"
       + "\n"
@@ -29,7 +29,7 @@ public class CodeSamples {
   public static String expression = "final a int = 5;\n"
       + "final b float = 3.2;\n"
       + "\n"
-      + "fun calculate(int x) float {\n"
+      + "fun calculate(x int) float {\n"
       + "    return -(x * b) + (a / 2.0);\n"
       + "}\n"
       + "\n"
@@ -51,7 +51,7 @@ public class CodeSamples {
   public static String constantError = "$ Invalid: Using function in constant\n"
       + "final CONST int = square(5); \n"
       + "\n"
-      + "fun square(int x) int {\n"
+      + "fun square(x int) int {\n"
       + "    return x * x;\n"
       + "}\n";
   public static String typeMismatch = "final a string = \"5\";\n"

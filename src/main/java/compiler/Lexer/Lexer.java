@@ -74,6 +74,9 @@ public class Lexer implements Iterator<Symbol> {
       column++;
 
       word.append(ch);
+      if (word.toString().equals("stringArray")) {
+        System.out.println();
+      }
       List<String> symbolSet = symbolRegistry.getSymbolTypeList(word.toString());
       if (symbolSet.isEmpty()) {
         if (!word.isEmpty()) {

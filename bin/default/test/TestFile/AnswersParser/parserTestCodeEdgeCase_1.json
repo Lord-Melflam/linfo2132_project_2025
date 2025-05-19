@@ -1,0 +1,2417 @@
+{
+  "root": {
+    "nodes": [
+      {
+        "type": "MainNode",
+        "name": "Constant",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "final"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "maxSize"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "int"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Assignment",
+            "value": "="
+          },
+          {
+            "type": "MainNode",
+            "name": "Expression",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "Literal",
+                "value": "100"
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "Punctuation",
+            "value": ";"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Constant",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "final"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "epsilon"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "float"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Assignment",
+            "value": "="
+          },
+          {
+            "type": "MainNode",
+            "name": "Expression",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "Literal",
+                "value": "0.00001"
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "Punctuation",
+            "value": ";"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Constant",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "final"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "message"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "string"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Assignment",
+            "value": "="
+          },
+          {
+            "type": "MainNode",
+            "name": "Expression",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "Literal",
+                "value": "\"Edge Cases Test\""
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "Punctuation",
+            "value": ";"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Constant",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "final"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "isFlag"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "bool"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Assignment",
+            "value": "="
+          },
+          {
+            "type": "MainNode",
+            "name": "Expression",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "Literal",
+                "value": "false"
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "Punctuation",
+            "value": ";"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Record",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Record",
+            "value": "Point"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "rec"
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "{"
+          },
+          {
+            "type": "MainNode",
+            "name": "RecordFields",
+            "children": [
+              {
+                "type": "MainNode",
+                "name": "Field",
+                "children": [
+                  {
+                    "type": "GenericNode",
+                    "name": "Identifier",
+                    "value": "x"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "TypeSpecifier",
+                    "value": "int"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  }
+                ]
+              },
+              {
+                "type": "MainNode",
+                "name": "Field",
+                "children": [
+                  {
+                    "type": "GenericNode",
+                    "name": "Identifier",
+                    "value": "y"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "TypeSpecifier",
+                    "value": "int"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "}"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Record",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Record",
+            "value": "Complex"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "rec"
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "{"
+          },
+          {
+            "type": "MainNode",
+            "name": "RecordFields",
+            "children": [
+              {
+                "type": "MainNode",
+                "name": "Field",
+                "children": [
+                  {
+                    "type": "GenericNode",
+                    "name": "Identifier",
+                    "value": "real"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "TypeSpecifier",
+                    "value": "float"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  }
+                ]
+              },
+              {
+                "type": "MainNode",
+                "name": "Field",
+                "children": [
+                  {
+                    "type": "GenericNode",
+                    "name": "Identifier",
+                    "value": "imaginary"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "TypeSpecifier",
+                    "value": "float"
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "}"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Declaration",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "globalArray"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "int[]"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Assignment",
+            "value": "="
+          },
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "array"
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "["
+          },
+          {
+            "type": "MainNode",
+            "name": "Expression",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "Literal",
+                "value": "5"
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "]"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "of"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "int"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Punctuation",
+            "value": ";"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Declaration",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "recordInstance"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Record",
+            "value": "Complex"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Assignment",
+            "value": "="
+          },
+          {
+            "type": "MainNode",
+            "name": "RecordConstructorCall",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "Record",
+                "value": "Complex"
+              },
+              {
+                "type": "GenericNode",
+                "name": "SpecialSymbol",
+                "value": "("
+              },
+              {
+                "type": "MainNode",
+                "name": "Parameters",
+                "children": [
+                  {
+                    "type": "MainNode",
+                    "name": "Expression",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Literal",
+                        "value": "1.0"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Expression",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Literal",
+                        "value": "-2.5"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "GenericNode",
+                "name": "SpecialSymbol",
+                "value": ")"
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "Punctuation",
+            "value": ";"
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Function",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "fun"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "divide"
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "("
+          },
+          {
+            "type": "MainNode",
+            "name": "Parameters",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "TypeSpecifier",
+                "value": "int"
+              },
+              {
+                "type": "GenericNode",
+                "name": "Identifier",
+                "value": "a"
+              },
+              {
+                "type": "GenericNode",
+                "name": "Punctuation",
+                "value": ","
+              },
+              {
+                "type": "GenericNode",
+                "name": "TypeSpecifier",
+                "value": "int"
+              },
+              {
+                "type": "GenericNode",
+                "name": "Identifier",
+                "value": "b"
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": ")"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "int"
+          },
+          {
+            "type": "MainNode",
+            "name": "FunctionBlock",
+            "children": [
+              {
+                "type": "MainNode",
+                "name": "Statements",
+                "children": [
+                  {
+                    "type": "MainNode",
+                    "name": "IfControlStructure",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Keyword",
+                        "value": "if"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "BinaryExpression",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "b"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "Operator",
+                            "value": "=="
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Literal",
+                                "value": "0"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "{"
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Statements",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "BuiltInFunctionCall",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "BuiltInFunction",
+                                "value": "writeln"
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "("
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Parameters",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Literal",
+                                        "value": "\"Division by zero error!\""
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": ")"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "Punctuation",
+                            "value": ";"
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "Return",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Keyword",
+                                "value": "return"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Literal",
+                                    "value": "-1"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Punctuation",
+                                "value": ";"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Return",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Keyword",
+                        "value": "return"
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "BinaryExpression",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "a"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "Operator",
+                            "value": "/"
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "b"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Function",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "fun"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "nestedScopesTest"
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "("
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": ")"
+          },
+          {
+            "type": "TypeSpecifierNode",
+            "type": "void",
+            "name": "TypeSpecifier"
+          },
+          {
+            "type": "MainNode",
+            "name": "FunctionBlock",
+            "children": [
+              {
+                "type": "MainNode",
+                "name": "Statements",
+                "children": [
+                  {
+                    "type": "MainNode",
+                    "name": "Declaration",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "a"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "TypeSpecifier",
+                        "value": "int"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Assignment",
+                        "value": "="
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Expression",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "Literal",
+                            "value": "5"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Declaration",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "b"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "TypeSpecifier",
+                        "value": "int"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Assignment",
+                        "value": "="
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Expression",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "Literal",
+                            "value": "10"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "BinaryExpression",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "a"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Operator",
+                                "value": "+"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "b"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Declaration",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "c"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "TypeSpecifier",
+                        "value": "int"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Assignment",
+                        "value": "="
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Expression",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "Literal",
+                            "value": "20"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "BinaryExpression",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "a"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Operator",
+                                "value": "+"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "BinaryExpression",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Identifier",
+                                        "value": "b"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Operator",
+                                    "value": "+"
+                                  },
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Identifier",
+                                        "value": "c"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Function",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "fun"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "recursiveArraySum"
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "("
+          },
+          {
+            "type": "MainNode",
+            "name": "Parameters",
+            "children": [
+              {
+                "type": "GenericNode",
+                "name": "TypeSpecifier",
+                "value": "int[]"
+              },
+              {
+                "type": "GenericNode",
+                "name": "Identifier",
+                "value": "arr"
+              },
+              {
+                "type": "GenericNode",
+                "name": "Punctuation",
+                "value": ","
+              },
+              {
+                "type": "GenericNode",
+                "name": "TypeSpecifier",
+                "value": "int"
+              },
+              {
+                "type": "GenericNode",
+                "name": "Identifier",
+                "value": "size"
+              }
+            ]
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": ")"
+          },
+          {
+            "type": "GenericNode",
+            "name": "TypeSpecifier",
+            "value": "int"
+          },
+          {
+            "type": "MainNode",
+            "name": "FunctionBlock",
+            "children": [
+              {
+                "type": "MainNode",
+                "name": "Statements",
+                "children": [
+                  {
+                    "type": "MainNode",
+                    "name": "IfControlStructure",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Keyword",
+                        "value": "if"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "BinaryExpression",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "size"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "Operator",
+                            "value": "=="
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Literal",
+                                "value": "0"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "{"
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Statements",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "Return",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Keyword",
+                                "value": "return"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Literal",
+                                    "value": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Punctuation",
+                                "value": ";"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Return",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Keyword",
+                        "value": "return"
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "BinaryExpression",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "ArrayAccess",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "arr"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "BinaryExpression",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Identifier",
+                                        "value": "size"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Operator",
+                                    "value": "-"
+                                  },
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Literal",
+                                        "value": "1"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "Operator",
+                            "value": "+"
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "FunctionCall",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "recursiveArraySum"
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "("
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Parameters",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Identifier",
+                                        "value": "arr"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "MainNode",
+                                    "name": "BinaryExpression",
+                                    "children": [
+                                      {
+                                        "type": "MainNode",
+                                        "name": "Expression",
+                                        "children": [
+                                          {
+                                            "type": "GenericNode",
+                                            "name": "Identifier",
+                                            "value": "size"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Operator",
+                                        "value": "-"
+                                      },
+                                      {
+                                        "type": "MainNode",
+                                        "name": "Expression",
+                                        "children": [
+                                          {
+                                            "type": "GenericNode",
+                                            "name": "Literal",
+                                            "value": "1"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": ")"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "MainNode",
+        "name": "Function",
+        "children": [
+          {
+            "type": "GenericNode",
+            "name": "Keyword",
+            "value": "fun"
+          },
+          {
+            "type": "GenericNode",
+            "name": "Identifier",
+            "value": "main"
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": "("
+          },
+          {
+            "type": "GenericNode",
+            "name": "SpecialSymbol",
+            "value": ")"
+          },
+          {
+            "type": "TypeSpecifierNode",
+            "type": "void",
+            "name": "TypeSpecifier"
+          },
+          {
+            "type": "MainNode",
+            "name": "FunctionBlock",
+            "children": [
+              {
+                "type": "MainNode",
+                "name": "Statements",
+                "children": [
+                  {
+                    "type": "MainNode",
+                    "name": "Declaration",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "greeting"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "TypeSpecifier",
+                        "value": "string"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Assignment",
+                        "value": "="
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "BinaryExpression",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "message"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "Operator",
+                            "value": "+"
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Literal",
+                                "value": "\" - Testing\""
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "BinaryExpression",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "greeting"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Operator",
+                                "value": "+"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Literal",
+                                    "value": "\"!\""
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "ArrayAccess",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "globalArray"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Literal",
+                                    "value": "10"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Declaration",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "x"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "TypeSpecifier",
+                        "value": "float"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Assignment",
+                        "value": "="
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "BinaryExpression",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Literal",
+                                "value": "5"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "Operator",
+                            "value": "+"
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Literal",
+                                "value": "2.5"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "Expression",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "x"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "BinaryExpression",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Literal",
+                                    "value": "\"Sum of array: \""
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Operator",
+                                "value": "+"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "sum"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Assignment",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "recordInstance"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": "."
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "imaginary"
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "BuiltInFunctionCall",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "BuiltInFunction",
+                            "value": "floor"
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "SpecialSymbol",
+                            "value": "("
+                          },
+                          {
+                            "type": "MainNode",
+                            "name": "Parameters",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "FieldAccess",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Identifier",
+                                        "value": "recordInstance"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Punctuation",
+                                    "value": "."
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "imaginary"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "SpecialSymbol",
+                            "value": ")"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "BinaryExpression",
+                            "children": [
+                              {
+                                "type": "MainNode",
+                                "name": "Expression",
+                                "children": [
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Literal",
+                                    "value": "\"Complex number: \""
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Operator",
+                                "value": "+"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "BinaryExpression",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Identifier",
+                                        "value": "recordInstance"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Punctuation",
+                                    "value": "."
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Identifier",
+                                    "value": "real"
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Operator",
+                                    "value": "+"
+                                  },
+                                  {
+                                    "type": "MainNode",
+                                    "name": "BinaryExpression",
+                                    "children": [
+                                      {
+                                        "type": "MainNode",
+                                        "name": "Expression",
+                                        "children": [
+                                          {
+                                            "type": "GenericNode",
+                                            "name": "Literal",
+                                            "value": "\" + \""
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Operator",
+                                        "value": "+"
+                                      },
+                                      {
+                                        "type": "MainNode",
+                                        "name": "BinaryExpression",
+                                        "children": [
+                                          {
+                                            "type": "MainNode",
+                                            "name": "Expression",
+                                            "children": [
+                                              {
+                                                "type": "GenericNode",
+                                                "name": "Identifier",
+                                                "value": "recordInstance"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "type": "GenericNode",
+                                            "name": "Punctuation",
+                                            "value": "."
+                                          },
+                                          {
+                                            "type": "GenericNode",
+                                            "name": "Identifier",
+                                            "value": "imaginary"
+                                          },
+                                          {
+                                            "type": "GenericNode",
+                                            "name": "Operator",
+                                            "value": "+"
+                                          },
+                                          {
+                                            "type": "MainNode",
+                                            "name": "Expression",
+                                            "children": [
+                                              {
+                                                "type": "GenericNode",
+                                                "name": "Literal",
+                                                "value": "\"i\""
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "ForControlStructure",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Keyword",
+                        "value": "for"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "i"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "TypeSpecifier",
+                        "value": "int"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ","
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Expression",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "Literal",
+                            "value": "1"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ","
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Expression",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "Literal",
+                            "value": "10"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "Punctuation",
+                        "value": ","
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Expression",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "Literal",
+                            "value": "2"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "{"
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Statements",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "IfControlStructure",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Keyword",
+                                "value": "if"
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "("
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "BinaryExpression",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Identifier",
+                                        "value": "i"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Operator",
+                                    "value": "%"
+                                  },
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Literal",
+                                        "value": "2"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Operator",
+                                    "value": "=="
+                                  },
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Literal",
+                                        "value": "0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": ")"
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "{"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Statements",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "BuiltInFunctionCall",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "BuiltInFunction",
+                                        "value": "writeln"
+                                      },
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "SpecialSymbol",
+                                        "value": "("
+                                      },
+                                      {
+                                        "type": "MainNode",
+                                        "name": "Parameters",
+                                        "children": [
+                                          {
+                                            "type": "MainNode",
+                                            "name": "BinaryExpression",
+                                            "children": [
+                                              {
+                                                "type": "MainNode",
+                                                "name": "Expression",
+                                                "children": [
+                                                  {
+                                                    "type": "GenericNode",
+                                                    "name": "Literal",
+                                                    "value": "\"Even: \""
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "GenericNode",
+                                                "name": "Operator",
+                                                "value": "+"
+                                              },
+                                              {
+                                                "type": "MainNode",
+                                                "name": "Expression",
+                                                "children": [
+                                                  {
+                                                    "type": "GenericNode",
+                                                    "name": "Identifier",
+                                                    "value": "i"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "SpecialSymbol",
+                                        "value": ")"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Punctuation",
+                                    "value": ";"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "}"
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "Keyword",
+                                "value": "else"
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "{"
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Statements",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "BuiltInFunctionCall",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "BuiltInFunction",
+                                        "value": "writeln"
+                                      },
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "SpecialSymbol",
+                                        "value": "("
+                                      },
+                                      {
+                                        "type": "MainNode",
+                                        "name": "Parameters",
+                                        "children": [
+                                          {
+                                            "type": "MainNode",
+                                            "name": "BinaryExpression",
+                                            "children": [
+                                              {
+                                                "type": "MainNode",
+                                                "name": "Expression",
+                                                "children": [
+                                                  {
+                                                    "type": "GenericNode",
+                                                    "name": "Literal",
+                                                    "value": "\"Odd: \""
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "type": "GenericNode",
+                                                "name": "Operator",
+                                                "value": "+"
+                                              },
+                                              {
+                                                "type": "MainNode",
+                                                "name": "Expression",
+                                                "children": [
+                                                  {
+                                                    "type": "GenericNode",
+                                                    "name": "Identifier",
+                                                    "value": "i"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "SpecialSymbol",
+                                        "value": ")"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "GenericNode",
+                                    "name": "Punctuation",
+                                    "value": ";"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "}"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "Function",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "Identifier",
+                        "value": "nestedScopesTest"
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "GenericNode",
+                            "name": "SpecialSymbol",
+                            "value": "("
+                          },
+                          {
+                            "type": "GenericNode",
+                            "name": "SpecialSymbol",
+                            "value": ")"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  },
+                  {
+                    "type": "MainNode",
+                    "name": "BuiltInFunctionCall",
+                    "children": [
+                      {
+                        "type": "GenericNode",
+                        "name": "BuiltInFunction",
+                        "value": "writeln"
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": "("
+                      },
+                      {
+                        "type": "MainNode",
+                        "name": "Parameters",
+                        "children": [
+                          {
+                            "type": "MainNode",
+                            "name": "FunctionCall",
+                            "children": [
+                              {
+                                "type": "GenericNode",
+                                "name": "Identifier",
+                                "value": "divide"
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": "("
+                              },
+                              {
+                                "type": "MainNode",
+                                "name": "Parameters",
+                                "children": [
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Literal",
+                                        "value": "10"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "MainNode",
+                                    "name": "Expression",
+                                    "children": [
+                                      {
+                                        "type": "GenericNode",
+                                        "name": "Literal",
+                                        "value": "0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "GenericNode",
+                                "name": "SpecialSymbol",
+                                "value": ")"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "GenericNode",
+                        "name": "SpecialSymbol",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "GenericNode",
+                    "name": "Punctuation",
+                    "value": ";"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

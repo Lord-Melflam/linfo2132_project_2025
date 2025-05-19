@@ -67,10 +67,12 @@ public class Record {
   private final Utils utils;
   private final String nodeName = "Record";
   private final Position savedPosition;
+  private int line;
 
   public Record(Utils utils, Position savedPosition) {
     this.utils = utils;
     this.savedPosition = savedPosition;
+    line = utils.getLine();
   }
 
   public MainNode isRecord() throws UnrecognisedTokenException, ParserException {
@@ -80,16 +82,16 @@ public class Record {
       if (utils.matchIndex(TokenType.REC, true)) {
         recordNode.addLast(utils.getGenericNode());
         if (utils.matchIndex(TokenType.LBRACE, true)) {
-          recordNode.addLast(utils.getGenericNode());
+          //recordNode.addLast(utils.getGenericNode());
           LinkedList<ASTNode> recordFields = new RecordField(utils, savedPosition).isRecordField();
           if (recordFields != null) {
-            recordNode.addLast(new MainNode("RecordFields", recordFields));
+            recordNode.addLast(new MainNode("RecordFields", recordFields, line));
           }
           if (utils.matchIndex(TokenType.RBRACE, true)) {
-            recordNode.addLast(utils.getGenericNode());
+            //recordNode.addLast(utils.getGenericNode());
           }
 
-          return new MainNode(nodeName, recordNode);
+          return new MainNode(nodeName, recordNode, line);
         }
       }
     }

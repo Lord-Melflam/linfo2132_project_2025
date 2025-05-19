@@ -1,0 +1,1 @@
+final test bool =(stringArray[(i + j) % len(stringArray)] + suffix)[0] == "A";

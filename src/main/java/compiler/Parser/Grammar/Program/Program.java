@@ -77,6 +77,11 @@ public class Program implements Subject {
     return new Declaration(utils, savedPosition, getGenericNode).declaration();
   }
 
+  public MainNode isInitialisation(Position savedPosition, GenericNode<String> getGenericNode)
+      throws UnrecognisedTokenException, ParserException {
+    return new Declaration(utils, savedPosition, getGenericNode).initialisation();
+  }
+
   public MainNode isConstant(Position savedPosition)
       throws UnrecognisedTokenException, ParserException {
     return new Declaration(utils, savedPosition).isConstant();
@@ -104,7 +109,7 @@ public class Program implements Subject {
 
   public boolean checkNode(MainNode astNode, ASTNodeProcessor nodeProcessor) {
     if (astNode != null) {
-      astNode.accept(nodeProcessor);
+      astNode.acceptAST(nodeProcessor);
       return true;
     }
     return false;
@@ -159,7 +164,11 @@ public class Program implements Subject {
           if (next.getName().equals(TokenType.TYPESPECIFIER.getCategory()) || next.getName()
               .equals(TokenType.RECORD.getCategory())) {
             return checkNode(isDeclaration(savedPosition, getGenericNode), nodeProcessor);
-          } /*else {
+          } else if (next.getToken().equals(TokenType.ASSIGNMENT.getValue())) {
+            return checkNode(isInitialisation(savedPosition, getGenericNode), nodeProcessor);
+
+          }
+          /*else {
             return checkNode(new Expression(utils, savedPosition).expression(), nodeProcessor);
           }*/
         }

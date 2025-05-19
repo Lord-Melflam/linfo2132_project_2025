@@ -22,11 +22,13 @@ public class ControlStructure {
       new HashSet<>(Set.of(TokenType.TYPESPECIFIER, TokenType.RECORD)));
   private LinkedList<ASTNode> controlStructureNode;
   private final String nodeName = "ControlStructure";
+  private int line;
 
   public ControlStructure(Utils utils, Position savedPosition) {
     this.utils = utils;
     this.savedPosition = savedPosition;
     controlStructureNode = new LinkedList<>();
+    line = utils.getLine();
   }
 
 
@@ -71,7 +73,7 @@ public class ControlStructure {
         controlStructureNode.addLast(expressionNode);
       }
       if (rightPar()) {
-        return new MainNode("For" + nodeName, controlStructureNode);
+        return new MainNode("For" + nodeName, controlStructureNode, line);
       }
     }
     utils.throwParserException();
@@ -105,7 +107,7 @@ public class ControlStructure {
         MainNode expressionNode = new Expression(utils, savedPosition).expression();
         controlStructureNode.addLast(expressionNode);
         if (rightPar()) {
-          return new MainNode("While" + nodeName, controlStructureNode);
+          return new MainNode("While" + nodeName, controlStructureNode, line);
         }
       }
     }
@@ -145,11 +147,11 @@ public class ControlStructure {
                   controlStructureNode.addLast(mainNode1);
                   if (utils.matchIndex(TokenType.RBRACE, true)) {
                     controlStructureNode.addLast(utils.getGenericNode());
-                    return new MainNode("If" + nodeName, controlStructureNode);
+                    return new MainNode("If" + nodeName, controlStructureNode, line);
                   }
                 }
               }
-              return new MainNode("If" + nodeName, controlStructureNode);
+              return new MainNode("If" + nodeName, controlStructureNode, line);
             }
           }
         }

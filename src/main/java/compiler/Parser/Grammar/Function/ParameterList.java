@@ -2,6 +2,7 @@ package compiler.Parser.Grammar.Function;
 
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
+import compiler.Parser.ASTNode.GenericNode;
 import compiler.Parser.ASTNode.MainNode;
 import compiler.Parser.Grammar.Expression.Expression;
 import compiler.Parser.Utils.Enum.TokenType;
@@ -19,9 +20,10 @@ public class ParameterList {
   private final Position savedPosition;
   private int currentPosition;
   private final List<HashSet<TokenType>> expectedSymbolsGlobalArray = List.of(
-      new HashSet<>(Set.of(TokenType.ARRAY)),
-      new HashSet<>(Set.of(TokenType.LBRACKET)));
+      new HashSet<>(Set.of(TokenType.ARRAY)), new HashSet<>(Set.of(TokenType.LBRACKET)));
   private LinkedList<ASTNode> ParameterListNode;
+  private LinkedList<ASTNode> Parameter;
+  private int line;
   private final String nodeName = "Parameters";
 
   public ParameterList(Utils utils, Position savedPosition) {
@@ -29,31 +31,43 @@ public class ParameterList {
     this.savedPosition = savedPosition;
     this.currentPosition = 0;
     ParameterListNode = new LinkedList<>();
+    Parameter = new LinkedList<>();
+    line = utils.getLine();
   }
 
   public MainNode isParameterList() throws ParserException, UnrecognisedTokenException {
     parameter();
-    parameterListTail();
-    return new MainNode(nodeName, ParameterListNode);
+    MainNode mainNode = parameterListTail();
+    if (!ParameterListNode.isEmpty() || mainNode != null) {
+      Parameter.addLast(new MainNode("Parameter", ParameterListNode, line));
+    }
+    return new MainNode(nodeName, Parameter, line);
   }
 
-  private void parameterListTail()
-      throws ParserException, UnrecognisedTokenException {
+  private MainNode parameterListTail() throws ParserException, UnrecognisedTokenException {
     if (utils.matchIndex(TokenType.COMMA, true)) {
-      ParameterListNode.addLast(utils.getGenericNode());
+      if (!ParameterListNode.isEmpty()) {
+        Parameter.addLast(new MainNode("Parameter", ParameterListNode, line));
+      }
+      ParameterListNode.clear();
       parameter();
       parameterListTail();
-      return;
+      return new MainNode("Parameter", ParameterListNode, line);
     }
-    return;
+    return null;
   }
 
   private void parameter() throws ParserException, UnrecognisedTokenException {
-    if (utils.matchIndex(TokenType.TYPESPECIFIER, true) || utils.matchIndex(TokenType.RECORD,
-        true)) {
+    if (utils.matchIndex(TokenType.IDENTIFIER, true)) {
       ParameterListNode.addLast(utils.getGenericNode());
-      if (utils.matchIndex(TokenType.IDENTIFIER, true)) {
+      if (utils.matchIndex(TokenType.TYPESPECIFIER, true) || utils.matchIndex(TokenType.RECORD,
+          true)) {
         ParameterListNode.addLast(utils.getGenericNode());
+        if (utils.matchIndex(TokenType.LITERAL, true)) {
+          GenericNode<?> genericNode = (GenericNode<?>) ParameterListNode.removeLast();
+          genericNode.setValue(genericNode.getValue() + utils.getGenericNode().getValue());
+          ParameterListNode.addLast(genericNode);
+        }
         return;
       }
       if (utils.matchIndex(TokenType.LPAREN, true)) {
@@ -76,10 +90,12 @@ public class ParameterList {
         ParameterListNode.addLast(utils.getGenericNode());
         if (utils.matchIndex(TokenType.OF, true)) {
           ParameterListNode.addLast(utils.getGenericNode());
-          if (utils.matchIndex(TokenType.TYPESPECIFIER, true) || utils.matchIndex(
-              TokenType.RECORD,
+          if (utils.matchIndex(TokenType.TYPESPECIFIER, true) || utils.matchIndex(TokenType.RECORD,
               true)) {
             ParameterListNode.addLast(utils.getGenericNode());
+            if (utils.matchIndex(TokenType.LITERAL, true)) {
+              ParameterListNode.addLast(utils.getGenericNode());
+            }
             return;
           }
         }

@@ -1,1 +1,10 @@
-
+Return
+Initialisation
+BuiltInFunctionCall
+Punctuation
+Declaration
+ForControlStructure
+Assignment
+WhileControlStructure
+If
+Expression

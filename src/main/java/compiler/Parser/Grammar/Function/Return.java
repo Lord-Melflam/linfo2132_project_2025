@@ -16,21 +16,23 @@ public class Return {
   private final Position savedPosition;
   private final LinkedList<ASTNode> returnNode;
   private final String nodeName = "Return";
+  private int line;
 
   public Return(Utils utils, Position savedPosition) {
     this.utils = utils;
     this.savedPosition = savedPosition;
     returnNode = new LinkedList<>();
+    line = utils.getLine();
   }
 
   public MainNode isReturn() throws ParserException, UnrecognisedTokenException {
     if (utils.matchIndex(TokenType.RETURN, true)) {
-      returnNode.addLast(utils.getGenericNode());
+      // returnNode.addLast(utils.getGenericNode());
       MainNode expressionNode = new Expression(utils, savedPosition).expression();
       returnNode.addLast(expressionNode);
       if (utils.matchIndex(TokenType.SEMICOLON, true)) {
-        returnNode.addLast(utils.getGenericNode());
-        return new MainNode(nodeName, returnNode);
+        //returnNode.addLast(utils.getGenericNode());
+        return new MainNode(nodeName, returnNode, line);
       }
     }
     utils.throwParserException();

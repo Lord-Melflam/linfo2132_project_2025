@@ -1,21 +1,32 @@
-final x int = 10;
-final y float = x / 0;  $ Division par zero dans une constante (interdit)
+$ Good luck
 
-a int = 5;
-b int = a[0];  $ a n'est pas un tableau, l'indexation est invalide
+final message string = "Hello";
+final run bool = false;
 
-p Point = Point(1, 2);
-free p;
-writeln(p);  $ Acces a un objet apres sa liberation (comportement indefini)
+Point rec {
+    x int;
+    y int;
+}
 
-fun test(int v) int {
-    return test(v);  $ Recursion infinie sans condition d'arret
+a int = 3;
+
+fun square(v int) int {
+    return v * v;
 }
 
 fun main() {
-    arr int[] = array [-5] of int;  $ Taille de tableau negative (interdit)
 
-    writeln(chr(300));  $ Conversion invalide, valeur hors plage pour un caractere
+    i int=9;
 
-    test(5);
+
+
+            if (run) {
+                    writeInt(i);
+
+            } else {
+            i=10;
+                   writeInt(i);
+}
+                    writeInt(i);
+
 }

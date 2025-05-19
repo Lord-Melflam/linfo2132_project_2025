@@ -2,8 +2,8 @@ package compiler.Parser.Grammar.Function;
 
 import compiler.Exceptions.Lexer.UnrecognisedTokenException;
 import compiler.Exceptions.Parser.ParserException;
+import compiler.Parser.ASTNode.GenericNode;
 import compiler.Parser.ASTNode.MainNode;
-import compiler.Parser.ASTNode.TypeSpecifierNode;
 import compiler.Parser.Grammar.Expression.Expression;
 import compiler.Parser.Grammar.Statement.StatementList;
 import compiler.Parser.Utils.Enum.TokenType;
@@ -32,7 +32,7 @@ public class Function {
   );
   private LinkedList<ASTNode> functionNode;
   private LinkedList<ASTNode> functionBlock;
-
+  private int line;
   private final String nodeName = "Function";
 
   public Function(Utils utils, Position savedPosition)
@@ -41,6 +41,7 @@ public class Function {
     this.savedPosition = savedPosition;
     functionNode = new LinkedList<>();
     functionBlock = new LinkedList<>();
+    line = utils.getLine();
   }
 
   public MainNode isFunction() throws UnrecognisedTokenException, ParserException {
@@ -59,9 +60,11 @@ public class Function {
     if (utils.matchIndex(
         TokenType.TYPESPECIFIER, true)) {
       functionNode.addLast(utils.getGenericNode());
+      if (utils.matchIndex(TokenType.LITERAL, true)) {
+        functionNode.addLast(utils.getGenericNode());
+      }
     } else {
-      functionNode.addLast(new TypeSpecifierNode("void"));
-
+      functionNode.addLast(new GenericNode<String>("TypeSpecifier", "void", utils.getLine()));
     }
     if (utils.matchIndex(TokenType.LBRACE, true)) {
       //functionBlock.addLast(utils.getGenericNode());
@@ -78,8 +81,8 @@ public class Function {
           functionBlock.addLast(utils.getGenericNode());
           if (utils.matchIndex(TokenType.RBRACE, true)) {
             functionBlock.addLast(utils.getGenericNode());
-            functionNode.addLast(new MainNode("FunctionBlock", functionBlock));
-            return new MainNode(nodeName, functionNode);
+            functionNode.addLast(new MainNode("FunctionBlock", functionBlock, line));
+            return new MainNode(nodeName, functionNode, line);
           }
         }
       }
@@ -88,8 +91,8 @@ public class Function {
       }
       if (utils.matchIndex(TokenType.RBRACE, true)) {
         //functionBlock.addLast(utils.getGenericNode());
-        functionNode.addLast(new MainNode("FunctionBlock", functionBlock));
-        return new MainNode(nodeName, functionNode);
+        functionNode.addLast(new MainNode("FunctionBlock", functionBlock, line));
+        return new MainNode(nodeName, functionNode, line);
       }
     }
 

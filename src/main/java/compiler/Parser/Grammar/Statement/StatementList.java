@@ -23,11 +23,13 @@ public class StatementList {
   private final Position savedPosition;
   LinkedList<ASTNode> statementListNode;
   private final String nodeName = "Statements";
+  private int line;
 
   public StatementList(Utils utils, Position savedPosition) {
     this.utils = utils;
     this.savedPosition = savedPosition;
     statementListNode = new LinkedList<>();
+    line = utils.getLine();
   }
 
   public MainNode statementList() throws ParserException, UnrecognisedTokenException {
@@ -37,7 +39,7 @@ public class StatementList {
     statement();
     statementList();
 
-    return new MainNode(nodeName, statementListNode);
+    return new MainNode(nodeName, statementListNode, line);
   }
 
   @SuppressWarnings("unchecked")
@@ -127,6 +129,7 @@ public class StatementList {
           }
           if (next.getToken().equals(TokenType.DOT.getValue()) || next.getToken()
               .equals(TokenType.LBRACKET.getValue())) {
+
             MainNode assignmentExpressionNode = new Assignment(utils, savedPosition,
                 getGenericNode).assignment();
             if (assignmentExpressionNode != null) {
@@ -137,10 +140,13 @@ public class StatementList {
           }
 
           if (next.getToken().equals(TokenType.ASSIGNMENT.getValue())) {
-            MainNode assignmentExpressionNode = new Assignment(utils, savedPosition,
-                getGenericNode).assignment();
-            if (assignmentExpressionNode != null) {
-              statementListNode.addLast(assignmentExpressionNode);
+            MainNode declarationNode = new Declaration(utils, savedPosition,
+                getGenericNode).initialisation();
+            /*todo*/
+            /*MainNode assignmentExpressionNode = new Assignment(utils, savedPosition,
+                getGenericNode).assignment();*/
+            if (declarationNode != null) {
+              statementListNode.addLast(declarationNode);
               return;
             }
             return;
@@ -159,6 +165,7 @@ public class StatementList {
 
   private void parseExpression(GenericNode<String> getGenericNode)
       throws UnrecognisedTokenException, ParserException {
+    savedPosition.setSavedPosition(savedPosition.getSavedPosition()-1);
     MainNode callFunctionNode = new Expression(utils, savedPosition, getGenericNode).expression();
     if (callFunctionNode != null) {
       statementListNode.addLast(callFunctionNode);

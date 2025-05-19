@@ -30,7 +30,7 @@ dependencies {
     // Use JUnit test framework.
     testImplementation("junit:junit:4.13.2")
     implementation("junit:junit:4.13.2")
-
+    implementation("org.ow2.asm:asm:9.5")
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")

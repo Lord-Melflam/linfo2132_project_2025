@@ -21,19 +21,20 @@ public class Free {
       new HashSet<>(Set.of(TokenType.SEMICOLON)));
   LinkedList<ASTNode> freeNode;
   private final String nodeName = "Deallocation";
+  private int line;
 
   public Free(Utils utils, Position savedPosition) {
     this.utils = utils;
     freeNode = new LinkedList<>();
+    line = utils.getLine();
   }
 
   public MainNode free() throws ParserException, UnrecognisedTokenException {
     if (utils.lookahead_matches(expectedSymbolsFree, true)) {
       freeNode.addAll(utils.getAstNodes());
-      return new MainNode(nodeName, freeNode);
+      return new MainNode(nodeName, freeNode, line);
     }
     utils.throwParserException();
     return null;
   }
-
 }

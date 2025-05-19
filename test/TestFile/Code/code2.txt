@@ -1,9 +1,15 @@
 $ Petit programme : Constantes et fonction simple
-final PI float = 3.14;
-final MESSAGE string = "Hello World!";
+final pi float = 3.14;
+final message string = "Hello World!";
+final test int = ((a % 5) * 3.5 + floor(b/2)) / (c - d.x);
+final test int =person.history[len(employees[floor(i/2.0)].history) - 1] * 2;
+final test bool = !(isEmpty && message == "") || (age >= 18 && score < floor(avg*1.1));
+final test string = (chr(65 + index%26) + "_" + stringVar)[(x*y) % len(stringVar)];
+final test float = floor() % (len(users) + 1);
+final test bool =(stringArray[(i + j) % len(stringArray)] + suffix)[0] == "A";
 
 fun greet() {
-    writeln(MESSAGE);
+    writeln(message);
 }
 
 fun main() {
@@ -37,7 +43,7 @@ Point rec {
     y int;
 }
 
-fun sumArray(int[] arr) int {
+fun sumArray(arr int[]) int {
     total int = 0;
     i int;
     for (i, 0, len(arr)-1, 1) {
@@ -47,6 +53,7 @@ fun sumArray(int[] arr) int {
 }
 
 fun main() {
+
     nums int[] = array [5] of int;
     nums[0] = 1;
     nums[1] = 2;
@@ -61,7 +68,7 @@ fun main() {
 }
 
 $ Programme avance : Manipulation de booleens et operations logiques
-fun isEven(int n) bool {
+fun isEven(n int) bool {
     return (n % 2) == 0;
 }
 
@@ -70,7 +77,7 @@ fun logicalTest() {
     b bool = false;
     writeln("A && B: ", a && b);
     writeln("A || B: ", a || b);
-    writeln("!A: ", !a);
+    writeln("!(A): ", !(a));
 }
 
 fun main() {
@@ -93,6 +100,3 @@ fun complexLoop() {
     }
 }
 
-fun main() {
-    complexLoop();
-}

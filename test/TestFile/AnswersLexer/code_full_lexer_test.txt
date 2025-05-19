@@ -1,5 +1,10 @@
+18:02:26: Executing ':Compiler.main()'...
 
-<StartFile>
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :Compiler.main()
 <Keyword,final>
 <Identifier,constInt>
 <TypeSpecifier,int>
@@ -90,11 +95,11 @@
 <Keyword,fun>
 <Identifier,add>
 <SpecialSymbol,(>
-<TypeSpecifier,int>
 <Identifier,a>
-<Punctuation,,>
 <TypeSpecifier,int>
+<Punctuation,,>
 <Identifier,b>
+<TypeSpecifier,int>
 <SpecialSymbol,)>
 <TypeSpecifier,int>
 <SpecialSymbol,{>
@@ -107,8 +112,8 @@
 <Keyword,fun>
 <Identifier,negateBool>
 <SpecialSymbol,(>
-<TypeSpecifier,bool>
 <Identifier,b>
+<TypeSpecifier,bool>
 <SpecialSymbol,)>
 <TypeSpecifier,bool>
 <SpecialSymbol,{>
@@ -122,8 +127,8 @@
 <Keyword,fun>
 <Identifier,getFirstChar>
 <SpecialSymbol,(>
-<TypeSpecifier,string>
 <Identifier,s>
+<TypeSpecifier,string>
 <SpecialSymbol,)>
 <TypeSpecifier,string>
 <SpecialSymbol,{>
@@ -140,11 +145,11 @@
 <Keyword,fun>
 <Identifier,computeSomething>
 <SpecialSymbol,(>
-<TypeSpecifier,int>
 <Identifier,x>
+<TypeSpecifier,int>
 <Punctuation,,>
-<TypeSpecifier,float>
 <Identifier,y>
+<TypeSpecifier,float>
 <SpecialSymbol,)>
 <TypeSpecifier,float>
 <SpecialSymbol,{>
@@ -373,4 +378,4 @@
 <Identifier,person>
 <Punctuation,;>
 <SpecialSymbol,}>
-<EndFile>
+

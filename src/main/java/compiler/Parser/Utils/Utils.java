@@ -125,10 +125,16 @@ public class Utils implements Observer {
   }
 
   private void createNode(Symbol currentSymbol) {
-    genericNode = new GenericNode<>(currentSymbol.getName(), currentSymbol.getToken());
+    genericNode = new GenericNode<>(currentSymbol.getName(), currentSymbol.getToken(),
+        currentSymbol.getLine_number());
     if (astNodes != null) {
       astNodes.add(genericNode);
     }
+  }
+
+  public int getLine() {
+    Symbol symbol = getSymbol(currentPosition.getSavedPosition());
+    return symbol.getLine_number();
   }
 
   public void throwParserException() throws ParserException {
