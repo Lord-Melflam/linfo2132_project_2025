@@ -32,18 +32,23 @@ public class CheckBuiltInFunction {
     builtInFunctionArgs.put("floor",
         new BuiltIn("floor", "int", new LinkedList<>(List.of("float"))));
     builtInFunctionArgs.put("chr", new BuiltIn("chr", "string", new LinkedList<>(List.of("int"))));
+    builtInFunctionArgs.put("min",
+        new BuiltIn("min", "int", new LinkedList<>(List.of("int", "int"))));
+    builtInFunctionArgs.put("max",
+        new BuiltIn("max", "int", new LinkedList<>(List.of("int", "int"))));
+
   }
 
   public String checkBuiltInFunction(LinkedList<ASTNode> children, Type table)
       throws TypeError, ArgumentError, GenericError, ScopeError, OperatorError {
     GenericNode<?> child = (GenericNode<?>) children.peek();
+    LinkedList<String> type = new LinkedList<>();
     if (builtInFunctionArgs.containsKey(child.getValue())) {
       BuiltIn builtIn = builtInFunctionArgs.get(child.getValue());
       int paramsNbr = 0;
       for (ASTNode astNode : children) {
         if (astNode.getName().equals("Parameters")) {
           MainNode params = (MainNode) astNode;
-          LinkedList<String> type = new LinkedList<>();
           getSymbols(params, type, table);
           paramsNbr = params.getChildren().size();
           checkArg(type, paramsNbr, builtIn, params.getLine());
@@ -51,6 +56,10 @@ public class CheckBuiltInFunction {
       }
       if (builtIn.getReturnType() == null) {
         return "void";
+      }
+      if ((builtIn.getName().equals("min") || builtIn.getName().equals("max")) && type.getFirst()
+          .equals("float") && type.getLast().equals("float")) {
+        return "float";
       }
       return builtIn.getReturnType();
     } else {
@@ -68,6 +77,8 @@ public class CheckBuiltInFunction {
 
     builtInFunctionArgs.put("write", new BuiltIn("write", null, null));
     builtInFunctionArgs.put("writeln", new BuiltIn("writeln", null, null));
+    builtInFunctionArgs.put("printType", new BuiltIn("printType", null, null));
+
     GenericNode<?> child = (GenericNode<?>) children.pop();
 
     if (builtInFunctionArgs.containsKey(child.getValue())) {
@@ -79,7 +90,8 @@ public class CheckBuiltInFunction {
           LinkedList<String> type = new LinkedList<>();
           getSymbols(params, type, table);
           paramsNbr = params.getChildren().size();
-          if (!builtIn.getName().equals("write") && !builtIn.getName().equals("writeln")) {
+          if (!builtIn.getName().equals("write") && !builtIn.getName().equals("writeln")
+              && !builtIn.getName().equals("printType")) {
             checkArg(type, paramsNbr, builtIn, params.getLine());
           } else {
             if (paramsNbr != 1 && paramsNbr != 0) {
@@ -95,7 +107,8 @@ public class CheckBuiltInFunction {
                   "Semantic exception: Argument error: incorrect number of arguments – expected {0 or 1}, received {"
                       + paramsNbr + "}" + " on line " + params.getLine());
             }
-            if (!TypeSpecifier.TYPE_SPECIFIERS.contains(type.getFirst())) {
+            if (!TypeSpecifier.TYPE_SPECIFIERS.contains(type.getFirst()) && !builtIn.getName()
+                .equals("printType")) {
               throw new ArgumentError(
                   "Semantic exception: Argument error: Parameter need to be a primitive type on line "
                       + params.getLine());
@@ -133,7 +146,12 @@ public class CheckBuiltInFunction {
 
         } else {
           if (!builtIn.getArgs().get(i).equals(node)) {
+            if ((builtIn.getName().equals("min") || builtIn.getName().equals("max") && node.equals(
+                "float"))) {
+              continue;
+            }
             throw new ArgumentError(line, size, paramsNbr);
+
           }
         }
       }

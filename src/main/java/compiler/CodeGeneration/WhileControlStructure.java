@@ -60,7 +60,7 @@ public class WhileControlStructure {
     }
     mv.visitJumpInsn(IFEQ, loopEnd);
 
-    FunctionBody functionBody = new FunctionBody(allocator, start, end);
+    FunctionBody functionBody = new FunctionBody(allocator, loopStart, loopEnd, start, end);
     functionBody.checkFunctionBody(mv, statement, null, functionType, table,
         stringStringSimpleEntry);
 

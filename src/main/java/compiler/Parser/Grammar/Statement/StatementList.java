@@ -6,6 +6,8 @@ import compiler.Lexer.Symbol;
 import compiler.Parser.ASTNode.GenericNode;
 import compiler.Parser.ASTNode.MainNode;
 import compiler.Parser.Grammar.Assignment.Assignment;
+import compiler.Parser.Grammar.ControlStructure.Break;
+import compiler.Parser.Grammar.ControlStructure.Continue;
 import compiler.Parser.Grammar.ControlStructure.ControlStructure;
 import compiler.Parser.Grammar.Deallocation.Free;
 import compiler.Parser.Grammar.Declaration.Declaration;
@@ -70,6 +72,21 @@ public class StatementList {
           if (freeNode != null) {
             statementListNode.addLast(freeNode);
 
+            return;
+          }
+        }
+        if (symbol.getToken().equals("break")) {
+          MainNode freeNode = new Break(utils, savedPosition).free();
+          if (freeNode != null) {
+            statementListNode.addLast(freeNode);
+
+            return;
+          }
+        }
+        if (symbol.getToken().equals("continue")) {
+          MainNode freeNode = new Continue(utils, savedPosition).free();
+          if (freeNode != null) {
+            statementListNode.addLast(freeNode);
             return;
           }
         }
@@ -165,7 +182,7 @@ public class StatementList {
 
   private void parseExpression(GenericNode<String> getGenericNode)
       throws UnrecognisedTokenException, ParserException {
-    savedPosition.setSavedPosition(savedPosition.getSavedPosition()-1);
+    savedPosition.setSavedPosition(savedPosition.getSavedPosition() - 1);
     MainNode callFunctionNode = new Expression(utils, savedPosition, getGenericNode).expression();
     if (callFunctionNode != null) {
       statementListNode.addLast(callFunctionNode);

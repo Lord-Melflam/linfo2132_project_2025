@@ -46,10 +46,12 @@ public class CheckIf {
 //                ifType.getCurrent()));
 //      }
       CheckStatement checkStatement = new CheckStatement();
-      assert ifStatement != null;
-      for (ASTNode node : ifStatement.getChildrenList()) {
-        if (!node.getName().equals("Punctuation")) {
-          checkStatement.checkBlock((MainNode) node, ifType);
+      if (ifStatement != null && !ifStatement.getChildrenList().isEmpty()) {
+
+        for (ASTNode node : ifStatement.getChildrenList()) {
+          if (!node.getName().equals("Punctuation")) {
+            checkStatement.checkBlock((MainNode) node, ifType);
+          }
         }
       }
       if (elseStatement != null) {

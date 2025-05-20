@@ -1,6 +1,7 @@
 package compiler.Parser.ASTNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import compiler.Exceptions.Semantic.OperatorError;
 import compiler.Parser.Utils.Interfaces.ASTNode;
@@ -13,11 +14,10 @@ public class MainNode extends ASTNode {
 
   private String name;
   @JsonIgnore
-
   private List<ASTNode> children;
   @JsonIgnore
   private int line;
-  @JsonIgnore
+  @JsonInclude(JsonInclude.Include.NON_EMPTY)
   private List<MainNode> nodes;
 
   public MainNode() {
@@ -70,6 +70,7 @@ public class MainNode extends ASTNode {
     return name;
   }
 
+  @JsonIgnore
   public List<ASTNode> getChildren() {
     return children;
   }

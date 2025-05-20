@@ -235,6 +235,7 @@ public class CheckConstantType {
           list = (LinkedList<ASTNode>) node.getChildren();
         }
         v = checkBuiltInFunction.checkBuiltInFunction(list, table);
+
       } else {
         assert children.peek() != null;
         if (children.peek().getName().equals("FunctionCall")) {
@@ -269,7 +270,11 @@ public class CheckConstantType {
           /*if (!constantTypeSpecifier.equals(stringLinkedList.getFirst())) {
             throw new TypeError(mainNode.getLine());
           }*/
-          v = stringLinkedList.getFirst().substring(0, stringLinkedList.getFirst().length() - 2);
+          if (stringLinkedList.getFirst().contains("[]")) {
+            v = stringLinkedList.getFirst().substring(0, stringLinkedList.getFirst().length() - 2);
+          } else {
+            v = stringLinkedList.getFirst();
+          }
           System.out.println();
         }
         /*assert children.peek() != null;

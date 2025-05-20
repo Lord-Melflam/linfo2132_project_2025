@@ -1,7 +1,83 @@
-Testing rec {
-	x int;
+final maxSize int = 100;
+final epsilon float = 0.00001;
+final message string = "Edge Cases Test";
+final isFlag bool = false;
+
+Point rec {
+    x int;
+    y int;
 }
+
+Complex rec {
+    real float;
+    imaginary float;
+}
+
+globalArray int[] = array [5] of int;
+recordInstance Complex = Complex(1.0, -2.5);
+
+fun divide(a int, b int) int {
+    if (b == 0) {
+        $ Division by zero error!
+        writeln("Division by zero error!");
+        return -1;  $ Placeholder for error
+    }
+    return a / b;
+}
+
+fun nestedScopesTest() {
+    a int = 5;
+
+        b int = 10;
+        $ Access to outer scope variable
+        writeln(a + b);
+
+            c int = 20;
+            $ Access to two outer scope variables
+            writeln(a + b + c);
+
+
+}
+
+fun recursiveArraySum(arr int[], size int) int {
+    if (size == 0) {
+        return 0;
+    }
+    return arr[size - 1] + recursiveArraySum(arr, size - 1);
+}
+
 fun main() {
-test Testing = Testing(3);
-write(test.x);
+    $ Test string operations
+    greeting string = message + " - Testing";
+    writeln(greeting + "!");
+
+    $ Test array index out of bounds
+    writeln(globalArray[10]);  $ Should trigger an error
+
+    $ Test type promotion in mixed arithmetic
+    x float = 5 + 2.5;
+    writeln(x);
+
+    $ Test function calls and recursion
+    writeln("Sum of array: " + sum);
+
+    $ Test record manipulation and field access
+    recordInstance.imaginary = floor(recordInstance.imaginary);
+    writeln("Complex number: " + recordInstance.real + " + " +
+            recordInstance.imaginary + "i");
+
+    $ Test control flow constructs
+    for (i int, 1, 10, 2) {
+        if (i % 2 == 0) {
+            writeln("Even: " + i);
+        } else {
+            writeln("Odd: " + i);
+        }
+    }
+
+    $ Test nested scopes
+    nestedScopesTest();
+
+    $ Test division by zero
+    writeln(divide(10, 0));
 }

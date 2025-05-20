@@ -39,7 +39,9 @@ public class IfControlStructure {
         statement.add(node);
       }
     }
-
+    if (statement.isEmpty()) {
+      return;
+    }
     Label elseLabel = new Label();
     Label endIfLabel = new Label();
 
@@ -60,14 +62,14 @@ public class IfControlStructure {
     mv.visitJumpInsn(IFEQ, elseLabel);    // si run == 0 (false), aller dans le else
 
 // Bloc IF: value = value - 1
-    FunctionBody functionBodyIf = new FunctionBody(allocator, start, end);
+    FunctionBody functionBodyIf = new FunctionBody(allocator, start, end, null, null);
     functionBodyIf.checkFunctionBody(mv, statement.getFirst(), null, functionType, table,
         stringStringSimpleEntry);
     mv.visitJumpInsn(GOTO, endIfLabel);   // saut pour éviter le else
     if (statement.size() == 2) {
 // Bloc ELSE
       mv.visitLabel(elseLabel);
-      FunctionBody functionBodyElse = new FunctionBody(allocator, start, end);
+      FunctionBody functionBodyElse = new FunctionBody(allocator, start, end, null, null);
       functionBodyElse.checkFunctionBody(mv, statement.getLast(), null, functionType, table,
           stringStringSimpleEntry);
     }

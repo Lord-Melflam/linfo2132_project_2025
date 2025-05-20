@@ -9,7 +9,7 @@ public class Keyword extends Symbol {
   private int line_number;
   public static final ArrayList<String> KEYWORDS = new ArrayList<>(
       List.of("free", "final", "rec", "fun", "for", "while", "if", "else", "return", "of",
-          "array"));
+          "array", "break", "continue"));
   private String attribute;
   private int column;
 

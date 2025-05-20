@@ -102,7 +102,7 @@ public class ControlStructure {
     mv.visitJumpInsn(IF_ICMPGT, loopEnd);
 
     // for body
-    FunctionBody functionBody = new FunctionBody(allocator, start, end);
+    FunctionBody functionBody = new FunctionBody(allocator, loopStart, loopEnd, start, end);
     functionBody.checkFunctionBody(mv, statement, null, functionType, table,
         stringStringSimpleEntry);
 //

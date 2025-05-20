@@ -7,7 +7,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
     TestLexer.class,
     TestParser.class,
-    TestSemantic.class
+    TestSemantic.class,
+    TestExtraFeatures.class,
+    TestCodeGeneration.class
 })
 public class TestSuite {
 

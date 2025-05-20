@@ -102,7 +102,7 @@ public class Function {
       functionTable.getSymbols().put(functionArgsName.get(i), table1);
     }
 
-    FunctionBody functionBody = new FunctionBody(allocator, start, end);
+    FunctionBody functionBody = new FunctionBody(allocator, start, end, null, null);
     assert functionBlock != null;
     if (!functionBlock.getChildrenList().isEmpty()) {
       functionBody.checkFunctionBody(methodVisitor, functionBlock.getChildrenList().getLast(),

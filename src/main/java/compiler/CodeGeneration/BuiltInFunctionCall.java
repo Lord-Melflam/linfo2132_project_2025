@@ -6,6 +6,7 @@ import static org.objectweb.asm.Opcodes.ASTORE;
 import static org.objectweb.asm.Opcodes.D2I;
 import static org.objectweb.asm.Opcodes.DUP;
 import static org.objectweb.asm.Opcodes.F2D;
+import static org.objectweb.asm.Opcodes.FSTORE;
 import static org.objectweb.asm.Opcodes.GETSTATIC;
 import static org.objectweb.asm.Opcodes.I2C;
 import static org.objectweb.asm.Opcodes.ICONST_1;
@@ -15,6 +16,7 @@ import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 import static org.objectweb.asm.Opcodes.ISTORE;
 import static org.objectweb.asm.Opcodes.IXOR;
 import static org.objectweb.asm.Opcodes.NEW;
+import static org.objectweb.asm.Opcodes.SWAP;
 
 import compiler.CodeGeneration.Utils.DescriptorUtils;
 import compiler.CodeGeneration.Utils.LocalIndexAllocator;
@@ -26,6 +28,7 @@ import compiler.Parser.ASTNode.MainNode;
 import compiler.Parser.Utils.Interfaces.ASTNode;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map.Entry;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
@@ -57,7 +60,10 @@ public class BuiltInFunctionCall {
     MainNode mainNode = (MainNode) astNode;
     String builtInName = "";
     String args = "";
+    LinkedList<String> strings = new LinkedList<>();
     HashMap<String, String> functionArgs = new HashMap<>();
+    HashMap<String, String> test = new HashMap<>();
+
     MainNode mainNode1 = null;
     for (ASTNode node : mainNode.getChildrenList()) {
       //if (node.getName().equals("BuiltInFunctionCall")) {
@@ -68,7 +74,7 @@ public class BuiltInFunctionCall {
         builtInName = builtInNameNode.getValue();
       }
       if (node.getName().equals("Parameters")) {
-        getParams(methodVisitor, (MainNode) node, functionArgs, isConstructor);
+        getParams(methodVisitor, (MainNode) node, functionArgs, isConstructor, strings, test);
         mainNode1 = (MainNode) node;
       }
       //}
@@ -111,7 +117,6 @@ public class BuiltInFunctionCall {
           allocator, start, end);
       Table table1 = expressionCodeGenerator.checkExpression(mainNode1.getChildrenList().getFirst(),
           methodVisitor, isConstructor);
-      System.out.println();
       /*if (functionArgs.containsKey("Literal")) {
         Utils.execute("load", methodVisitor, new SimpleEntry<>("", table1.descriptor),
             table1.index);
@@ -127,8 +132,138 @@ public class BuiltInFunctionCall {
 
       return new Table(functionArgs.getOrDefault("Identifier", "temp"), "I", true, false, false,
           null, allocator.previous());
+    } else if (builtInName.equals("min") || builtInName.equals("max")) {
+      LinkedList<String> stringLinkedList = new LinkedList<>();
+      LinkedList<String> load = new LinkedList<>();
+
+      if (((MainNode) mainNode1.getChildrenList().get(0)).getName().equals("FunctionCall")) {
+        int index = strings.indexOf("Function");
+        load.add(strings.get(index));
+        load.add(strings.get(index + 1));
+      } else {
+        load.add(strings.get(0));
+        load.add(strings.get(1));
+      }
+      load.add(strings.get(strings.size() - 2));
+      load.add(strings.getLast());
+
+      LinkedList<String> list = new LinkedList<>();
+      for (int i = 0; i < load.size(); i++) {
+        String val = load.get(i);
+        if (val.equals("Identifier")) {
+          Table table1 = Utils.searchIdentifier(methodVisitor, table, load.get(i + 1), true,
+              false);
+          list.add(table1.descriptor);
+        } else if (val.equals("Literal")) {
+          String next = load.get(i + 1);
+          String type = new Literal().typeOfLiteral(next);
+          Utils.loadLitField(methodVisitor,
+              new SimpleEntry<>("", type), next);
+          list.add(DescriptorUtils.getTypeFromString(type).getDescriptor());
+        } else if (val.equals("Function")) {
+          String next = load.get(i + 1);
+          Utils.execute("load", methodVisitor, new SimpleEntry<>("", func.descriptor),
+              Integer.parseInt(next));
+        } else if (val.equals("other")) {
+          String next = load.get(i + 1);
+          String[] des = next.split("_");
+          list.add(des[0]);
+          Utils.execute("load", methodVisitor, new SimpleEntry<>("", list.getLast()),
+              Integer.parseInt(des[1]));
+        }
+      }
+      if (list.stream().allMatch(a -> a.equals("I"))) {
+        return minMaxFunction(methodVisitor, builtInName, "I");
+      } else {
+        return minMaxFunction(methodVisitor, builtInName, "F");
+      }
+    } else if (builtInName.equals("printType")) {
+      Table table1 = Utils.searchIdentifier(methodVisitor, table, functionArgs.get("Identifier"),
+          true, false);
+      String descriptor = table1.descriptor;
+
+      // Gérer les tableaux
+      if (descriptor.startsWith("[")) {
+        // obj.getClass().getSimpleName()
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass",
+            "()Ljava/lang/Class;", false);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getSimpleName",
+            "()Ljava/lang/String;", false);
+        methodVisitor.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+        methodVisitor.visitInsn(SWAP);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
+            "(Ljava/lang/String;)V", false);
+        return null;
+      }
+
+      // Gérer les types primitifs
+      switch (descriptor) {
+        case "I": // int
+          methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/Integer", "valueOf",
+              "(I)Ljava/lang/Integer;", false);
+          break;
+        case "Z": // boolean
+          methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/Boolean", "valueOf",
+              "(Z)Ljava/lang/Boolean;", false);
+          break;
+        case "F": // float
+          methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/Float", "valueOf",
+              "(F)Ljava/lang/Float;", false);
+          break;
+        default:
+          // Référence directe, pas besoin de boxing
+          break;
+      }
+
+      // obj.getClass().getSimpleName()
+      methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass",
+          "()Ljava/lang/Class;", false);
+      methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getSimpleName",
+          "()Ljava/lang/String;", false);
+
+      // System.out.println(...)
+      methodVisitor.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+      methodVisitor.visitInsn(SWAP);
+      methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
+          "(Ljava/lang/String;)V", false);
+
+      return null;
     }
+
     return extracted(methodVisitor, builtInName, functionArgs);
+  }
+
+  public Table minMaxFunction(MethodVisitor methodVisitor, String builtInName, String descriptor) {
+    int index = allocator.allocate();
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("(");
+    stringBuilder.append(descriptor);
+    stringBuilder.append(descriptor);
+    stringBuilder.append(")");
+    stringBuilder.append(descriptor);
+
+    //if (builtInName.equals("min") || ) {
+    methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/Math", builtInName,
+        stringBuilder.toString(), false);
+    if (descriptor.equals("I")) {
+      methodVisitor.visitVarInsn(ISTORE, index);
+      Utils.execute("load", methodVisitor, new SimpleEntry<>("", "I"), index);
+    } else {
+      methodVisitor.visitVarInsn(FSTORE, index);
+      Utils.execute("load", methodVisitor, new SimpleEntry<>("", "F"), index);
+    }
+    //}
+    /* else {
+      methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/Math", "max", stringBuilder.toString(),
+          false);
+      if (descriptor.equals("I")) {
+        methodVisitor.visitVarInsn(ISTORE, index);
+      } else {
+        methodVisitor.visitVarInsn(FSTORE, index);
+      }
+    }*/
+    return new Table(builtInName, descriptor, true, false, false,
+        null, index);
   }
 
   private Table extracted(MethodVisitor mv, String builtInName,
@@ -147,7 +282,6 @@ public class BuiltInFunctionCall {
     } else if (builtInName.equals("len")) {
       return len(functionArgs, mv, builtInName);
     }
-
 
     /*else if (builtInName.equals("readInt")) {
       mv.visitTypeInsn(NEW, "java/util/Scanner");
@@ -281,24 +415,40 @@ public class BuiltInFunctionCall {
   }
 
   private void getParams(MethodVisitor methodVisitor, MainNode astNode,
-      HashMap<String, String> functionArgs, Boolean isConstructor) throws OperatorError {
+      HashMap<String, String> functionArgs, Boolean isConstructor, LinkedList<String> strings,
+      HashMap<String, String> test)
+      throws OperatorError {
     for (ASTNode node : astNode.getChildrenList()) {
       MainNode mainNode = (MainNode) node;
       if (node.getName().equals("Expression")) {
         for (ASTNode expressionNode : mainNode.getChildrenList()) {
           if (expressionNode.getName().equals("Identifier")) {
             String type = ((GenericNode<?>) expressionNode).getValue();
-            functionArgs.put("Identifier", type);
+            if (!functionArgs.containsKey("Identifier")) {
+              functionArgs.put("Identifier", type);
+            } else {
+              functionArgs.put("Identifier1", type);
+            }
+            strings.add("Identifier");
+            strings.add(type);
           } else {
             String type = ((GenericNode<?>) expressionNode).getValue();
-            functionArgs.put("Literal", type);
+            if (!functionArgs.containsKey("Literal")) {
+              functionArgs.put("Literal", type);
+            } else {
+              functionArgs.put("Literal1", type);
+            }
+
+            strings.add("Literal");
+            strings.add(type);
           }
         }
       } else if (node.getName().equals("FunctionCall")) {
         GenericNode<?> functionName = (GenericNode<?>) ((MainNode) node).getChildrenList()
             .getFirst();
+        functionArgs.clear();
         getParams(methodVisitor, ((MainNode) ((MainNode) node).getChildrenList().get(1)),
-            functionArgs, isConstructor);
+            functionArgs, isConstructor, strings, test);
         Table function = table.resolve(functionName.getValue());
         setFunc(function);
         methodVisitor.visitVarInsn(ALOAD, 1);
@@ -307,10 +457,19 @@ public class BuiltInFunctionCall {
           for (Entry<String, String> entry : functionArgs.entrySet()) {
             stringBuilder.append(entry.getValue());
             stringBuilder.append("_");
-            if (entry.getKey().equals("Literal")) {
+            if (entry.getKey().contains("Literal")) {
               Utils.loadLitField(methodVisitor,
                   new SimpleEntry<>("", new Literal().typeOfLiteral(entry.getValue())),
                   entry.getValue());
+            } else if (entry.getKey().contains("Function")) {
+              Utils.execute("load", methodVisitor,
+                  new SimpleEntry<>("", func.descriptor),
+                  Integer.parseInt(functionArgs.get("Function")));
+            } else if (entry.getKey().contains("other")) {
+              Utils.execute("load", methodVisitor, new SimpleEntry<>("", functionArgs.get("des")),
+                  Integer.parseInt(entry.getValue()));
+            } else if (entry.getKey().contains("des")) {
+              continue;
             } else {
               Table arg = Utils.searchIdentifier(methodVisitor, table, entry.getValue(), true,
                   false);
@@ -326,7 +485,15 @@ public class BuiltInFunctionCall {
           String res = function.name + stringBuilder.substring(0, stringBuilder.length() - 1);
           table.getSymbols()
               .put(res, new Table(res, function.descriptor, false, false, false, null, index));
-          functionArgs.put("Function", String.valueOf(index));
+          if (!functionArgs.containsKey("Function")) {
+            functionArgs.put("Function", String.valueOf(index));
+
+          } else {
+            functionArgs.put("Function1", String.valueOf(index));
+
+          }
+          strings.add("Function");
+          strings.add(String.valueOf(index));
         }
       } else if (node.getName().equals("BinaryExpression") || node.getName()
           .equals("UnaryExpression") || node.getName().equals("FieldAccess")) {
@@ -335,8 +502,15 @@ public class BuiltInFunctionCall {
         Table table1 = expressionCodeGenerator.checkExpression(
             mainNode,
             methodVisitor, isConstructor);
-        functionArgs.put("other", String.valueOf(table1.index));
-        functionArgs.put("des", table1.descriptor);
+        if (!functionArgs.containsKey("other")) {
+          functionArgs.put("other", String.valueOf(table1.index));
+          functionArgs.put("des", table1.descriptor);
+        } else {
+          functionArgs.put("other1", String.valueOf(table1.index));
+          functionArgs.put("des1", table1.descriptor);
+        }
+        strings.add("other");
+        strings.add(table1.descriptor + "_" + String.valueOf(table1.index));
       }
     }
   }

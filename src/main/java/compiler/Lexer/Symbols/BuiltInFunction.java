@@ -12,7 +12,7 @@ public class BuiltInFunction extends Symbol {
 
   private static final ArrayList<String> BUILTIN = new ArrayList<>(
       List.of("readInt", "readFloat", "readString", "writeInt", "writeFloat", "write", "writeln",
-          "!", "len", "floor", "chr"
+          "!", "len", "floor", "chr", "min", "max", "printType"
       ));
 
   public BuiltInFunction(String attribute, int line_number, int column) {
