@@ -27,13 +27,13 @@ The goal of our project is to create a compiler featuring the following phases:
 
 The repository is organized as a Gradle project with the following directory structure:
 
-├── build.gradle.kts <\br>
-├── gradle <\br>
-├── gradlew <\br>
-├── gradlew.bat <\br>
-├── settings.gradle.kts <\br>
-├── src <\br>
-└── test <\br>
+├── build.gradle.kts <br>
+├── gradle <br>
+├── gradlew <br>
+├── gradlew.bat <br>
+├── settings.gradle.kts <br>
+├── src <br>
+└── test <br>
 
 
 - **src**: Contains the main source code.
